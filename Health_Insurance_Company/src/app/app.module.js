@@ -7,7 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var router_1 = require("@angular/router");
+var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
+var SignUp_component_1 = require("./Login/SignUp.component");
+var Login_component_1 = require("./Login/Login.component");
+var appRoutes = [
+    { path: 'Login', component: Login_component_1.LoginComponent },
+];
 var AppModule = (function () {
     function AppModule() {
     }
@@ -15,8 +22,13 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent],
+        imports: [platform_browser_1.BrowserModule,
+            router_1.RouterModule.forRoot(appRoutes),
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,],
+        declarations: [app_component_1.AppComponent,
+            Login_component_1.LoginComponent,
+            SignUp_component_1.SignUpComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

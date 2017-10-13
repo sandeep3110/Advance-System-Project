@@ -5,20 +5,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-// imp url : http://embed.plnkr.co/9luTng/?show=preview
-// imp url : https://bootsnipp.com/snippets/featured/login-amp-signup-forms-in-panel
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
-        this.name = 'Angular';
+var LoginComponent = (function () {
+    function LoginComponent() {
     }
-    return AppComponent;
+    return LoginComponent;
 }());
-AppComponent = __decorate([
+LoginComponent = __decorate([
     core_1.Component({
-        selector: 'ASP-Home',
-        templateUrl: './HTML/Home.html',
+        selector: 'login-page',
+        templateUrl: './../HTML/Login.html',
+        styleUrls: ['./../CSS/Login.css'],
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=Login.component.js.map

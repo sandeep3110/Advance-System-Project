@@ -1,0 +1,29 @@
+<h1>Health Insurance Company </h1>
+
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class="active"><a [routerLink] = "['/Login']"> Login </a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Assignments
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a [routerLink] = "['/fruit']"> Fruits </a></li>
+                  <li><a [routerLink] = "['/assignment1']">Assignment1</a></li>
+                  <li><a [routerLink] = "['/assignment2']">Assignment2</a></li>
+                  <li><a [routerLink] = "['/assignment3']">Assignment3</a></li>
+                </ul>
+              </li>
+            <li><a [routerLink] = "['/product']"> Products</a></li>
+            <li><a [routerLink] = "['/profile']"> Profile </a></li>
+            <li><a [routerLink] = "['/directive']"> Directives </a> </li>
+          </ul>
+        </div>
+      </nav>
+<router-outlet></router-outlet>        
+      
+<h1>{{name}}</h1>
+&nbsp;&nbsp;
+<footer>
+    &copy; CopyRights of Chaitanya Prashanth	
+</footer>
