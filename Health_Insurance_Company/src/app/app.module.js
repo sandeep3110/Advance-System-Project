@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var SignUp_component_1 = require("./Login/SignUp.component");
 var Login_component_1 = require("./Login/Login.component");
@@ -25,7 +26,8 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule,
             router_1.RouterModule.forRoot(appRoutes),
             forms_1.FormsModule,
-            forms_1.ReactiveFormsModule,],
+            forms_1.ReactiveFormsModule,
+            http_1.HttpModule],
         declarations: [app_component_1.AppComponent,
             Login_component_1.LoginComponent,
             SignUp_component_1.SignUpComponent],

@@ -10,14 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var DBConn_service_1 = require("./../RESTFul_API_Service/DBConn.service");
 var SignUpComponent = (function () {
-    function SignUpComponent(fb) {
+    function SignUpComponent(fb, dbConn) {
         this.fb = fb;
+        this.dbConn = dbConn;
         this.createForm();
     }
     SignUpComponent.prototype.createForm = function () {
         this.entryForm = this.fb.group({
-            firstname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]')])],
+            firstname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             password: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
             age: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('(\\d?[1-9]|[1-9]0)+')])],
             phone: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*')])],
@@ -26,12 +28,16 @@ var SignUpComponent = (function () {
     };
     SignUpComponent.prototype.register = function () {
         var entries = {
-            firstname: this.entryForm.get('firstname').value,
+            name: this.entryForm.get('firstname').value,
             password: this.entryForm.get('password').value,
             age: this.entryForm.get('age').value,
             phone: this.entryForm.get('phone').value,
-            country: this.entryForm.get('country').value,
+            place: this.entryForm.get('country').value,
         };
+        this.dbConn.insertRegistartionValues(entries)
+            .subscribe(function (result) {
+            window.alert(result);
+        });
     };
     return SignUpComponent;
 }());
@@ -39,8 +45,9 @@ SignUpComponent = __decorate([
     core_1.Component({
         selector: 'signUp-page',
         templateUrl: './../HTML/SignUp.html',
+        providers: [DBConn_service_1.DBConnection],
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder])
+    __metadata("design:paramtypes", [forms_1.FormBuilder, DBConn_service_1.DBConnection])
 ], SignUpComponent);
 exports.SignUpComponent = SignUpComponent;
 //# sourceMappingURL=SignUp.component.js.map

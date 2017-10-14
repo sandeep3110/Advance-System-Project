@@ -10,11 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
 var DBConnection = (function () {
     function DBConnection(http) {
         this.http = http;
     }
     DBConnection.prototype.insertRegistartionValues = function (entries) {
+        /* let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        headers.append('Access-Control-Allow-Methods', 'POST');
+        headers.append('Access-Control-Allow-Origin', '*'); */
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post("http://localhost:8080/ASP/HealthDB/myresource", entries, { headers: headers })
+            .map(function (response) {
+            return response;
+        });
     };
     return DBConnection;
 }());
