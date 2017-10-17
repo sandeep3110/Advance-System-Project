@@ -1,8 +1,12 @@
+/*http://embed.plnkr.co/9luTng/?show=preview*/
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import {DBConnection} from './../RESTFul_API_Service/DBConn.service';
+import { Router } from '@angular/router';
 
 
+"use strict";
 @Component({
     selector : 'signUp-page',
     templateUrl: './../HTML/SignUp.html',
@@ -12,8 +16,9 @@ import {DBConnection} from './../RESTFul_API_Service/DBConn.service';
   export class SignUpComponent { 
   
     entryForm : FormGroup;
+   
   
-      constructor(private fb : FormBuilder , public dbConn : DBConnection){
+      constructor(private fb : FormBuilder , public dbConn : DBConnection , private router:Router){
                     this.createForm();
           }
   
@@ -39,10 +44,13 @@ import {DBConnection} from './../RESTFul_API_Service/DBConn.service';
                 this.dbConn.insertRegistartionValues(entries)
                   .subscribe(
                     (result:any)=>{
-                      window.alert(result);
-                    }
-                  )
-                
+                         if(result.status == 200){
+                              window.alert("Registration successfull ,Please sign In to the portal!!");
+                              this.entryForm.reset();
+                            }else{
+                                window.alert("Something went wrong !! Registration  not successfull ");
+                                 }    
+                          });    
               }
   
   

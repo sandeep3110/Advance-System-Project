@@ -1,3 +1,4 @@
+/*http://embed.plnkr.co/9luTng/?show=preview*/
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11,10 +12,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var DBConn_service_1 = require("./../RESTFul_API_Service/DBConn.service");
+var router_1 = require("@angular/router");
+"use strict";
 var SignUpComponent = (function () {
-    function SignUpComponent(fb, dbConn) {
+    function SignUpComponent(fb, dbConn, router) {
         this.fb = fb;
         this.dbConn = dbConn;
+        this.router = router;
         this.createForm();
     }
     SignUpComponent.prototype.createForm = function () {
@@ -27,6 +31,7 @@ var SignUpComponent = (function () {
         });
     };
     SignUpComponent.prototype.register = function () {
+        var _this = this;
         var entries = {
             name: this.entryForm.get('firstname').value,
             password: this.entryForm.get('password').value,
@@ -36,7 +41,13 @@ var SignUpComponent = (function () {
         };
         this.dbConn.insertRegistartionValues(entries)
             .subscribe(function (result) {
-            window.alert(result);
+            if (result.status == 200) {
+                window.alert("Registration successfull ,Please sign In to the portal!!");
+                _this.entryForm.reset();
+            }
+            else {
+                window.alert("Something went wrong !! Registration  not successfull ");
+            }
         });
     };
     return SignUpComponent;
@@ -47,7 +58,7 @@ SignUpComponent = __decorate([
         templateUrl: './../HTML/SignUp.html',
         providers: [DBConn_service_1.DBConnection],
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder, DBConn_service_1.DBConnection])
+    __metadata("design:paramtypes", [forms_1.FormBuilder, DBConn_service_1.DBConnection, router_1.Router])
 ], SignUpComponent);
 exports.SignUpComponent = SignUpComponent;
 //# sourceMappingURL=SignUp.component.js.map
