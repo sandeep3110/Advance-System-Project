@@ -1,29 +1,40 @@
-<h1>Health Insurance Company </h1>
+<div>
+  
+    <a [routerLink]="['/']">  <img src="app/Images/Company-Logo.jpg" alt="Company-Logo" height="80" width="100" style="padding : 5px 5px;"> </a>
+    <nav class="navbar navbar-inverse" style="margin : -60px 150px;  ">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li class="dropdown" style="padding-left : 20px">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"> For Patients
+                  <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a [routerLink]="['/fruit']"> Fruits </a></li>
+              <li><a [routerLink]="['/assignment1']">Assignment1</a></li>
+              <li><a [routerLink]="['/assignment2']">Assignment2</a></li>
+              <li><a [routerLink]="['/assignment3']">Assignment3</a></li>
+            </ul>
+          </li>
+          <li style="padding-left : 20px"><a [routerLink]="['/product']"> News/Updates</a></li>
+          <li style="padding-left : 20px"><a [routerLink]="['/profile']"> Reviews </a></li>
+          <li style="padding-left : 20px" ><a [routerLink]="['/directive']"> Contact Us </a> </li>
+          <li class="active" style="padding-left : 390px"><a [routerLink]="['/Login']"> Login </a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 
-<nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <ul class="nav navbar-nav">
-            <li class="active"><a [routerLink] = "['/Login']"> Login </a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Assignments
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a [routerLink] = "['/fruit']"> Fruits </a></li>
-                  <li><a [routerLink] = "['/assignment1']">Assignment1</a></li>
-                  <li><a [routerLink] = "['/assignment2']">Assignment2</a></li>
-                  <li><a [routerLink] = "['/assignment3']">Assignment3</a></li>
-                </ul>
-              </li>
-            <li><a [routerLink] = "['/product']"> Products</a></li>
-            <li><a [routerLink] = "['/profile']"> Profile </a></li>
-            <li><a [routerLink] = "['/directive']"> Directives </a> </li>
-          </ul>
-        </div>
-      </nav>
-<router-outlet></router-outlet>        
-      
-<h1>{{name}}</h1>
-&nbsp;&nbsp;
-<footer>
-    &copy; CopyRights of Chaitanya Prashanth	
-</footer>
+  <div [ngStyle] = "swapImages()" style = "margin-top : 100px; height : 500px ; width : 1350px;" >
+    
+  </div>
+
+
+
+
+
+
+<router-outlet></router-outlet>
+
+
+ <footer>
+  &copy; CopyRights of Chaitanya Prashanth
+</footer> 
