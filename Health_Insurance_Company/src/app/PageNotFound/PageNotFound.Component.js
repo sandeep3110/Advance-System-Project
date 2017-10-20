@@ -5,20 +5,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-// imp url : http://embed.plnkr.co/9luTng/?show=preview
-// imp url : https://bootsnipp.com/snippets/featured/login-amp-signup-forms-in-panel
 var core_1 = require("@angular/core");
 "use strict";
-var AppComponent = (function () {
-    function AppComponent() {
+var PageNotFoundComponent = (function () {
+    function PageNotFoundComponent() {
     }
-    return AppComponent;
+    return PageNotFoundComponent;
 }());
-AppComponent = __decorate([
+PageNotFoundComponent = __decorate([
     core_1.Component({
-        selector: 'ASP-Home',
-        templateUrl: './HTML/Default.Home.html',
+        selector: 'pageNotFound',
+        templateUrl: './../HTML/PageNotFound.html',
+        styleUrls: ['./../CSS/PageNotFound.css'],
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], PageNotFoundComponent);
+exports.PageNotFoundComponent = PageNotFoundComponent;
+//# sourceMappingURL=PageNotFound.component.js.map

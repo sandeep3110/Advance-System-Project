@@ -11,10 +11,18 @@ var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
+var PageNotFound_component_1 = require("./PageNotFound/PageNotFound.component");
+var Home_component_1 = require("./Home/Home.component");
 var SignUp_component_1 = require("./Login/SignUp.component");
 var Login_component_1 = require("./Login/Login.component");
 var appRoutes = [
-    { path: 'Login', component: Login_component_1.LoginComponent },
+    { path: '', component: app_component_1.AppComponent,
+        children: [
+            { path: '', component: Home_component_1.HomePageComponent },
+            { path: 'Login', component: Login_component_1.LoginComponent },
+        ]
+    },
+    { path: '**', component: PageNotFound_component_1.PageNotFoundComponent },
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -29,6 +37,8 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             http_1.HttpModule],
         declarations: [app_component_1.AppComponent,
+            PageNotFound_component_1.PageNotFoundComponent,
+            Home_component_1.HomePageComponent,
             Login_component_1.LoginComponent,
             SignUp_component_1.SignUpComponent],
         bootstrap: [app_component_1.AppComponent]
