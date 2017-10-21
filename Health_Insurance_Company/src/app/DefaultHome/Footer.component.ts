@@ -2,11 +2,19 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 
 "use strict";
+
 @Component({
-    selector : 'login-page',
-    templateUrl: './Login.html',
-    styleUrls : ['./Login.css'],
-  })
+  selector: 'Footer-home',
+  templateUrl: './Footer.html',
+  styleUrls : ['./Footer.css'],
+  
+})
+export class FooterComponent  { 
+
   
 
-  export class LoginComponent { }
+ }
+
+
+
+

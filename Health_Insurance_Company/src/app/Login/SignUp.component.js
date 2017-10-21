@@ -1,4 +1,3 @@
-/*http://embed.plnkr.co/9luTng/?show=preview*/
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -55,7 +54,7 @@ var SignUpComponent = (function () {
 SignUpComponent = __decorate([
     core_1.Component({
         selector: 'signUp-page',
-        templateUrl: './../HTML/SignUp.html',
+        templateUrl: './SignUp.html',
         providers: [DBConn_service_1.DBConnection],
     }),
     __metadata("design:paramtypes", [forms_1.FormBuilder, DBConn_service_1.DBConnection, router_1.Router])

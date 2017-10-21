@@ -7,16 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 "use strict";
-var AppComponent = (function () {
-    function AppComponent() {
+var HeaderComponent = (function () {
+    function HeaderComponent() {
     }
-    return AppComponent;
+    return HeaderComponent;
 }());
-AppComponent = __decorate([
+HeaderComponent = __decorate([
     core_1.Component({
-        selector: 'ASP-Home',
-        templateUrl: './DefaultHome/Default.Home.html',
+        selector: 'Header-home',
+        templateUrl: './Header.html',
+        styleUrls: ['./Header.css'],
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], HeaderComponent);
+exports.HeaderComponent = HeaderComponent;
+//# sourceMappingURL=Header.component.js.map

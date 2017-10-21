@@ -6,12 +6,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent}  from './app.component';
 import {PageNotFoundComponent} from './PageNotFound/PageNotFound.component';
+import {HeaderComponent} from './DefaultHome/Header.component';
+import {FooterComponent} from './DefaultHome/Footer.component';
 import {HomePageComponent }  from './Home/Home.component';
 import {SignUpComponent }  from './Login/SignUp.component'; 
 import {LoginComponent }  from './Login/Login.component';
 
 
 
+"Use srtict";
 
 const appRoutes: Routes = [
   { path : '' , component : AppComponent, 
@@ -35,6 +38,8 @@ const appRoutes: Routes = [
 
   declarations: [ AppComponent,
                   PageNotFoundComponent,
+                  HeaderComponent,
+                  FooterComponent,
                   HomePageComponent,
                   LoginComponent,
                   SignUpComponent ],

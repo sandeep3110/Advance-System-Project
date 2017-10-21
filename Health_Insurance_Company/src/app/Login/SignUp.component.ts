@@ -1,4 +1,3 @@
-/*http://embed.plnkr.co/9luTng/?show=preview*/
 
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
 "use strict";
 @Component({
     selector : 'signUp-page',
-    templateUrl: './../HTML/SignUp.html',
+    templateUrl: './SignUp.html',
     providers : [DBConnection],
     
   })

@@ -1,35 +1,3 @@
-
-.navbar-inverse{
-	background:transparent;
-	background-image:none;
-	border-color:transparent;
-	box-shadow:none;
-  }
-
-.navbar-nav {
-	font-weight: bolder;
-	font-size: 130%;	
-}
-
-.dropdown {
-	padding-left : 25px;	
-}
-
-#dropdown {
-	padding-left : 220px;
-}
-.dropdown a ,#dropdown a {
-	color : rgba(8, 9, 119, 0.76);	
-}
-
-.HomeImage  {
-	margin-top : -80px;
-	height : 500px ; 
-	width : 1350px;
-}
-
-
-
 #newsletter{
 	margin-bottom : -60px;
 	height : 50px;
