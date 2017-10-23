@@ -8,6 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/* Angular Reactive forms api
+"https://angular.io/guide/reactive-forms"
+
+Form Group : FormGroup tracks the value and validity state of a group of AbstractControl instances.
+The group's properties include its child controls. The top-level form in your component is a FormGroup.
+
+The FormBuilder class helps reduce repetition and clutter by handling details of control creation for you.
+
+*/
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var DBConn_service_1 = require("./../RESTFul_API_Service/DBConn.service");
@@ -20,34 +29,22 @@ var SignUpComponent = (function () {
         this.router = router;
         this.createForm();
     }
+    /* Validation for each and every form field */
     SignUpComponent.prototype.createForm = function () {
         this.entryForm = this.fb.group({
             firstname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
-            password: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
+            lastname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             age: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('(\\d?[1-9]|[1-9]0)+')])],
             phone: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*')])],
-            country: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
+            address: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[\\w\\s]+')])],
+            city: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
+            state: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([A-Za-z]{2})+')])],
+            email: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([\\w-\.]+@([\\w-]+\.)+[\\w-])+')])],
+            password: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
+            ConfirmPassword: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
         });
-    };
-    SignUpComponent.prototype.register = function () {
-        var _this = this;
-        var entries = {
-            name: this.entryForm.get('firstname').value,
-            password: this.entryForm.get('password').value,
-            age: this.entryForm.get('age').value,
-            phone: this.entryForm.get('phone').value,
-            place: this.entryForm.get('country').value,
-        };
-        this.dbConn.insertRegistartionValues(entries)
-            .subscribe(function (result) {
-            if (result.status == 200) {
-                window.alert("Registration successfull ,Please sign In to the portal!!");
-                _this.entryForm.reset();
-            }
-            else {
-                window.alert("Something went wrong !! Registration  not successfull ");
-            }
-        });
+        console.log("I'm Invalid " + this.entryForm.get('ConfirmPassword').invalid);
+        console.log("String comparision " + (this.entryForm.get('password').value != this.entryForm.get('ConfirmPassword').value));
     };
     return SignUpComponent;
 }());
