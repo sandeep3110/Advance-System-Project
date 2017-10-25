@@ -1,12 +1,13 @@
-<div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+<div id="Custsignupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="panel-title">Sign Up</div>
-            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" [routerLink]="['/Login']" onclick="$('#Custsignupbox').hide(); $('#loginbox').show()">Sign In</a></div>
         </div>
         <div class="panel-body">
 
-            <!-- Costumer Sign UP  form starts from here  -->
+            <!-- Customer Sign UP  form starts from here  -->
 
             <form id="signupform" class="form-horizontal" role="form" [formGroup]="entryForm" (ngSubmit)="register()" novalidate>
 
@@ -54,7 +55,7 @@
                     </div>
                 </div>
 
-                <p *ngIf="(entryForm.get('phone').hasError('pattern') && entryForm.get('phone').touched)"> Invalid Phone Number , minimum 10 digits expected  </p>
+                <p *ngIf="(entryForm.get('phone').hasError('pattern') && entryForm.get('phone').touched)"> Invalid Phone Number , minimum 10 digits expected </p>
 
                 <!--Address Line1 Form field -->
 
@@ -77,6 +78,17 @@
                 </div>
 
                 <p *ngIf="(entryForm.get('city').hasError('pattern') && entryForm.get('city').touched )"> City should not be blank and must be in alphabets </p>
+
+                 <!-- Zip Code form -->
+                        
+                 <div class="form-group">
+                        <label for="zip" class="col-md-3 control-label"> Zip Code </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" formControlName="zipcode" placeholder="Zip Code">
+                        </div>
+                    </div>
+    
+                    <p *ngIf="(entryForm.get('zipcode').hasError('pattern') && entryForm.get('zipcode').touched)"> Please enter a valid five digit Zip code </p>
 
                 <!--State Form field -->
 
@@ -109,7 +121,8 @@
                     </div>
                 </div>
                 <p *ngIf="(entryForm.get('password').touched && entryForm.get('password').hasError('pattern') )">
-                        password is invalid - Please include one Number , One upper Case , One Lower Case , One Alpha Number Char !@#$% ,Minimum 6 in Length<span class="st-icon-ebay"></span> </p>
+                    password is invalid - Please include one Number , One upper Case , One Lower Case , One Alpha Number Char !@#$% ,Minimum
+                    6 in Length<span class="st-icon-ebay"></span> </p>
 
                 <!-- Confirm Password Form field -->
 
@@ -121,9 +134,9 @@
                 </div>
                 <p *ngIf="((entryForm.get('password').value != entryForm.get('ConfirmPassword').value) && entryForm.get('ConfirmPassword').touched)">
 
-                     password and confirm password does not match <span class="st-icon-ebay"></span> </p>
+                    password and confirm password does not match <span class="st-icon-ebay"></span> </p>
 
-                   
+
 
                 <!-- Submit Button -->
 
@@ -131,11 +144,13 @@
 
                     <div class="col-md-offset-3 col-md-9">
 
-                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
+                        <button id="btn-signup" type="submit" class="btn btn-info" [disabled]="!entryForm.valid" ><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
 
                         <span style="margin-left:8px;">or</span>
 
                     </div>
+
+
 
                 </div>
 
@@ -144,10 +159,13 @@
                 <div style="border-top: 1px solid #999; padding-top:20px" class="form-group">
 
                     <div class="col-md-offset-3 col-md-9">
-                        <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>
+                       
+                        <a id="btn-fblogin" href="https://www.facebook.com/" class="btn btn-primary">  <i class="icon-facebook"></i> Sign Up with Facebook </a>
+
                     </div>
 
                 </div>
+
 
 
 

@@ -4,13 +4,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+
 import { AppComponent}  from './app.component';
 import {PageNotFoundComponent} from './PageNotFound/PageNotFound.component';
 import {HeaderComponent} from './DefaultHome/Header.component';
 import {FooterComponent} from './DefaultHome/Footer.component';
 import {HomePageComponent }  from './Home/Home.component';
-import {SignUpComponent }  from './Login/SignUp.component'; 
 import {LoginComponent }  from './Login/Login.component';
+import {PopUpBoxComponent} from './Login/PopUp.component';
+import {CustomerSignUpComponent }  from './Login/Customer.SignUp.component'; 
+import {DoctorSignUpComponent} from './Login/Doctor.SignUp.Component';
 
 
 
@@ -42,7 +45,9 @@ const appRoutes: Routes = [
                   FooterComponent,
                   HomePageComponent,
                   LoginComponent,
-                  SignUpComponent ],
+                  PopUpBoxComponent,
+                  CustomerSignUpComponent,
+                  DoctorSignUpComponent, ],
 
   bootstrap:    [ AppComponent ]
 })

@@ -22,39 +22,39 @@ var forms_1 = require("@angular/forms");
 var DBConn_service_1 = require("./../RESTFul_API_Service/DBConn.service");
 var router_1 = require("@angular/router");
 "use strict";
-var SignUpComponent = (function () {
-    function SignUpComponent(fb, dbConn, router) {
+var DoctorSignUpComponent = (function () {
+    function DoctorSignUpComponent(fb, dbConn, router) {
         this.fb = fb;
         this.dbConn = dbConn;
         this.router = router;
         this.createForm();
     }
     /* Validation for each and every form field */
-    SignUpComponent.prototype.createForm = function () {
+    DoctorSignUpComponent.prototype.createForm = function () {
         this.entryForm = this.fb.group({
             firstname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             lastname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
-            age: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('(\\d?[1-9]|[1-9]0)+')])],
+            specialty: ['', forms_1.Validators.required],
             phone: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*')])],
-            address: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[\\w\\s]+')])],
-            city: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
-            state: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([A-Za-z]{2})+')])],
+            zipcode: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([1-9]{1}?\\d{4})+')])],
             email: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([\\w-\.]+@([\\w-]+\.)+[\\w-])+')])],
             password: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
             ConfirmPassword: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
         });
-        console.log("I'm Invalid " + this.entryForm.get('ConfirmPassword').invalid);
-        console.log("String comparision " + (this.entryForm.get('password').value != this.entryForm.get('ConfirmPassword').value));
     };
-    return SignUpComponent;
+    DoctorSignUpComponent.prototype.register = function () {
+        console.log("I'm Invalid " + this.entryForm.get('specialty').value);
+        console.log("I'm Invalid " + this.entryForm.get('zipcode').value);
+    };
+    return DoctorSignUpComponent;
 }());
-SignUpComponent = __decorate([
+DoctorSignUpComponent = __decorate([
     core_1.Component({
-        selector: 'signUp-page',
-        templateUrl: './SignUp.html',
+        selector: 'Doc-signUp-page',
+        templateUrl: './Doctor.SignUp.html',
         providers: [DBConn_service_1.DBConnection],
     }),
     __metadata("design:paramtypes", [forms_1.FormBuilder, DBConn_service_1.DBConnection, router_1.Router])
-], SignUpComponent);
-exports.SignUpComponent = SignUpComponent;
-//# sourceMappingURL=SignUp.component.js.map
+], DoctorSignUpComponent);
+exports.DoctorSignUpComponent = DoctorSignUpComponent;
+//# sourceMappingURL=Doctor.SignUp.Component.js.map

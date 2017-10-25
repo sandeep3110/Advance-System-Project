@@ -15,8 +15,10 @@ var PageNotFound_component_1 = require("./PageNotFound/PageNotFound.component");
 var Header_component_1 = require("./DefaultHome/Header.component");
 var Footer_component_1 = require("./DefaultHome/Footer.component");
 var Home_component_1 = require("./Home/Home.component");
-var SignUp_component_1 = require("./Login/SignUp.component");
 var Login_component_1 = require("./Login/Login.component");
+var PopUp_component_1 = require("./Login/PopUp.component");
+var Customer_SignUp_component_1 = require("./Login/Customer.SignUp.component");
+var Doctor_SignUp_Component_1 = require("./Login/Doctor.SignUp.Component");
 "Use srtict";
 var appRoutes = [
     { path: '', component: app_component_1.AppComponent,
@@ -45,7 +47,9 @@ AppModule = __decorate([
             Footer_component_1.FooterComponent,
             Home_component_1.HomePageComponent,
             Login_component_1.LoginComponent,
-            SignUp_component_1.SignUpComponent],
+            PopUp_component_1.PopUpBoxComponent,
+            Customer_SignUp_component_1.CustomerSignUpComponent,
+            Doctor_SignUp_Component_1.DoctorSignUpComponent,],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

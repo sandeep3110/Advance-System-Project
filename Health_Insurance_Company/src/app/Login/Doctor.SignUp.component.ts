@@ -15,43 +15,45 @@ import { Router } from '@angular/router';
 
 "use strict";
 @Component({
-    selector : 'signUp-page',
-    templateUrl: './SignUp.html',
+    selector : 'Doc-signUp-page',
+    templateUrl: './Doctor.SignUp.html',
     providers : [DBConnection],
     
   })
-  export class SignUpComponent { 
+  export class DoctorSignUpComponent { 
   
-    entryForm : FormGroup;
+     entryForm : FormGroup;
    
   
       constructor(private fb : FormBuilder , public dbConn : DBConnection , private router:Router){
                     this.createForm();
-          }
+          } 
   
           /* Validation for each and every form field */
 
           createForm(){
             this.entryForm = this.fb.group({
               firstname : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])], // Validation for First Name
-              lastname : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])],  // Validation for Last Name             
-              age : ['',Validators.compose([Validators.required,Validators.pattern('(\\d?[1-9]|[1-9]0)+')])], // validation for Age means first part - \d?(it should be [0-9]) and second digit[1-9] or second part - first digit [1-9] and second digit shoud be 0
+              lastname : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])],  // Validation for Last Name   
+              specialty : ['' , Validators.required],        
               phone :['',Validators.compose([Validators.required,Validators.pattern('\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*')])], // Validation for phone number
-              address : ['',Validators.compose([Validators.required,Validators.pattern('[\\w\\s]+')])],// Validation for Address
-              city : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])],  // Validation for City
-              state : ['',Validators.compose([Validators.required,Validators.pattern('([A-Za-z]{2})+')])], // Validation for state
+              zipcode : ['',Validators.compose([Validators.required,Validators.pattern('([1-9]{1}?\\d{4})+')])], // does not accept 0 at the beginning of the zip code
               email : ['',Validators.compose([Validators.required,Validators.pattern('([\\w-\.]+@([\\w-]+\.)+[\\w-])+')])], // Valdatio for email
               password : ['',Validators.compose([Validators.required,Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],  // Validation for password
               ConfirmPassword : ['',Validators.compose([Validators.required,Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],  // Validation for Confirm password
                });
 
-              console.log("I'm Invalid " + this.entryForm.get('ConfirmPassword').invalid );
-              console.log("String comparision " + (this.entryForm.get('password').value != this.entryForm.get('ConfirmPassword').value))
+              
              
                
-             }
+             } 
 
-            
+             register():any{
+
+                console.log("I'm Invalid " + this.entryForm.get('specialty').value );
+                console.log("I'm Invalid " + this.entryForm.get('zipcode').value );
+                
+             }
              
              
 
