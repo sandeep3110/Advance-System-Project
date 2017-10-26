@@ -28,6 +28,7 @@ var DoctorSignUpComponent = (function () {
         this.dbConn = dbConn;
         this.router = router;
         this.createForm();
+        this.value = Math.floor(60000 + Math.random() * 10000); // to generate five digit member id greater than 60000
     }
     /* Validation for each and every form field */
     DoctorSignUpComponent.prototype.createForm = function () {
@@ -43,8 +44,28 @@ var DoctorSignUpComponent = (function () {
         });
     };
     DoctorSignUpComponent.prototype.register = function () {
-        console.log("I'm Invalid " + this.entryForm.get('specialty').value);
-        console.log("I'm Invalid " + this.entryForm.get('zipcode').value);
+        var _this = this;
+        var entries = {
+            user: "Doctor",
+            memberId: this.value,
+            firstName: this.entryForm.get('firstname').value,
+            lastName: this.entryForm.get('lastname').value,
+            specialty: this.entryForm.get('specialty').value,
+            phone: this.entryForm.get('phone').value,
+            zipCode: this.entryForm.get('zipcode').value,
+            email: this.entryForm.get('email').value,
+            password: this.entryForm.get('password').value,
+        };
+        this.dbConn.insertRegistartionValues(entries)
+            .subscribe(function (result) {
+            if (result.status == 200) {
+                window.alert("Registration successfull ,Please sign In to the portal!!");
+                _this.entryForm.reset();
+            }
+            else {
+                window.alert("Something went wrong !! Registration  not successfull ");
+            }
+        });
     };
     return DoctorSignUpComponent;
 }());

@@ -23,7 +23,7 @@ var DBConnection = (function () {
         headers.append('Access-Control-Allow-Origin', '*'); */
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post("http://localhost:8080/ASP/HealthDB/myresource", entries, { headers: headers })
+        return this.http.post("http://localhost:8081/ASP/HealthDB/myresource/single_user", entries, { headers: headers })
             .map(function (response) {
             return response;
         });

@@ -23,10 +23,12 @@ import { Router } from '@angular/router';
   export class CustomerSignUpComponent { 
   
     entryForm : FormGroup;
+    value:any;
    
   
-      constructor(private fb : FormBuilder , public dbConn : DBConnection , private router:Router){
+      constructor(private fb : FormBuilder , public dbConn : DBConnection , private router:Router ){
                     this.createForm();
+                    this.value  = Math.floor(60000 + Math.random() * 10000) ; // to generate five digit member id greater than 60000
           }
   
           /* Validation for each and every form field */
@@ -44,10 +46,9 @@ import { Router } from '@angular/router';
               email : ['',Validators.compose([Validators.required,Validators.pattern('([\\w-\.]+@([\\w-]+\.)+[\\w-])+')])], // Valdatio for email
               password : ['',Validators.compose([Validators.required,Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],  // Validation for password
               ConfirmPassword : ['',Validators.compose([Validators.required,Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],  // Validation for Confirm password
-               });
-
-              
-             
+               });      
+               
+               
                
              }
 
@@ -55,26 +56,37 @@ import { Router } from '@angular/router';
              
              
 
-             /* register():any{
+             register():any{
+
                var entries :any = {
-                name : this.entryForm.get('firstname').value,
-                password : this.entryForm.get('password').value,
+
+                user : "Customer",
+                memberId : this.value,
+                firstName : this.entryForm.get('firstname').value,
+                lastName : this.entryForm.get('lastname').value ,
                 age : this.entryForm.get('age').value,
                 phone : this.entryForm.get('phone').value,
-                place : this.entryForm.get('country').value,
+                houseNumber : this.entryForm.get('address').value,
+                city : this.entryForm.get('city').value,
+                zipCode : this.entryForm.get('zipcode').value,
+                state : this.entryForm.get('state').value,
+                email : this.entryForm.get('email').value,
+                password : this.entryForm.get('password').value,              
+                
                 }
                 
                 this.dbConn.insertRegistartionValues(entries)
                   .subscribe(
                     (result:any)=>{
                          if(result.status == 200){
-                              window.alert("Registration successfull ,Please sign In to the portal!!");
+                              window.alert("Registration successful ,Please sign In to the portal!!");
                               this.entryForm.reset();
                             }else{
-                                window.alert("Something went wrong !! Registration  not successfull ");
+                                window.alert("Something went wrong !! Registration  not successful ");
+                                this.entryForm.reset();
                                  }    
                           });    
-              } */
+              }
   
   
   }

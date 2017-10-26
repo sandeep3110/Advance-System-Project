@@ -28,6 +28,7 @@ var CustomerSignUpComponent = (function () {
         this.dbConn = dbConn;
         this.router = router;
         this.createForm();
+        this.value = Math.floor(60000 + Math.random() * 10000); // to generate five digit member id greater than 60000
     }
     /* Validation for each and every form field */
     CustomerSignUpComponent.prototype.createForm = function () {
@@ -43,6 +44,34 @@ var CustomerSignUpComponent = (function () {
             email: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([\\w-\.]+@([\\w-]+\.)+[\\w-])+')])],
             password: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
             ConfirmPassword: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
+        });
+    };
+    CustomerSignUpComponent.prototype.register = function () {
+        var _this = this;
+        var entries = {
+            user: "Customer",
+            memberId: this.value,
+            firstName: this.entryForm.get('firstname').value,
+            lastName: this.entryForm.get('lastname').value,
+            age: this.entryForm.get('age').value,
+            phone: this.entryForm.get('phone').value,
+            houseNumber: this.entryForm.get('address').value,
+            city: this.entryForm.get('city').value,
+            zipCode: this.entryForm.get('zipcode').value,
+            state: this.entryForm.get('state').value,
+            email: this.entryForm.get('email').value,
+            password: this.entryForm.get('password').value,
+        };
+        this.dbConn.insertRegistartionValues(entries)
+            .subscribe(function (result) {
+            if (result.status == 200) {
+                window.alert("Registration successful ,Please sign In to the portal!!");
+                _this.entryForm.reset();
+            }
+            else {
+                window.alert("Something went wrong !! Registration  not successful ");
+                _this.entryForm.reset();
+            }
         });
     };
     return CustomerSignUpComponent;

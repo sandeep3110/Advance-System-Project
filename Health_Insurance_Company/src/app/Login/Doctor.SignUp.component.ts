@@ -23,16 +23,20 @@ import { Router } from '@angular/router';
   export class DoctorSignUpComponent { 
   
      entryForm : FormGroup;
+     value:any;
    
   
       constructor(private fb : FormBuilder , public dbConn : DBConnection , private router:Router){
                     this.createForm();
+                    this.value  = Math.floor(60000 + Math.random() * 10000) ; // to generate five digit member id greater than 60000
           } 
   
           /* Validation for each and every form field */
 
           createForm(){
+
             this.entryForm = this.fb.group({
+
               firstname : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])], // Validation for First Name
               lastname : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])],  // Validation for Last Name   
               specialty : ['' , Validators.required],        
@@ -41,29 +45,29 @@ import { Router } from '@angular/router';
               email : ['',Validators.compose([Validators.required,Validators.pattern('([\\w-\.]+@([\\w-]+\.)+[\\w-])+')])], // Valdatio for email
               password : ['',Validators.compose([Validators.required,Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],  // Validation for password
               ConfirmPassword : ['',Validators.compose([Validators.required,Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],  // Validation for Confirm password
-               });
 
-              
-             
+               });           
                
              } 
 
+            
+             
+             
+
              register():any{
 
-                console.log("I'm Invalid " + this.entryForm.get('specialty').value );
-                console.log("I'm Invalid " + this.entryForm.get('zipcode').value );
-                
-             }
-             
-             
-
-             /* register():any{
                var entries :any = {
-                name : this.entryForm.get('firstname').value,
-                password : this.entryForm.get('password').value,
-                age : this.entryForm.get('age').value,
+
+                user : "Doctor",
+                memberId : this.value,
+                firstName : this.entryForm.get('firstname').value,
+                lastName : this.entryForm.get('lastname').value ,
+                specialty : this.entryForm.get('specialty').value ,
                 phone : this.entryForm.get('phone').value,
-                place : this.entryForm.get('country').value,
+                zipCode : this.entryForm.get('zipcode').value,
+                email : this.entryForm.get('email').value,
+                password : this.entryForm.get('password').value,
+
                 }
                 
                 this.dbConn.insertRegistartionValues(entries)
@@ -76,7 +80,7 @@ import { Router } from '@angular/router';
                                 window.alert("Something went wrong !! Registration  not successfull ");
                                  }    
                           });    
-              } */
+              }
   
   
   }
