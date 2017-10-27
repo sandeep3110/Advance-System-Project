@@ -44,7 +44,7 @@
 
                     <!-- Specialty -->
     
-                    <div class="form-group">                           
+                    <!-- <div class="form-group">                           
                         <label for="specialty" class="col-md-3 control-label"> Your Specialty</label>
                              <div class="col-md-9">
                                  <input type="text" class="form-control" list = "specialty" formControlName="specialty" placeholder="specialty">
@@ -61,9 +61,19 @@
                                         <option value="Dermatologist">
                                       </datalist>
                              </div>
-                    </div>
+                    </div> -->
+
+                    <div class="form-group">                           
+                        <label for="specialty" class="col-md-3 control-label"> Your Specialty</label>
+                             <div class="col-md-9">
+                                 <input type="text" class="form-control" list = "specialty" formControlName="specialty" placeholder="specialty">
+                                 <datalist id="specialty">                                        
+                                            <option *ngFor="let Specialty of listOfSpecialties" value= "{{Specialty}}">                                        
+                                      </datalist>
+                             </div>
                             
                     <p *ngIf="(entryForm.get('specialty').touched && entryForm.get('specialty').hasError('required') )"> Please Select any one option </p>
+                    </div>
                         
                     <!--Phone number Form field -->
     

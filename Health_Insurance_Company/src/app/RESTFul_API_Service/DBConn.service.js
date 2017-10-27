@@ -15,6 +15,7 @@ var DBConnection = (function () {
     function DBConnection(http) {
         this.http = http;
     }
+    /* To Insert data of Customer or Doctor */
     DBConnection.prototype.insertRegistartionValues = function (entries) {
         /* let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -23,9 +24,18 @@ var DBConnection = (function () {
         headers.append('Access-Control-Allow-Origin', '*'); */
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post("http://localhost:8081/ASP/HealthDB/myresource/single_user", entries, { headers: headers })
+        return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user", entries, { headers: headers }) /* Specifying Headers is optional */
             .map(function (response) {
             return response;
+        });
+    };
+    /* To Get the Specialty list for the Doctor Form Field */
+    DBConnection.prototype.getSpecialtyList = function () {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get("http://localhost:8082/ASP/HealthDB/myresource/specialty")
+            .map(function (response) {
+            return response.json();
         });
     };
     return DBConnection;

@@ -24,11 +24,16 @@ import { Router } from '@angular/router';
   
      entryForm : FormGroup;
      value:any;
+     listOfSpecialties : any;
+     
    
   
+     /* Intialising constructor with parameters is called as Dependency Injection  */
+
       constructor(private fb : FormBuilder , public dbConn : DBConnection , private router:Router){
                     this.createForm();
                     this.value  = Math.floor(60000 + Math.random() * 10000) ; // to generate five digit member id greater than 60000
+                    this.specialtyList();
           } 
   
           /* Validation for each and every form field */
@@ -53,6 +58,7 @@ import { Router } from '@angular/router';
             
              
              
+             /* Inserting Doctor form field valuse in to the database */
 
              register():any{
 
@@ -81,6 +87,23 @@ import { Router } from '@angular/router';
                                  }    
                           });    
               }
+
+                /* Getting Specialty List from Database */
+
+                specialtyList() : any {
+                  
+                                  this.dbConn.getSpecialtyList()
+                                  .subscribe(
+                                    (result:any) =>{                                     
+                                         this.listOfSpecialties = result.specialtyList;                                    
+                                    }
+                                  );                 
+                                } 
+
+            }
+
+            
+
+             
   
   
-  }

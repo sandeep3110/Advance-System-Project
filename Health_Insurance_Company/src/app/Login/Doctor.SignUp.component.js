@@ -23,12 +23,14 @@ var DBConn_service_1 = require("./../RESTFul_API_Service/DBConn.service");
 var router_1 = require("@angular/router");
 "use strict";
 var DoctorSignUpComponent = (function () {
+    /* Intialising constructor with parameters is called as Dependency Injection  */
     function DoctorSignUpComponent(fb, dbConn, router) {
         this.fb = fb;
         this.dbConn = dbConn;
         this.router = router;
         this.createForm();
         this.value = Math.floor(60000 + Math.random() * 10000); // to generate five digit member id greater than 60000
+        this.specialtyList();
     }
     /* Validation for each and every form field */
     DoctorSignUpComponent.prototype.createForm = function () {
@@ -43,6 +45,7 @@ var DoctorSignUpComponent = (function () {
             ConfirmPassword: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
         });
     };
+    /* Inserting Doctor form field valuse in to the database */
     DoctorSignUpComponent.prototype.register = function () {
         var _this = this;
         var entries = {
@@ -65,6 +68,14 @@ var DoctorSignUpComponent = (function () {
             else {
                 window.alert("Something went wrong !! Registration  not successfull ");
             }
+        });
+    };
+    /* Getting Specialty List from Database */
+    DoctorSignUpComponent.prototype.specialtyList = function () {
+        var _this = this;
+        this.dbConn.getSpecialtyList()
+            .subscribe(function (result) {
+            _this.listOfSpecialties = result.specialtyList;
         });
     };
     return DoctorSignUpComponent;
