@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
   
      entryForm : FormGroup;
      value:any;
-     listOfSpecialties : any;
+     listOfSpecialties : any[];
      
    
   

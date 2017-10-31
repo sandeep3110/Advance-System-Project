@@ -89,4 +89,4 @@ DoctorSignUpComponent = __decorate([
     __metadata("design:paramtypes", [forms_1.FormBuilder, DBConn_service_1.DBConnection, router_1.Router])
 ], DoctorSignUpComponent);
 exports.DoctorSignUpComponent = DoctorSignUpComponent;
-//# sourceMappingURL=Doctor.SignUp.Component.js.map
+//# sourceMappingURL=Doctor.SignUp.component.js.map

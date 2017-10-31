@@ -13,7 +13,11 @@ import {HomePageComponent }  from './Home/Home.component';
 import {LoginComponent }  from './Login/Login.component';
 import {PopUpBoxComponent} from './Login/PopUp.component';
 import {CustomerSignUpComponent }  from './Login/Customer.SignUp.component'; 
-import {DoctorSignUpComponent} from './Login/Doctor.SignUp.Component';
+import {DoctorSignUpComponent} from './Login/Doctor.SignUp.component';
+/* Customer-View*/
+import { CustomerHeader } from './Customer/Customer_Header.component';
+import {CustomerDefaultView} from './Customer/Customer_Default_View.component';
+
 
 
 
@@ -27,6 +31,8 @@ const appRoutes: Routes = [
                              
                            ]
    },
+   /* Customer-View*/
+   { path : 'home' , component : CustomerDefaultView },
    { path : '**' , component : PageNotFoundComponent},
 
   ];
@@ -47,7 +53,10 @@ const appRoutes: Routes = [
                   LoginComponent,
                   PopUpBoxComponent,
                   CustomerSignUpComponent,
-                  DoctorSignUpComponent, ],
+                  DoctorSignUpComponent,
+                  /* Customer-View*/
+                  CustomerHeader,
+                  CustomerDefaultView ],
 
   bootstrap:    [ AppComponent ]
 })

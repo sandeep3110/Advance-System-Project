@@ -18,7 +18,10 @@ var Home_component_1 = require("./Home/Home.component");
 var Login_component_1 = require("./Login/Login.component");
 var PopUp_component_1 = require("./Login/PopUp.component");
 var Customer_SignUp_component_1 = require("./Login/Customer.SignUp.component");
-var Doctor_SignUp_Component_1 = require("./Login/Doctor.SignUp.Component");
+var Doctor_SignUp_component_1 = require("./Login/Doctor.SignUp.component");
+/* Customer-View*/
+var Customer_Header_component_1 = require("./Customer/Customer_Header.component");
+var Customer_Default_View_component_1 = require("./Customer/Customer_Default_View.component");
 "Use srtict";
 var appRoutes = [
     { path: '', component: app_component_1.AppComponent,
@@ -27,6 +30,8 @@ var appRoutes = [
             { path: 'Login', component: Login_component_1.LoginComponent },
         ]
     },
+    /* Customer-View*/
+    { path: 'home', component: Customer_Default_View_component_1.CustomerDefaultView },
     { path: '**', component: PageNotFound_component_1.PageNotFoundComponent },
 ];
 var AppModule = (function () {
@@ -49,7 +54,10 @@ AppModule = __decorate([
             Login_component_1.LoginComponent,
             PopUp_component_1.PopUpBoxComponent,
             Customer_SignUp_component_1.CustomerSignUpComponent,
-            Doctor_SignUp_Component_1.DoctorSignUpComponent,],
+            Doctor_SignUp_component_1.DoctorSignUpComponent,
+            /* Customer-View*/
+            Customer_Header_component_1.CustomerHeader,
+            Customer_Default_View_component_1.CustomerDefaultView],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
