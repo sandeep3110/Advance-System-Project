@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var Rx_1 = require("rxjs/Rx");
 require("rxjs/add/operator/map");
 var DBConnection = (function () {
     function DBConnection(http) {
@@ -26,7 +27,14 @@ var DBConnection = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user", entries, { headers: headers }) /* Specifying Headers is optional */
             .map(function (response) {
+            console.log(response);
             return response;
+        })
+            .catch(function (error) {
+            if (error.status > 400) {
+                /*   return Observable.throw(new Error(error._body));   either of the ways works */
+                return Rx_1.Observable.throw(error._body);
+            }
         });
     };
     /* To Get the Specialty list for the Doctor Form Field */

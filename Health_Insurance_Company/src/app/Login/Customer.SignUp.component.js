@@ -36,7 +36,7 @@ var CustomerSignUpComponent = (function () {
             firstname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             lastname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             age: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('(\\d?[1-9]|[1-9]0)+')])],
-            phone: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*')])],
+            phone: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('\\s*\\d{10}\\s*')])],
             address: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[\\w\\s]+')])],
             city: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             zipcode: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([1-9]{1}?\\d{4})+')])],
@@ -64,14 +64,13 @@ var CustomerSignUpComponent = (function () {
         };
         this.dbConn.insertRegistartionValues(entries)
             .subscribe(function (result) {
-            if (result.status == 200) {
-                window.alert("Registration successful ,Please sign In to the portal!!");
-                _this.entryForm.reset();
-            }
-            else {
-                window.alert("Something went wrong !! Registration  not successful ");
-                _this.entryForm.reset();
-            }
+            window.alert(result.msg);
+            _this.entryForm.reset();
+        }, 
+        /* Error Handling from DBConn.service.ts */
+        function (err) {
+            window.alert(err);
+            _this.entryForm.get("phone").reset();
         });
     };
     return CustomerSignUpComponent;

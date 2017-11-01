@@ -38,7 +38,7 @@ import { Router } from '@angular/router';
               firstname : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])], // Validation for First Name
               lastname : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])],  // Validation for Last Name             
               age : ['',Validators.compose([Validators.required,Validators.pattern('(\\d?[1-9]|[1-9]0)+')])], // validation for Age means first part - \d?(it should be [0-9]) and second digit[1-9] or second part - first digit [1-9] and second digit shoud be 0
-              phone :['',Validators.compose([Validators.required,Validators.pattern('\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*')])], // Validation for phone number
+              phone :['',Validators.compose([Validators.required,Validators.pattern('\\s*\\d{10}\\s*')])], // Validation for phone number 
               address : ['',Validators.compose([Validators.required,Validators.pattern('[\\w\\s]+')])],// Validation for Address
               city : ['',Validators.compose([Validators.required,Validators.pattern('[A-Za-z\\s]+')])],  // Validation for City
               zipcode : ['',Validators.compose([Validators.required,Validators.pattern('([1-9]{1}?\\d{4})+')])], // does not accept 0 at the beginning of the zip code
@@ -77,15 +77,17 @@ import { Router } from '@angular/router';
                 
                 this.dbConn.insertRegistartionValues(entries)
                   .subscribe(
-                    (result:any)=>{
-                         if(result.status == 200){
-                              window.alert("Registration successful ,Please sign In to the portal!!");
-                              this.entryForm.reset();
-                            }else{
-                                window.alert("Something went wrong !! Registration  not successful ");
-                                this.entryForm.reset();
-                                 }    
-                          });    
+                      (result:any)=>{
+                              window.alert(result.msg);
+                              this.entryForm.reset();                             
+                          },   
+                                  
+                          /* Error Handling from DBConn.service.ts */
+
+                        (err: any) => {
+                          window.alert(err);
+                          this.entryForm.get("phone").reset();
+                        });
               }
   
   

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
+import {Observable} from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 
@@ -24,11 +25,23 @@ export class DBConnection {
         headers.append('Content-Type','application/json');
         return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user" , entries , {headers : headers} ) /* Specifying Headers is optional */
                        .map(
-                     (response:Response) => {
-                         return response;
-                     }
-                 );
-        }
+                          (response:Response) => {
+                                console.log(response);
+                                 return response;
+                           }                   
+                        )
+                        .catch(
+                            (error: any) => {
+                            if (error.status > 400) {
+                              /*   return Observable.throw(new Error(error._body));   either of the ways works */
+                              return Observable.throw(error._body);
+
+                            }
+                        }
+                       );
+
+                    }
+                 
 
         /* To Get the Specialty list for the Doctor Form Field */
 

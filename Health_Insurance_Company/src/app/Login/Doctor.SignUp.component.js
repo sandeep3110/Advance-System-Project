@@ -38,7 +38,7 @@ var DoctorSignUpComponent = (function () {
             firstname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             lastname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
             specialty: ['', forms_1.Validators.required],
-            phone: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*')])],
+            phone: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('\\s*\\d{10}\\s*')])],
             zipcode: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([1-9]{1}?\\d{4})+')])],
             email: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('([\\w-\.]+@([\\w-]+\.)+[\\w-])+')])],
             password: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])(?!.*\\s).{6,16})+")])],
@@ -61,13 +61,13 @@ var DoctorSignUpComponent = (function () {
         };
         this.dbConn.insertRegistartionValues(entries)
             .subscribe(function (result) {
-            if (result.status == 200) {
-                window.alert("Registration successfull ,Please sign In to the portal!!");
-                _this.entryForm.reset();
-            }
-            else {
-                window.alert("Something went wrong !! Registration  not successfull ");
-            }
+            window.alert(result._body);
+            _this.entryForm.reset();
+        }, 
+        /* Error Handling from DBConn.service.ts */
+        function (err) {
+            window.alert(err);
+            _this.entryForm.get("phone").reset();
         });
     };
     /* Getting Specialty List from Database */
