@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 
+"use strict"
 @Injectable()
 
 export class DBConnection {
@@ -25,6 +26,11 @@ export class DBConnection {
         headers.append('Content-Type','application/json');
         return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user" , entries , {headers : headers} ) /* Specifying Headers is optional */
                        .map(
+                              
+                             /* console.log(response);
+                                if(response.status === 404) we are getting error for status code 404 not found on console that is the reason for catch block
+                                return response.json(); */
+
                           (response:Response) => {
                                 console.log(response);
                                  return response;

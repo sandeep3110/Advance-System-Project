@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Rx_1 = require("rxjs/Rx");
 require("rxjs/add/operator/map");
+"use strict";
 var DBConnection = (function () {
     function DBConnection(http) {
         this.http = http;
@@ -26,7 +27,11 @@ var DBConnection = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user", entries, { headers: headers }) /* Specifying Headers is optional */
-            .map(function (response) {
+            .map(
+        /* console.log(response);
+           if(response.status === 404) we are getting error for status code 404 not found on console that is the reason for catch block
+           return response.json(); */
+        function (response) {
             console.log(response);
             return response;
         })

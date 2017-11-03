@@ -49,6 +49,7 @@ var DoctorSignUpComponent = (function () {
     DoctorSignUpComponent.prototype.register = function () {
         var _this = this;
         var entries = {
+            /* Identifiers should match with the java model class Identifiers names */
             user: "Doctor",
             memberId: this.value,
             firstName: this.entryForm.get('firstname').value,
@@ -67,7 +68,7 @@ var DoctorSignUpComponent = (function () {
         /* Error Handling from DBConn.service.ts */
         function (err) {
             window.alert(err);
-            _this.entryForm.get("phone").reset();
+            _this.entryForm.get("phone").reset(); // Error rises for Phone entry only beacuse Phone number is Unique Key
         });
     };
     /* Getting Specialty List from Database */

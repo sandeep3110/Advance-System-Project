@@ -30,7 +30,7 @@ export class DoctorSignUpComponent {
 
   /* Intialising constructor with parameters is called as Dependency Injection  */
 
-  constructor(private fb: FormBuilder, public dbConn: DBConnection, private router: Router) {
+  constructor(private fb: FormBuilder, private dbConn: DBConnection, private router: Router) {
     this.createForm();
     this.value = Math.floor(60000 + Math.random() * 10000); // to generate five digit member id greater than 60000
     this.specialtyList();
@@ -64,6 +64,7 @@ export class DoctorSignUpComponent {
 
     var entries: any = {
 
+      /* Identifiers should match with the java model class Identifiers names */
       user: "Doctor",
       memberId: this.value,
       firstName: this.entryForm.get('firstname').value,
@@ -87,7 +88,7 @@ export class DoctorSignUpComponent {
 
       (err: any) => {
         window.alert(err);
-        this.entryForm.get("phone").reset();
+        this.entryForm.get("phone").reset(); // Error rises for Phone entry only beacuse Phone number is Unique Key
       });
 
   }

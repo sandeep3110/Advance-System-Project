@@ -27,7 +27,7 @@ var appRoutes = [
     { path: '', component: app_component_1.AppComponent,
         children: [
             { path: '', component: Home_component_1.HomePageComponent },
-            { path: 'Login', component: Login_component_1.LoginComponent },
+            { path: 'login', component: Login_component_1.LoginComponent },
         ]
     },
     /* Customer-View*/

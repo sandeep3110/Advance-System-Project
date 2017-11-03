@@ -5,11 +5,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+var Authentication_Service_1 = require("./../RESTFul_API_Service/Authentication.Service");
+var router_1 = require("@angular/router");
 "use strict";
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(fb, AuthService, router) {
+        this.fb = fb;
+        this.AuthService = AuthService;
+        this.router = router;
+        this.loginFormValidation();
     }
+    /* Login Form validation */
+    LoginComponent.prototype.loginFormValidation = function () {
+        this.loginForm = this.fb.group({
+            memberId: ['', forms_1.Validators.required],
+            password: ['', forms_1.Validators.required],
+        });
+    };
+    LoginComponent.prototype.login = function () {
+        var _this = this;
+        var loginData = {
+            /* Identifiers should match with the java model class Identifiers names */
+            memberId: this.loginForm.get("memberId").value,
+            password: this.loginForm.get("password").value,
+        };
+        this.AuthService.loginAuthentication(loginData)
+            .subscribe(function (result) {
+            console.log(result);
+        }, function (err) {
+            window.alert(err);
+            _this.loginForm.reset(); // Error rises for Phone entry only beacuse Phone is Unique Key
+        });
+    };
     return LoginComponent;
 }());
 LoginComponent = __decorate([
@@ -17,7 +49,9 @@ LoginComponent = __decorate([
         selector: 'login-page',
         templateUrl: './Login.html',
         styleUrls: ['./Login.css'],
-    })
+        providers: [Authentication_Service_1.AuthenticationService],
+    }),
+    __metadata("design:paramtypes", [forms_1.FormBuilder, Authentication_Service_1.AuthenticationService, router_1.Router])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=Login.component.js.map

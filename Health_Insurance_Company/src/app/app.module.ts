@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   { path : '' , component : AppComponent, 
                 children : [ 
                              {path: '', component: HomePageComponent},
-                             {path: 'Login', component: LoginComponent},
+                             {path: 'login', component: LoginComponent},
                              
                            ]
    },

@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
     value:any;
    
   
-      constructor(private fb : FormBuilder , public dbConn : DBConnection , private router:Router ){
+      constructor(private fb : FormBuilder , private dbConn : DBConnection , private router:Router ){
                     this.createForm();
                     this.value  = Math.floor(60000 + Math.random() * 10000) ; // to generate five digit member id greater than 60000
           }
@@ -60,6 +60,7 @@ import { Router } from '@angular/router';
 
                var entries :any = {
 
+                  /* Identifiers should match with the java model class Identifiers names */
                 user : "Customer",
                 memberId : this.value,
                 firstName : this.entryForm.get('firstname').value,
@@ -86,7 +87,7 @@ import { Router } from '@angular/router';
 
                         (err: any) => {
                           window.alert(err);
-                          this.entryForm.get("phone").reset();
+                          this.entryForm.get("phone").reset(); // Error rises for Phone entry only beacuse Phone is Unique Key
                         });
               }
   

@@ -49,6 +49,7 @@ var CustomerSignUpComponent = (function () {
     CustomerSignUpComponent.prototype.register = function () {
         var _this = this;
         var entries = {
+            /* Identifiers should match with the java model class Identifiers names */
             user: "Customer",
             memberId: this.value,
             firstName: this.entryForm.get('firstname').value,
@@ -70,7 +71,7 @@ var CustomerSignUpComponent = (function () {
         /* Error Handling from DBConn.service.ts */
         function (err) {
             window.alert(err);
-            _this.entryForm.get("phone").reset();
+            _this.entryForm.get("phone").reset(); // Error rises for Phone entry only beacuse Phone is Unique Key
         });
     };
     return CustomerSignUpComponent;
