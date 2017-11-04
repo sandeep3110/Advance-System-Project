@@ -58,6 +58,7 @@ export class DBConnection {
         return this.http.get("http://localhost:8082/ASP/HealthDB/myresource/specialty")
                         .map(
                                (response:Response) => {
+                                   /* The json() method, when invoked, must return the result of running consume body with JSON. */
                                         return response.json();                                 
                                  }
                  );

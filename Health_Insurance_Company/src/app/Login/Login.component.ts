@@ -36,8 +36,7 @@ import { Router } from '@angular/router';
           var loginData : any = {
             /* Identifiers should match with the java model class Identifiers names */
             memberId : this.loginForm.get("memberId").value,
-            password :this.loginForm.get("password").value,
-          
+            password :this.loginForm.get("password").value,          
           }
 
           
@@ -45,12 +44,20 @@ import { Router } from '@angular/router';
           .subscribe(
 
             (result : any) => {
-                    console.log(result);
+
+                console.log(result);
+                (result.user === "doctor")? console.log("I'm doctor") : console.log("I'm customer") ;
+
+                   
+                    
+                    /* var obj = JSON.parse(sessionStorage.userData);
+                    console.log(obj); */
+                    
             },
 
             (err: any) => {
               window.alert(err);
-              this.loginForm.reset(); // Error rises for Phone entry only beacuse Phone is Unique Key
+              this.loginForm.reset(); // Error rises for member Id and password because they doesn't exist in database or while subscribing from Authentication service
             }
 
           ); 

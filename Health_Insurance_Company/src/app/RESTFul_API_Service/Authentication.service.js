@@ -24,14 +24,19 @@ var AuthenticationService = (function () {
         return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/authentication", userData) /* Specifying Headers is optional */
             .map(function (response) {
             /* console.log(response);
-            if(response.status === 404) we are getting error for status code 404 not found on console that is the reason for catch block
+            if(response.status === 404) we are getting error for status code 404 not found on console that is the reason we are using catch block
              return response.json(); */
-            return null;
+            sessionStorage.setItem("userData", JSON.stringify(response.json()));
+            return response.json();
         })
             .catch(function (error) {
-            /*   console.log(error._body);
-              console.log(obj.errorMsg);
-              Use the JavaScript function JSON.parse() to convert text into a TypeScript object: */
+            /*   console.log(error._body); displays only string holding JSON object.
+                Use the JavaScript function JSON.parse() to convert text/string into a TypeScript object:
+              In the error we have the error message in
+                     _body{' "errorMsg" :"Profile doesn't not exist" '} --> string holding JSON object
+              after JSON.parse it becomes
+                    [errorMsg : "Profile doesn't not exist"]  JSON object
+                    console.log(obj.errorMsg);   */
             var obj = JSON.parse(error._body);
             return (error.status === 404) ? Rx_1.Observable.throw(obj.errorMsg) : null;
         });

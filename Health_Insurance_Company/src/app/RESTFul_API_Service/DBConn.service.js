@@ -48,6 +48,7 @@ var DBConnection = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get("http://localhost:8082/ASP/HealthDB/myresource/specialty")
             .map(function (response) {
+            /* The json() method, when invoked, must return the result of running consume body with JSON. */
             return response.json();
         });
     };

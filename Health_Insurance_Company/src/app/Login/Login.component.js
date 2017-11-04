@@ -37,9 +37,12 @@ var LoginComponent = (function () {
         this.AuthService.loginAuthentication(loginData)
             .subscribe(function (result) {
             console.log(result);
+            (result.user === "doctor") ? console.log("I'm doctor") : console.log("I'm customer");
+            /* var obj = JSON.parse(sessionStorage.userData);
+            console.log(obj); */
         }, function (err) {
             window.alert(err);
-            _this.loginForm.reset(); // Error rises for Phone entry only beacuse Phone is Unique Key
+            _this.loginForm.reset(); // Error rises for member Id and password because they doesn't exist in database or while subscribing from Authentication service
         });
     };
     return LoginComponent;

@@ -50,7 +50,7 @@ var CustomerSignUpComponent = (function () {
         var _this = this;
         var entries = {
             /* Identifiers should match with the java model class Identifiers names */
-            user: "Customer",
+            user: "customer",
             memberId: this.value,
             firstName: this.entryForm.get('firstname').value,
             lastName: this.entryForm.get('lastname').value,

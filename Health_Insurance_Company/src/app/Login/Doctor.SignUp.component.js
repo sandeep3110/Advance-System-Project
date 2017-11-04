@@ -50,7 +50,7 @@ var DoctorSignUpComponent = (function () {
         var _this = this;
         var entries = {
             /* Identifiers should match with the java model class Identifiers names */
-            user: "Doctor",
+            user: "doctor",
             memberId: this.value,
             firstName: this.entryForm.get('firstname').value,
             lastName: this.entryForm.get('lastname').value,
