@@ -15,7 +15,7 @@ var CustomerHeader = (function () {
     function CustomerHeader(router) {
         this.router = router;
     }
-    /* To make Log Out tab have pointer cursor */
+    /* To make Log Out tab have a pointer cursor */
     CustomerHeader.prototype.pointer = function () {
         var myStyles = {
             'cursor': 'pointer',

@@ -1,9 +1,10 @@
 
 .navbar-inverse{
 	background:transparent;
-	background-image:none;
 	border-color:transparent;
-	box-shadow:none;
+	
+	/* box-shadow: #F3CC91;
+	 background-image:none; */
   }
 
 .navbar-nav {
@@ -20,4 +21,10 @@
 }
 .dropdown a ,#dropdown a {
 	color : rgba(8, 9, 119, 0.76);	
+}
+
+
+/* Hover for list elements */
+.dropdown:hover a{
+    color: #070E74;
 }

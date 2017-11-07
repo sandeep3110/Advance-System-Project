@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
-import {DBConnection} from './../RESTFul_API_Service/DBConn.service';
 import { Router } from '@angular/router';
+import {CustomerHomeView } from './Customer_Home_View';
+
 
 
 "use strict";
@@ -14,10 +15,12 @@ import { Router } from '@angular/router';
     
   })
 
-export class CustomerAppointment{
+export class CustomerAppointment extends CustomerHomeView {
 
  
-    customerData:JSON = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+    constructor(){
+        super();
+    }
    
   
 

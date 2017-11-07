@@ -17,7 +17,7 @@ export class CustomerHeader{
 
   constructor(private router: Router) { }
 
-       /* To make Log Out tab have pointer cursor */
+       /* To make Log Out tab have a pointer cursor */
         pointer() : any {
           let myStyles = {
 

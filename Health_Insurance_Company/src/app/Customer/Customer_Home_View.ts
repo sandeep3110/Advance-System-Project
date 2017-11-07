@@ -1,7 +1,8 @@
 
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 
 
 "use strict";
@@ -16,8 +17,13 @@ import { Router } from '@angular/router';
 
 export class CustomerHomeView{
 
- 
-    customerData:JSON = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+    customerData: JSON;
+  
+    constructor() {
+    this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+   }
+   
+    
    
   
 
