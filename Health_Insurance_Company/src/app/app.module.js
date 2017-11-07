@@ -21,8 +21,13 @@ var Customer_SignUp_component_1 = require("./Login/Customer.SignUp.component");
 var Doctor_SignUp_component_1 = require("./Login/Doctor.SignUp.component");
 /* Customer-View*/
 var Customer_Header_component_1 = require("./Customer/Customer_Header.component");
-var Customer_Default_View_component_1 = require("./Customer/Customer_Default_View.component");
-"Use srtict";
+var Customer_Default_View_1 = require("./Customer/Customer_Default_View");
+var Customer_Home_View_1 = require("./Customer/Customer_Home_View");
+var Customer_appointment_1 = require("./Customer/Customer_appointment");
+/* Dependency Injection : Providers */
+var Authentication_Service_1 = require("./RESTFul_API_Service/Authentication.Service");
+var Customer_AuthGuard_1 = require("./Customer/Customer_AuthGuard");
+"Use strict";
 var appRoutes = [
     { path: '', component: app_component_1.AppComponent,
         children: [
@@ -31,7 +36,13 @@ var appRoutes = [
         ]
     },
     /* Customer-View*/
-    { path: 'home', component: Customer_Default_View_component_1.CustomerDefaultView },
+    { path: '', canActivate: [Customer_AuthGuard_1.CustomerAuthGuard], component: Customer_Default_View_1.CustomerDefaultView,
+        children: [
+            // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
+            { path: 'home', component: Customer_Home_View_1.CustomerHomeView },
+            { path: 'home/appointment', component: Customer_appointment_1.CustomerAppointment },
+        ]
+    },
     { path: '**', component: PageNotFound_component_1.PageNotFoundComponent },
 ];
 var AppModule = (function () {
@@ -55,9 +66,13 @@ AppModule = __decorate([
             PopUp_component_1.PopUpBoxComponent,
             Customer_SignUp_component_1.CustomerSignUpComponent,
             Doctor_SignUp_component_1.DoctorSignUpComponent,
-            /* Customer-View*/
+            /*Customer-View*/
             Customer_Header_component_1.CustomerHeader,
-            Customer_Default_View_component_1.CustomerDefaultView],
+            Customer_Default_View_1.CustomerDefaultView,
+            Customer_Home_View_1.CustomerHomeView,
+            Customer_appointment_1.CustomerAppointment,],
+        providers: [Customer_AuthGuard_1.CustomerAuthGuard,
+            Authentication_Service_1.AuthenticationService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

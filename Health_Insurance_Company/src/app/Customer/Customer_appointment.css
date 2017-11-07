@@ -1,0 +1,8 @@
+.appoint-body {
+    height : 700px;
+	background-image: url("app/Customer/Images/Health_Insurance_3.jpg");
+	background-size: cover; /* auto|length|cover|contain|initial|inherit; */
+	/* position : relative ; because of this image gets fixes in position  */ 
+    margin-top : 100px;
+
+}

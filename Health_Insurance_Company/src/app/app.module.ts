@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes , CanActivate} from '@angular/router';
 import {FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -14,14 +14,22 @@ import {LoginComponent }  from './Login/Login.component';
 import {PopUpBoxComponent} from './Login/PopUp.component';
 import {CustomerSignUpComponent }  from './Login/Customer.SignUp.component'; 
 import {DoctorSignUpComponent} from './Login/Doctor.SignUp.component';
+
 /* Customer-View*/
+
 import { CustomerHeader } from './Customer/Customer_Header.component';
-import {CustomerDefaultView} from './Customer/Customer_Default_View.component';
+import {CustomerDefaultView} from './Customer/Customer_Default_View';
+import {CustomerHomeView} from './Customer/Customer_Home_View';
+import {CustomerAppointment} from './Customer/Customer_appointment';
+
+/* Dependency Injection : Providers */
+
+import {AuthenticationService} from './RESTFul_API_Service/Authentication.Service';
+import { CustomerAuthGuard } from './Customer/Customer_AuthGuard';
 
 
 
-
-"Use srtict";
+"Use strict";
 
 const appRoutes: Routes = [
   { path : '' , component : AppComponent, 
@@ -31,8 +39,17 @@ const appRoutes: Routes = [
                              
                            ]
    },
+
    /* Customer-View*/
-   { path : 'home' , component : CustomerDefaultView },
+
+   { path : '' , canActivate: [CustomerAuthGuard], component : CustomerDefaultView,
+                 children : [   
+                                // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
+                                {path: 'home', component: CustomerHomeView},  
+                                {path: 'home/appointment', component: CustomerAppointment},
+                             ]
+   },
+   
    { path : '**' , component : PageNotFoundComponent},
 
   ];
@@ -54,9 +71,14 @@ const appRoutes: Routes = [
                   PopUpBoxComponent,
                   CustomerSignUpComponent,
                   DoctorSignUpComponent,
-                  /* Customer-View*/
+                  /*Customer-View*/
                   CustomerHeader,
-                  CustomerDefaultView ],
+                  CustomerDefaultView,
+                  CustomerHomeView,
+                  CustomerAppointment,],
+
+  providers : [ CustomerAuthGuard,
+                AuthenticationService],
 
   bootstrap:    [ AppComponent ]
 })

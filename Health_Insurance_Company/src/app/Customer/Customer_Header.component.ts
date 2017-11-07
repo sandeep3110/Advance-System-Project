@@ -15,5 +15,22 @@ import { Router } from '@angular/router';
   })
 export class CustomerHeader{
 
+  constructor(private router: Router) { }
+
+       /* To make Log Out tab have pointer cursor */
+        pointer() : any {
+          let myStyles = {
+
+            'cursor' : 'pointer',
+          }
+          return myStyles;
+        }
+
+        /* Log out from the session and clearing the storage */
+        
+        logOut(){
+             sessionStorage.removeItem("userData");
+             this.router.navigate(['/login']);
+        }
     
 }

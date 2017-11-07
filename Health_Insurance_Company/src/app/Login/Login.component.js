@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-var Authentication_Service_1 = require("./../RESTFul_API_Service/Authentication.Service");
 var router_1 = require("@angular/router");
+var Authentication_Service_1 = require("./../RESTFul_API_Service/Authentication.Service");
 "use strict";
 var LoginComponent = (function () {
     function LoginComponent(fb, AuthService, router) {
@@ -37,7 +37,8 @@ var LoginComponent = (function () {
         this.AuthService.loginAuthentication(loginData)
             .subscribe(function (result) {
             console.log(result);
-            (result.user === "doctor") ? console.log("I'm doctor") : console.log("I'm customer");
+            (result.user === "doctor") ? console.log("I'm doctor") : _this.router.navigate(['home']);
+            ;
             /* var obj = JSON.parse(sessionStorage.userData);
             console.log(obj); */
         }, function (err) {
@@ -52,7 +53,6 @@ LoginComponent = __decorate([
         selector: 'login-page',
         templateUrl: './Login.html',
         styleUrls: ['./Login.css'],
-        providers: [Authentication_Service_1.AuthenticationService],
     }),
     __metadata("design:paramtypes", [forms_1.FormBuilder, Authentication_Service_1.AuthenticationService, router_1.Router])
 ], LoginComponent);

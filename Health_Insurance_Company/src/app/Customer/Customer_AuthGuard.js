@@ -10,32 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+/* It is Mandatory to implement canActive method body in the AuthGuard Class because its an interface */
+/* { Error: No provider for CustomerAuthGuard! } Dependency injection
+To avoid the above error [Provider] should be specified in app.module.ts (or) Login.component.ts
+*/
 "use strict";
-var CustomerHeader = (function () {
-    function CustomerHeader(router) {
+var CustomerAuthGuard = (function () {
+    function CustomerAuthGuard(router) {
         this.router = router;
     }
-    /* To make Log Out tab have pointer cursor */
-    CustomerHeader.prototype.pointer = function () {
-        var myStyles = {
-            'cursor': 'pointer',
-        };
-        return myStyles;
+    CustomerAuthGuard.prototype.canActivate = function () {
+        if (sessionStorage.userData) {
+            return true;
+        }
+        /* If No data is retrived or session / window is closed open from here */
+        this.router.navigate(['login']);
+        return false;
     };
-    /* Log out from the session and clearing the storage */
-    CustomerHeader.prototype.logOut = function () {
-        sessionStorage.removeItem("userData");
-        this.router.navigate(['/login']);
-    };
-    return CustomerHeader;
+    return CustomerAuthGuard;
 }());
-CustomerHeader = __decorate([
-    core_1.Component({
-        selector: 'Customer-Header',
-        templateUrl: './Customer_Header.html',
-        styleUrls: ['./../DefaultHome/Header.css'],
-    }),
+CustomerAuthGuard = __decorate([
+    core_1.Injectable(),
     __metadata("design:paramtypes", [router_1.Router])
-], CustomerHeader);
-exports.CustomerHeader = CustomerHeader;
-//# sourceMappingURL=Customer_Header.component.js.map
+], CustomerAuthGuard);
+exports.CustomerAuthGuard = CustomerAuthGuard;
+//# sourceMappingURL=Customer_AuthGuard.js.map

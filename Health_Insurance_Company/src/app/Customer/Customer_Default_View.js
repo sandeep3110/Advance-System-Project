@@ -6,7 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var DBConn_service_1 = require("./../RESTFul_API_Service/DBConn.service");
 "use strict";
 var CustomerDefaultView = (function () {
     function CustomerDefaultView() {
@@ -17,9 +16,7 @@ CustomerDefaultView = __decorate([
     core_1.Component({
         selector: 'Customer-DefaultView',
         templateUrl: './Customer_Default_View.html',
-        styleUrls: ['./Customer_Default_View.css'],
-        providers: [DBConn_service_1.DBConnection],
     })
 ], CustomerDefaultView);
 exports.CustomerDefaultView = CustomerDefaultView;
-//# sourceMappingURL=Customer_Default_View.component.js.map
+//# sourceMappingURL=Customer_Default_View.js.map

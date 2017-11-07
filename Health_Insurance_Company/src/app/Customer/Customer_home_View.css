@@ -9,7 +9,7 @@
 
 #greeting-text{
     margin : 0 0 0 750px;
-    background-color: purple;
+    /* background-color: purple; */
     height : 600px;
     width : 580px;
 }

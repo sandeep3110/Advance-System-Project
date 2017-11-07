@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 
-"use strict"
+"use strict";
 @Injectable()
 
 export class DBConnection {

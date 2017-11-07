@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
-import {AuthenticationService} from './../RESTFul_API_Service/Authentication.Service';
 import { Router } from '@angular/router';
+import {AuthenticationService} from './../RESTFul_API_Service/Authentication.Service';
 
 "use strict";
 @Component({
     selector : 'login-page',
     templateUrl: './Login.html',
     styleUrls : ['./Login.css'],
-    providers : [AuthenticationService],
+    
   })
   
 
@@ -17,8 +17,10 @@ import { Router } from '@angular/router';
     loginForm : FormGroup;
    
     constructor(private fb : FormBuilder , private AuthService : AuthenticationService , private router:Router ){
-      this.loginFormValidation();
-         }
+                      
+                this.loginFormValidation();
+               }
+
 
          /* Login Form validation */
 
@@ -39,16 +41,14 @@ import { Router } from '@angular/router';
             password :this.loginForm.get("password").value,          
           }
 
-          
+              
           this.AuthService.loginAuthentication(loginData)
           .subscribe(
 
             (result : any) => {
 
                 console.log(result);
-                (result.user === "doctor")? console.log("I'm doctor") : console.log("I'm customer") ;
-
-                   
+                (result.user === "doctor")? console.log("I'm doctor") : this.router.navigate(['home']); ;                 
                     
                     /* var obj = JSON.parse(sessionStorage.userData);
                     console.log(obj); */
