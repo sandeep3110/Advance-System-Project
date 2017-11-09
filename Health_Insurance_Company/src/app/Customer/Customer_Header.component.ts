@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
   })
 export class CustomerHeader{
 
+  id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
+
   constructor(private router: Router) { }
 
        /* To make Log Out tab have a pointer cursor */

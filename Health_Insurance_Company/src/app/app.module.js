@@ -39,8 +39,8 @@ var appRoutes = [
     { path: '', canActivate: [Customer_AuthGuard_1.CustomerAuthGuard], component: Customer_Default_View_1.CustomerDefaultView,
         children: [
             // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
-            { path: 'home', component: Customer_Home_View_1.CustomerHomeView },
-            { path: 'home/appointment', component: Customer_appointment_1.CustomerAppointment },
+            { path: 'home/:', component: Customer_Home_View_1.CustomerHomeView },
+            { path: 'home/:id/appointment', component: Customer_appointment_1.Appointment },
         ]
     },
     { path: '**', component: PageNotFound_component_1.PageNotFoundComponent },
@@ -70,7 +70,7 @@ AppModule = __decorate([
             Customer_Header_component_1.CustomerHeader,
             Customer_Default_View_1.CustomerDefaultView,
             Customer_Home_View_1.CustomerHomeView,
-            Customer_appointment_1.CustomerAppointment,],
+            Customer_appointment_1.Appointment,],
         providers: [Customer_AuthGuard_1.CustomerAuthGuard,
             Authentication_Service_1.AuthenticationService],
         bootstrap: [app_component_1.AppComponent]

@@ -48,7 +48,9 @@ import {AuthenticationService} from './../RESTFul_API_Service/Authentication.Ser
             (result : any) => {
 
                 console.log(result);
-                (result.user === "doctor")? console.log("I'm doctor") : this.router.navigate(['home']); ;                 
+                (result.user === "doctor")? console.log("I'm doctor") : this.router.navigate(['home', result.memberId]); 
+                /* this.router.navigate(['home', result.memberId])      -->    It will look like this -->  http://localhost:3004/home/63236  
+                this.router.navigate(['home'],{ queryParams: { id: result.memberId } } ); -->   It will look like this -->  http://localhost:3004/home/?id=63236   */
                     
                     /* var obj = JSON.parse(sessionStorage.userData);
                     console.log(obj); */

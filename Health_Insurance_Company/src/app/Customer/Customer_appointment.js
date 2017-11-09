@@ -16,20 +16,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var Customer_Home_View_1 = require("./Customer_Home_View");
 "use strict";
-var CustomerAppointment = (function (_super) {
-    __extends(CustomerAppointment, _super);
-    function CustomerAppointment() {
-        return _super.call(this) || this;
+var Appointment = (function (_super) {
+    __extends(Appointment, _super);
+    function Appointment() {
+        var _this = this;
+        console.log("hi");
+        _this = _super.call(this) || this;
+        return _this;
     }
-    return CustomerAppointment;
+    return Appointment;
 }(Customer_Home_View_1.CustomerHomeView));
-CustomerAppointment = __decorate([
+Appointment = __decorate([
     core_1.Component({
         selector: 'Customer-Appointment',
         templateUrl: './Customer_appointment.html',
         styleUrls: ['./Customer_appointment.css'],
     }),
     __metadata("design:paramtypes", [])
-], CustomerAppointment);
-exports.CustomerAppointment = CustomerAppointment;
+], Appointment);
+exports.Appointment = Appointment;
 //# sourceMappingURL=Customer_appointment.js.map

@@ -10,18 +10,18 @@ import {CustomerHomeView } from './Customer_Home_View';
 @Component({
     selector : 'Customer-Appointment',
     templateUrl: './Customer_appointment.html',
-    styleUrls : ['./Customer_appointment.css'],
-    
-    
+    styleUrls : ['./Customer_appointment.css'],    
   })
 
-export class CustomerAppointment extends CustomerHomeView {
+export class Appointment extends CustomerHomeView {
 
- 
+     
     constructor(){
+        console.log("hi");
         super();
+       
     }
-   
+    
   
 
     

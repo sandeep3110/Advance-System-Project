@@ -20,7 +20,7 @@ import {DoctorSignUpComponent} from './Login/Doctor.SignUp.component';
 import { CustomerHeader } from './Customer/Customer_Header.component';
 import {CustomerDefaultView} from './Customer/Customer_Default_View';
 import {CustomerHomeView} from './Customer/Customer_Home_View';
-import {CustomerAppointment} from './Customer/Customer_appointment';
+import {Appointment} from './Customer/Customer_appointment';
 
 /* Dependency Injection : Providers */
 
@@ -45,8 +45,10 @@ const appRoutes: Routes = [
    { path : '' , canActivate: [CustomerAuthGuard], component : CustomerDefaultView,
                  children : [   
                                 // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
-                                {path: 'home', component: CustomerHomeView},  
-                                {path: 'home/appointment', component: CustomerAppointment},
+                                {path: 'home/:', component: CustomerHomeView},  
+                                {path: 'home/:id/appointment', component: Appointment },
+                                
+                                
                              ]
    },
    
@@ -75,7 +77,7 @@ const appRoutes: Routes = [
                   CustomerHeader,
                   CustomerDefaultView,
                   CustomerHomeView,
-                  CustomerAppointment,],
+                  Appointment,],
 
   providers : [ CustomerAuthGuard,
                 AuthenticationService],
