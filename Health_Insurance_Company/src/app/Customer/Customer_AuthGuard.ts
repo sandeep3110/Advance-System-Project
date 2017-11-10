@@ -18,17 +18,6 @@ export class CustomerAuthGuard implements CanActivate {
 
     canActivate() {
 
-<<<<<<<<< Temporary merge branch 1
-
-      //  if(sessionStorage.userData){
-      //      return true;
-      //     }
-||||||||| merged common ancestors
-        
-       if(sessionStorage.userData){
-           return true;
-          }
-=========
         
        if(sessionStorage.userData){ 
            return true;
@@ -37,11 +26,10 @@ export class CustomerAuthGuard implements CanActivate {
             return true;
            } */
           
->>>>>>>>> Temporary merge branch 2
           /* If No data is retrived or session / window is closed open from here */
               this.router.navigate(['login']);
               return false;
-
+          
     }
 
 }
