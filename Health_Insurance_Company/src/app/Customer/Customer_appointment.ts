@@ -11,32 +11,31 @@ import { CustomerService } from './../RESTFul_API_Service/Customer.Home.service'
 @Component({
     selector : 'Customer-Appointment',
     templateUrl: './Customer_appointment.html',
-    styleUrls : ['./Customer_appointment.css'],    
+    styleUrls : ['./Customer_appointment.css'],
   })
 
-export class Appointment extends CustomerHomeView {
+export class Appointment {
 
     searchForm: FormGroup;
     reasonList :String[];
-     
+
     constructor(private fb: FormBuilder , private CustmService : CustomerService){
-        super();
-        this.showForm();   
-        this.getListOfReasonsAndDoctors();   
+        this.showForm();
+        this.getListOfReasonsAndDoctors();
     }
-    
-    
-    
+
+
+
 
     showForm(){
         this.searchForm = this.fb.group({
-            
+
                   reason: ['', Validators.required], // Validation for reason
-                  zipcode: ['', Validators.required],  // Validation for zipcode   
-                             
+                  zipcode: ['', Validators.required],  // Validation for zipcode
+
                 });
     }
-  
+
     getListOfReasonsAndDoctors() {
         this.CustmService.getReasonList()
         .subscribe(
@@ -51,7 +50,7 @@ export class Appointment extends CustomerHomeView {
 
 
     nearByDoctors(){
-        
+
     }
-    
+
 }
