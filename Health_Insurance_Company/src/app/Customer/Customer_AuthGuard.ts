@@ -18,10 +18,8 @@ export class CustomerAuthGuard implements CanActivate {
 
     canActivate() {
 
-
+        
        if(sessionStorage.userData){ 
-      //      return true;
-      //     }
            return true;
           }
           /* if(localStorage.userData){ 
@@ -31,7 +29,7 @@ export class CustomerAuthGuard implements CanActivate {
           /* If No data is retrived or session / window is closed open from here */
               this.router.navigate(['login']);
               return false;
-
+          
     }
 
 }
