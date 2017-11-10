@@ -18,13 +18,14 @@ To avoid the above error [Provider] should be specified in app.module.ts (or) Lo
 var CustomerAuthGuard = (function () {
     function CustomerAuthGuard(router) {
         this.router = router;
+        this.customerData = JSON.parse(sessionStorage.userData);
     }
     /* Either Local storage or session storage application is throughing error while
     restarting the app --> "User Data doesn't exist on storage" */
     CustomerAuthGuard.prototype.canActivate = function () {
-        /* if(sessionStorage.userData){
+        if (this.customerData) {
             return true;
-           } */
+        }
         /* if(localStorage.userData){
           return true;
          } */

@@ -11,7 +11,11 @@ To avoid the above error [Provider] should be specified in app.module.ts (or) Lo
 @Injectable()
 export class CustomerAuthGuard implements CanActivate {
 
-    constructor(private router: Router) { }
+    customerData:any; 
+
+    constructor(private router: Router) {
+        this.customerData = JSON.parse(sessionStorage.userData); 
+     }
 
     /* Either Local storage or session storage application is throughing error while 
     restarting the app --> "User Data doesn't exist on storage" */
@@ -19,9 +23,9 @@ export class CustomerAuthGuard implements CanActivate {
     canActivate() {
 
         
-       /* if(sessionStorage.userData){ 
+       if(this.customerData){ 
            return true;
-          } */
+          }
           /* if(localStorage.userData){ 
             return true;
            } */

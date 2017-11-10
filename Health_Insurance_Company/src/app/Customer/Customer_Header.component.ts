@@ -1,41 +1,48 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup , Validators } from '@angular/forms';
-import {DBConnection} from './../RESTFul_API_Service/DBConn.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomerAuthGuard } from './Customer_AuthGuard';
 
 
 "use strict";
 
 @Component({
-    selector : 'Customer-Header',
-    templateUrl: './Customer_Header.html',
-    styleUrls : ['./../DefaultHome/Header.css'],
-    
-    
-  })
-export class CustomerHeader{
+  selector: 'Customer-Header',
+  templateUrl: './Customer_Header.html',
+  styleUrls: ['./../DefaultHome/Header.css'],
+
+
+})
+export class CustomerHeader extends CustomerAuthGuard {
 
   /* Either Local storage or session storage application is throughing error while 
     restarting the app --> "User Data doesn't exist on storage" */
-   /* id:number = JSON.parse(sessionStorage.userData).memberId ; */ // Fetching the memberId for URL
-   /* id:number = JSON.parse(localStorage.userData).memberId ; */
+  /* id:number = JSON.parse(sessionStorage.userData).memberId ; */ // Fetching the memberId for URL
+  /* id:number = JSON.parse(localStorage.userData).memberId ; */
 
-  constructor(private router: Router) { }
+  id: number;
 
-       /* To make Log Out tab have a pointer cursor */
-        pointer() : any {
-          let myStyles = {
+  /* Taking the sessionstorage into Customer values from Customer_AuthGuard_ts rather declaring another variable */
+  constructor(private rout: Router) {
+    super(rout);
+    console.log(this.customerData.memberId);
+    this.id = this.customerData.memberId;
+  }
 
-            'cursor' : 'pointer',
-          }
-          return myStyles;
-        }
+  /* To make Log Out tab have a pointer cursor */
+  pointer(): any {
+    let myStyles = {
 
-        /* Log out from the session and clearing the storage */
-        
-        logOut(){
-             sessionStorage.removeItem("userData");
-             this.router.navigate(['/login']);
-        }
-    
+      'cursor': 'pointer',
+    }
+    return myStyles;
+  }
+
+  /* Log out from the session and clearing the storage */
+
+  logOut() {
+    sessionStorage.removeItem("userData");
+    this.rout.navigate(['/login']);
+  }
+
 }
