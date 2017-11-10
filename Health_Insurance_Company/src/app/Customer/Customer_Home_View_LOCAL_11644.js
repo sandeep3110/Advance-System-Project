@@ -11,7 +11,7 @@ var CustomerHomeView = (function () {
     function CustomerHomeView() {
     }
     return CustomerHomeView;
-}());
+}()); /* Mentioning Json type is optional */
 CustomerHomeView = __decorate([
     core_1.Component({
         selector: 'Customer-HomeView',
@@ -20,12 +20,19 @@ CustomerHomeView = __decorate([
     })
 ], CustomerHomeView);
 exports.CustomerHomeView = CustomerHomeView;
-    <<  <<  <<  << merge;
-branch;
-1;
-customerData: JSON;
-    ||  ||  ||  ||  | merged;
+/* Either Local storage or session storage application is throughing error while
+restarting the app --> "User Data doesn't exist on storage" */
+    ||  ||  ||  | merged;
 common;
 ancestors;
 customerData: JSON;
-//# sourceMappingURL=Customer_Home_View.js.map
+constructor();
+{
+    this.customerData = JSON.parse(sessionStorage.userData);
+    /* this.customerData = JSON.parse(localStorage.userData); */
+        ||  ||  ||  | merged;
+    common;
+    ancestors;
+    this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+}
+//# sourceMappingURL=Customer_Home_View_LOCAL_11644.js.map

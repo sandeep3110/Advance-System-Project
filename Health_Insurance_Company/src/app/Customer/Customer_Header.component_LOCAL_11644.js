@@ -6,12 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 "use strict";
 var CustomerHeader = (function () {
     function CustomerHeader() {
+        this.id = JSON.parse(sessionStorage.userData).memberId;
+        /* id:number = JSON.parse(localStorage.userData).memberId ; */
     }
     return CustomerHeader;
-}());
+}()); // Fetching the memberId for URL
 CustomerHeader = __decorate([
     core_1.Component({
         selector: 'Customer-Header',
@@ -20,11 +23,26 @@ CustomerHeader = __decorate([
     })
 ], CustomerHeader);
 exports.CustomerHeader = CustomerHeader;
-    <<  <<  <<  << merge;
-branch;
-1
-    ||  ||  ||  ||  | merged;
+/* id:number = JSON.parse(localStorage.userData).memberId ; */
+    ||  ||  ||  | merged;
 common;
 ancestors;
 id: number = JSON.parse(sessionStorage.userData).memberId; // Fetching the memberId for URL
-//# sourceMappingURL=Customer_Header.component.js.map
+constructor(private, router, router_1.Router);
+{ }
+/* To make Log Out tab have a pointer cursor */
+pointer();
+any;
+{
+    var myStyles = {
+        'cursor': 'pointer',
+    };
+    return myStyles;
+}
+/* Log out from the session and clearing the storage */
+logOut();
+{
+    sessionStorage.removeItem("userData");
+    this.router.navigate(['/login']);
+}
+//# sourceMappingURL=Customer_Header.component_LOCAL_11644.js.map

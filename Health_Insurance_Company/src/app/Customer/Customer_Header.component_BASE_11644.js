@@ -27,4 +27,4 @@ branch;
 common;
 ancestors;
 id: number = JSON.parse(sessionStorage.userData).memberId; // Fetching the memberId for URL
-//# sourceMappingURL=Customer_Header.component.js.map
+//# sourceMappingURL=Customer_Header.component_BASE_11644.js.map

@@ -20,6 +20,9 @@ CustomerHomeView = __decorate([
     })
 ], CustomerHomeView);
 exports.CustomerHomeView = CustomerHomeView;
+    ||  ||  ||  | merged;
+common;
+ancestors
     <<  <<  <<  << merge;
 branch;
 1;
@@ -28,4 +31,44 @@ customerData: JSON;
 common;
 ancestors;
 customerData: JSON;
+customerData: JSON; /* Mentioning Json type is optional */
+/* Either Local storage or session storage application is throughing error while
+restarting the app --> "User Data doesn't exist on storage" */
+    ||  ||  ||  | merged;
+common;
+ancestors;
+customerData: JSON;
+    ||  ||  ||  | merged;
+common;
+ancestors
+    >>>  >>>  >>> Temporary;
+merge;
+branch;
+2;
+constructor();
+{
+        ||  ||  ||  | merged;
+    common;
+    ancestors
+        <<  <<  <<  << merge;
+    branch;
+    1
+        ||  ||  ||  ||  | merged;
+    common;
+    ancestors;
+    this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+    this.customerData = JSON.parse(sessionStorage.userData);
+    /* this.customerData = JSON.parse(localStorage.userData); */
+        ||  ||  ||  | merged;
+    common;
+    ancestors;
+    this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+        ||  ||  ||  | merged;
+    common;
+    ancestors
+        >>>  >>>  >>> Temporary;
+    merge;
+    branch;
+    2;
+}
 //# sourceMappingURL=Customer_Home_View.js.map

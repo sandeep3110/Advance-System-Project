@@ -18,6 +18,11 @@ export class CustomerAuthGuard implements CanActivate {
 
     canActivate() {
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        
+       if(sessionStorage.userData){ 
+||||||| merged common ancestors
 <<<<<<<<< Temporary merge branch 1
 
       //  if(sessionStorage.userData){
@@ -31,13 +36,34 @@ export class CustomerAuthGuard implements CanActivate {
 =========
         
        if(sessionStorage.userData){ 
+=======
+
+       if(sessionStorage.userData){ 
+      //      return true;
+      //     }
+>>>>>>> d732455660b072661bde538a065c094310c7f932
            return true;
           }
           /* if(localStorage.userData){ 
             return true;
            } */
           
+<<<<<<< HEAD
+||||||| merged common ancestors
+        
+       if(sessionStorage.userData){
+           return true;
+          }
+=======
+
+      //  if(sessionStorage.userData){
+      //      return true;
+      //     }
+>>>>>>> 22b69a31a95a86afbe2772b6f0827064daca209e
+||||||| merged common ancestors
 >>>>>>>>> Temporary merge branch 2
+=======
+>>>>>>> d732455660b072661bde538a065c094310c7f932
           /* If No data is retrived or session / window is closed open from here */
               this.router.navigate(['login']);
               return false;

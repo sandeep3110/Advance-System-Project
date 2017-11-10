@@ -22,15 +22,8 @@ var CustomerAuthGuard = (function () {
     /* Either Local storage or session storage application is throughing error while
     restarting the app --> "User Data doesn't exist on storage" */
     CustomerAuthGuard.prototype.canActivate = function () {
-            <<  <<  <<  << merge;
-        branch;
-        1
-            ||  ||  ||  ||  | merged;
-        common;
-        ancestors;
-        if (sessionStorage.userData) {
-            return true;
-        }
+        this.router.navigate(['login']);
+        return false;
     };
     return CustomerAuthGuard;
 }());

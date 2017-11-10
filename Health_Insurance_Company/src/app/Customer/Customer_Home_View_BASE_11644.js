@@ -7,24 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 "use strict";
-var CustomerHeader = (function () {
-    function CustomerHeader() {
+var CustomerHomeView = (function () {
+    function CustomerHomeView() {
     }
-    return CustomerHeader;
+    return CustomerHomeView;
 }());
-CustomerHeader = __decorate([
+CustomerHomeView = __decorate([
     core_1.Component({
-        selector: 'Customer-Header',
-        templateUrl: './Customer_Header.html',
-        styleUrls: ['./../DefaultHome/Header.css'],
+        selector: 'Customer-HomeView',
+        templateUrl: './Customer_Home_View.html',
+        styleUrls: ['./Customer_Home_View.css'],
     })
-], CustomerHeader);
-exports.CustomerHeader = CustomerHeader;
+], CustomerHomeView);
+exports.CustomerHomeView = CustomerHomeView;
     <<  <<  <<  << merge;
 branch;
-1
+1;
+customerData: JSON;
     ||  ||  ||  ||  | merged;
 common;
 ancestors;
-id: number = JSON.parse(sessionStorage.userData).memberId; // Fetching the memberId for URL
-//# sourceMappingURL=Customer_Header.component.js.map
+customerData: JSON;
+//# sourceMappingURL=Customer_Home_View_BASE_11644.js.map
