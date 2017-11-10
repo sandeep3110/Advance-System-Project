@@ -10,15 +10,21 @@ import { Router } from '@angular/router';
     selector : 'Customer-Header',
     templateUrl: './Customer_Header.html',
     styleUrls : ['./../DefaultHome/Header.css'],
-    
-    
+
+
   })
 export class CustomerHeader{
 
+<<<<<<< HEAD
   /* Either Local storage or session storage application is throughing error while 
     restarting the app --> "User Data doesn't exist on storage" */
    id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
    /* id:number = JSON.parse(localStorage.userData).memberId ; */
+||||||| merged common ancestors
+  id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
+=======
+  // id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
+>>>>>>> 22b69a31a95a86afbe2772b6f0827064daca209e
 
   constructor(private router: Router) { }
 
@@ -32,10 +38,10 @@ export class CustomerHeader{
         }
 
         /* Log out from the session and clearing the storage */
-        
+
         logOut(){
              sessionStorage.removeItem("userData");
              this.router.navigate(['/login']);
         }
-    
+
 }

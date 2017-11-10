@@ -15,6 +15,7 @@ var PageNotFound_component_1 = require("./PageNotFound/PageNotFound.component");
 var Header_component_1 = require("./DefaultHome/Header.component");
 var Footer_component_1 = require("./DefaultHome/Footer.component");
 var Home_component_1 = require("./Home/Home.component");
+var contactus_component_1 = require("./ContactUs/contactus.component");
 var Login_component_1 = require("./Login/Login.component");
 var PopUp_component_1 = require("./Login/PopUp.component");
 var Customer_SignUp_component_1 = require("./Login/Customer.SignUp.component");
@@ -34,6 +35,7 @@ var appRoutes = [
         children: [
             { path: '', component: Home_component_1.HomePageComponent },
             { path: 'login', component: Login_component_1.LoginComponent },
+            { path: 'contactus', component: contactus_component_1.ContactusComponent }
         ]
     },
     /* Customer-View*/
@@ -64,6 +66,7 @@ AppModule = __decorate([
             Footer_component_1.FooterComponent,
             Home_component_1.HomePageComponent,
             Login_component_1.LoginComponent,
+            contactus_component_1.ContactusComponent,
             PopUp_component_1.PopUpBoxComponent,
             Customer_SignUp_component_1.CustomerSignUpComponent,
             Doctor_SignUp_component_1.DoctorSignUpComponent,

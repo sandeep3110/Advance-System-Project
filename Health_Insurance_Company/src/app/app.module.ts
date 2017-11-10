@@ -10,9 +10,10 @@ import {PageNotFoundComponent} from './PageNotFound/PageNotFound.component';
 import {HeaderComponent} from './DefaultHome/Header.component';
 import {FooterComponent} from './DefaultHome/Footer.component';
 import {HomePageComponent }  from './Home/Home.component';
+import { ContactusComponent } from './ContactUs/contactus.component';
 import {LoginComponent }  from './Login/Login.component';
 import {PopUpBoxComponent} from './Login/PopUp.component';
-import {CustomerSignUpComponent }  from './Login/Customer.SignUp.component'; 
+import {CustomerSignUpComponent }  from './Login/Customer.SignUp.component';
 import {DoctorSignUpComponent} from './Login/Doctor.SignUp.component';
 
 /* Customer-View*/
@@ -33,26 +34,26 @@ import {CustomerService} from './RESTFul_API_Service/Customer.Home.service';
 "Use strict";
 
 const appRoutes: Routes = [
-  { path : '' , component : AppComponent, 
-                children : [ 
+  { path : '' , component : AppComponent,
+                children : [
                              {path: '', component: HomePageComponent},
                              {path: 'login', component: LoginComponent},
-                             
+                             {path: 'contactus', component: ContactusComponent}
                            ]
    },
 
    /* Customer-View*/
 
    { path : '' , canActivate: [CustomerAuthGuard], component : CustomerDefaultView,
-                 children : [   
+                 children : [
                                 // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
-                                {path: 'home/:', component: CustomerHomeView},  
+                                {path: 'home/:', component: CustomerHomeView},
                                 {path: 'home/:id/appointment', component: Appointment },
-                                
-                                
+
+
                              ]
    },
-   
+
    { path : '**' , component : PageNotFoundComponent},
 
   ];
@@ -71,6 +72,7 @@ const appRoutes: Routes = [
                   FooterComponent,
                   HomePageComponent,
                   LoginComponent,
+                  ContactusComponent,
                   PopUpBoxComponent,
                   CustomerSignUpComponent,
                   DoctorSignUpComponent,

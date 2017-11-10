@@ -28,7 +28,12 @@ var CustomerAuthGuard = (function () {
         /* if(localStorage.userData){
           return true;
          } */
-        /* If No data is retrived or session / window is closed open from here */
+            ||  ||  ||  | merged;
+        common;
+        ancestors;
+        if (sessionStorage.userData) {
+            return true;
+        }
         this.router.navigate(['login']);
         return false;
     };
