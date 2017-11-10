@@ -20,9 +20,9 @@ var CustomerAuthGuard = (function () {
         this.router = router;
     }
     CustomerAuthGuard.prototype.canActivate = function () {
-        if (sessionStorage.userData) {
-            return true;
-        }
+        //  if(sessionStorage.userData){
+        //      return true;
+        //     }
         /* If No data is retrived or session / window is closed open from here */
         this.router.navigate(['login']);
         return false;

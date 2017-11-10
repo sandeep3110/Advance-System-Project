@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
     selector : 'Customer-Header',
     templateUrl: './Customer_Header.html',
     styleUrls : ['./../DefaultHome/Header.css'],
-    
-    
+
+
   })
 export class CustomerHeader{
 
-  id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
+  // id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
 
   constructor(private router: Router) { }
 
@@ -29,10 +29,10 @@ export class CustomerHeader{
         }
 
         /* Log out from the session and clearing the storage */
-        
+
         logOut(){
              sessionStorage.removeItem("userData");
              this.router.navigate(['/login']);
         }
-    
+
 }

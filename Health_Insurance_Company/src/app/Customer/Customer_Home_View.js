@@ -12,7 +12,7 @@ var core_1 = require("@angular/core");
 "use strict";
 var CustomerHomeView = (function () {
     function CustomerHomeView() {
-        this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+        // this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
     }
     return CustomerHomeView;
 }());

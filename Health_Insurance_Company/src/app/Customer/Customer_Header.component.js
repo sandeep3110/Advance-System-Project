@@ -12,9 +12,9 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 "use strict";
 var CustomerHeader = (function () {
+    // id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
     function CustomerHeader(router) {
         this.router = router;
-        this.id = JSON.parse(sessionStorage.userData).memberId; // Fetching the memberId for URL
     }
     /* To make Log Out tab have a pointer cursor */
     CustomerHeader.prototype.pointer = function () {
