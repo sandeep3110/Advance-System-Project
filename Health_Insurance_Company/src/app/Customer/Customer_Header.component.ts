@@ -17,7 +17,7 @@ export class CustomerHeader{
 
   /* Either Local storage or session storage application is throughing error while 
     restarting the app --> "User Data doesn't exist on storage" */
-   id:number = JSON.parse(sessionStorage.userData).memberId ; // Fetching the memberId for URL
+   /* id:number = JSON.parse(sessionStorage.userData).memberId ; */ // Fetching the memberId for URL
    /* id:number = JSON.parse(localStorage.userData).memberId ; */
 
   constructor(private router: Router) { }

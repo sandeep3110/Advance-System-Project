@@ -14,6 +14,7 @@ import {LoginComponent }  from './Login/Login.component';
 import {PopUpBoxComponent} from './Login/PopUp.component';
 import {CustomerSignUpComponent }  from './Login/Customer.SignUp.component'; 
 import {DoctorSignUpComponent} from './Login/Doctor.SignUp.component';
+import {ContactusComponent} from './Home/ContactUs/contactus.component';
 
 /* Customer-View*/
 
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
                 children : [ 
                              {path: '', component: HomePageComponent},
                              {path: 'login', component: LoginComponent},
+                             {path: 'contactUs', component: ContactusComponent},
                              
                            ]
    },
@@ -74,7 +76,10 @@ const appRoutes: Routes = [
                   PopUpBoxComponent,
                   CustomerSignUpComponent,
                   DoctorSignUpComponent,
+                  ContactusComponent,
+
                   /*Customer-View*/
+                  
                   CustomerHeader,
                   CustomerDefaultView,
                   CustomerHomeView,

@@ -22,7 +22,7 @@ export class CustomerHomeView{
     /* Either Local storage or session storage application is throughing error while 
     restarting the app --> "User Data doesn't exist on storage" */
     constructor() {
-    this.customerData = JSON.parse(sessionStorage.userData); 
+    /* this.customerData = JSON.parse(sessionStorage.userData);  */
     /* this.customerData = JSON.parse(localStorage.userData); */
    }
    

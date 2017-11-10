@@ -22,9 +22,9 @@ var CustomerAuthGuard = (function () {
     /* Either Local storage or session storage application is throughing error while
     restarting the app --> "User Data doesn't exist on storage" */
     CustomerAuthGuard.prototype.canActivate = function () {
-        if (sessionStorage.userData) {
+        /* if(sessionStorage.userData){
             return true;
-        }
+           } */
         /* if(localStorage.userData){
           return true;
          } */

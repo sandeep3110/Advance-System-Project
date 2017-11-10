@@ -19,6 +19,7 @@ var Login_component_1 = require("./Login/Login.component");
 var PopUp_component_1 = require("./Login/PopUp.component");
 var Customer_SignUp_component_1 = require("./Login/Customer.SignUp.component");
 var Doctor_SignUp_component_1 = require("./Login/Doctor.SignUp.component");
+var contactus_component_1 = require("./Home/ContactUs/contactus.component");
 /* Customer-View*/
 var Customer_Header_component_1 = require("./Customer/Customer_Header.component");
 var Customer_Default_View_1 = require("./Customer/Customer_Default_View");
@@ -34,6 +35,7 @@ var appRoutes = [
         children: [
             { path: '', component: Home_component_1.HomePageComponent },
             { path: 'login', component: Login_component_1.LoginComponent },
+            { path: 'contactUs', component: contactus_component_1.ContactusComponent },
         ]
     },
     /* Customer-View*/
@@ -67,6 +69,7 @@ AppModule = __decorate([
             PopUp_component_1.PopUpBoxComponent,
             Customer_SignUp_component_1.CustomerSignUpComponent,
             Doctor_SignUp_component_1.DoctorSignUpComponent,
+            contactus_component_1.ContactusComponent,
             /*Customer-View*/
             Customer_Header_component_1.CustomerHeader,
             Customer_Default_View_1.CustomerDefaultView,

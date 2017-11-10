@@ -19,9 +19,9 @@ export class CustomerAuthGuard implements CanActivate {
     canActivate() {
 
         
-       if(sessionStorage.userData){ 
+       /* if(sessionStorage.userData){ 
            return true;
-          }
+          } */
           /* if(localStorage.userData){ 
             return true;
            } */
