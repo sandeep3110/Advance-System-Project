@@ -17,10 +17,13 @@ import { Router } from '@angular/router';
 
 export class CustomerHomeView{
 
-    customerData: JSON;
+    customerData: JSON; /* Mentioning Json type is optional */
   
+    /* Either Local storage or session storage application is throughing error while 
+    restarting the app --> "User Data doesn't exist on storage" */
     constructor() {
-    this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+    this.customerData = JSON.parse(sessionStorage.userData); 
+    /* this.customerData = JSON.parse(localStorage.userData); */
    }
    
     

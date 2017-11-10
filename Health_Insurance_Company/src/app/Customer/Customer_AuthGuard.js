@@ -19,10 +19,15 @@ var CustomerAuthGuard = (function () {
     function CustomerAuthGuard(router) {
         this.router = router;
     }
+    /* Either Local storage or session storage application is throughing error while
+    restarting the app --> "User Data doesn't exist on storage" */
     CustomerAuthGuard.prototype.canActivate = function () {
         if (sessionStorage.userData) {
             return true;
         }
+        /* if(localStorage.userData){
+          return true;
+         } */
         /* If No data is retrived or session / window is closed open from here */
         this.router.navigate(['login']);
         return false;

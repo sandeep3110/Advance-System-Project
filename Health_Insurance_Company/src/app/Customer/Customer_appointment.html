@@ -1,33 +1,66 @@
 <Customer-Header></Customer-Header>
 
 <!-- Combine divison for Picture and Form and search details -->
-<section class = "combine">
+<section class="combine">
 
     <!-- Divison for search Form -->
-        <div class="container">
-                
-                <div class="col-md-4">
-                    <div class="form_main">
-                            <h4 class="heading"><strong>Quick </strong> Search <span></span></h4>
-                            <div class="form">
-                            <form action="contact_send_mail.php" method="post" id="contactFrm" name="contactFrm">
-                                <input type="text" required="" placeholder="Consulting reason / doctor name" value="" name="name" class="txt">
-                                <input type="text" required="" placeholder="Zip code" value="" name="mob" class="txt">
-                                <input type="text" required="" placeholder="Please select your career" value="" name="email" class="txt">
-                                
-                                <button type="button" class="btn btn-primary btn-lg"> Search &nbsp;<span class="glyphicon glyphicon-search"></span></button>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                
-            </div>
+    <div class="container">
 
-            <!-- Divison for Image -->
-<div class = "appoint-body"> </div>
+        <div class="col-md-4">
+            <div class="form_main">
+                <h4 class="heading"><strong>Quick </strong> Search <span></span></h4>
+                <div class="form">
+                     
+                    <!--  search-form starts from here -->
+
+                    <form  name="searchForm"  [formGroup]="searchForm" (ngSubmit)="nearByDoctors()" novalidate>
+                        
+                         <!--  Consulting Field ,id = 'txt' for CSS purpose -->
+
+                        <input id ="txt"  type="text"  list="reason"  formControlName="reason" placeholder="Consulting reason / doctor name">
+                        <datalist id="reason">
+                            <option *ngFor="let consultingReason of reasonList" value="{{consultingReason}}" >
+                        </datalist>
+
+                        <p *ngIf="(searchForm.get('reason').hasError('required') && searchForm.get('reason').touched)"> Please select or enter the Consulting reason or Doctor's Name </p>
+                       
+                         <!--  Zipcode Field ,id = 'txt' for CSS purpose -->
+
+                        <input id ="txt"  type="text"  formControlName="zipcode" placeholder="Zip code">
+                        <datalist id="zipcode">
+                            <option  value="19341">
+                                    <option  value="78954">
+                                            <option  value="64093">
+                        </datalist>
+
+                        <!-- <p *ngIf="(searchForm.get('zipcode').hasError('required') && searchForm.get('zipcode').touched )"> Please select or enter the ZipCode </p> -->
+
+                         <!--  Career Field ,id = 'txt' for CSS purpose -->
+
+                        <input id = "txt"  type="text"  placeholder="Please select your career"  name="career" >
+                        <!-- <datalist id="zipcode">
+                            <option *ngFor="let specialty of listOfSpecialties" value="{{specialty}}" list="zipcode">
+                        </datalist> -->
+
+                        <!-- Search button will be enabled after touching both the Doctor and zip fields -->
+
+                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!((searchForm.get('reason').touched && searchForm.get('zipcode').touched))">
+                                     Search &nbsp;<span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+
+                       <!-- Search-from ends here -->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Divison for Image on right side-->
+    <div class="appoint-body"> </div>
 
 </section>
 <!-- Combine divison ends here -->
-<p style = "background-color : yellow;">Hello</p>
+<p style="background-color : yellow;">Hello</p>
 
 <Footer-home></Footer-home>
