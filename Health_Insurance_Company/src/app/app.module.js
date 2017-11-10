@@ -28,6 +28,7 @@ var Customer_appointment_1 = require("./Customer/Customer_appointment");
 /* Dependency Injection : Providers */
 var Authentication_Service_1 = require("./RESTFul_API_Service/Authentication.Service");
 var Customer_AuthGuard_1 = require("./Customer/Customer_AuthGuard");
+var Customer_Home_service_1 = require("./RESTFul_API_Service/Customer.Home.service");
 "Use strict";
 var appRoutes = [
     { path: '', component: app_component_1.AppComponent,
@@ -75,7 +76,8 @@ AppModule = __decorate([
             Customer_Home_View_1.CustomerHomeView,
             Customer_appointment_1.Appointment,],
         providers: [Customer_AuthGuard_1.CustomerAuthGuard,
-            Authentication_Service_1.AuthenticationService],
+            Authentication_Service_1.AuthenticationService,
+            Customer_Home_service_1.CustomerService,],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

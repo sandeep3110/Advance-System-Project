@@ -27,6 +27,7 @@ var AuthenticationService = (function () {
             if(response.status === 404) we are getting error for status code 404 not found on console that is the reason we are using catch block
              return response.json(); */
             sessionStorage.setItem("userData", JSON.stringify(response.json()));
+            /*  localStorage.setItem("userData" , JSON.stringify(response.json()) );    */
             return response.json();
         })
             .catch(function (error) {

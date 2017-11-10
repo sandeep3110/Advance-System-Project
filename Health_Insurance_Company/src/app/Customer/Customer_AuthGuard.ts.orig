@@ -18,16 +18,21 @@ export class CustomerAuthGuard implements CanActivate {
 
     canActivate() {
 
+<<<<<<< HEAD
 
-       if(sessionStorage.userData){ 
+      //  if(sessionStorage.userData){
       //      return true;
       //     }
+=======
+        
+       if(sessionStorage.userData){ 
            return true;
           }
           /* if(localStorage.userData){ 
             return true;
            } */
           
+>>>>>>> cff5872a99da5a02b325829ee436997453d490a3
           /* If No data is retrived or session / window is closed open from here */
               this.router.navigate(['login']);
               return false;

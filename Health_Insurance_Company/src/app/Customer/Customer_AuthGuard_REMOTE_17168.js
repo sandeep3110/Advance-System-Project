@@ -23,8 +23,6 @@ var CustomerAuthGuard = (function () {
     restarting the app --> "User Data doesn't exist on storage" */
     CustomerAuthGuard.prototype.canActivate = function () {
         if (sessionStorage.userData) {
-            //      return true;
-            //     }
             return true;
         }
         /* if(localStorage.userData){
@@ -41,4 +39,4 @@ CustomerAuthGuard = __decorate([
     __metadata("design:paramtypes", [router_1.Router])
 ], CustomerAuthGuard);
 exports.CustomerAuthGuard = CustomerAuthGuard;
-//# sourceMappingURL=Customer_AuthGuard.js.map
+//# sourceMappingURL=Customer_AuthGuard_REMOTE_17168.js.map

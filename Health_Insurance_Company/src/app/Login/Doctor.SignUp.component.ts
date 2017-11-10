@@ -24,7 +24,7 @@ export class DoctorSignUpComponent {
 
   entryForm: FormGroup;
   value: any;
-  listOfSpecialties: any[];
+  listOfSpecialties: String[];
 
 
 

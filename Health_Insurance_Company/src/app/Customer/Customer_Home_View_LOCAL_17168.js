@@ -11,11 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 "use strict";
 var CustomerHomeView = (function () {
-    /* Either Local storage or session storage application is throughing error while
-    restarting the app --> "User Data doesn't exist on storage" */
     function CustomerHomeView() {
-        this.customerData = JSON.parse(sessionStorage.userData);
-        /* this.customerData = JSON.parse(localStorage.userData); */
+        // this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
     }
     return CustomerHomeView;
 }());
@@ -28,4 +25,4 @@ CustomerHomeView = __decorate([
     __metadata("design:paramtypes", [])
 ], CustomerHomeView);
 exports.CustomerHomeView = CustomerHomeView;
-//# sourceMappingURL=Customer_Home_View.js.map
+//# sourceMappingURL=Customer_Home_View_LOCAL_17168.js.map

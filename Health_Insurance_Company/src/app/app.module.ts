@@ -27,6 +27,7 @@ import {Appointment} from './Customer/Customer_appointment';
 
 import {AuthenticationService} from './RESTFul_API_Service/Authentication.Service';
 import { CustomerAuthGuard } from './Customer/Customer_AuthGuard';
+import {CustomerService} from './RESTFul_API_Service/Customer.Home.service';
 
 
 
@@ -82,7 +83,8 @@ const appRoutes: Routes = [
                   Appointment,],
 
   providers : [ CustomerAuthGuard,
-                AuthenticationService],
+                AuthenticationService,
+                CustomerService,],
 
   bootstrap:    [ AppComponent ]
 })

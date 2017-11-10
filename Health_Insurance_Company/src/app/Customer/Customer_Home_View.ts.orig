@@ -11,12 +11,18 @@ import { Router } from '@angular/router';
     selector : 'Customer-HomeView',
     templateUrl: './Customer_Home_View.html',
     styleUrls : ['./Customer_Home_View.css'],
-    
-    
+
+
   })
 
 export class CustomerHomeView{
 
+<<<<<<< HEAD
+    customerData: JSON;
+
+    constructor() {
+    // this.customerData = JSON.parse(sessionStorage.userData); /* Mentioning Json type is optional */
+=======
     customerData: JSON; /* Mentioning Json type is optional */
   
     /* Either Local storage or session storage application is throughing error while 
@@ -24,11 +30,12 @@ export class CustomerHomeView{
     constructor() {
     this.customerData = JSON.parse(sessionStorage.userData); 
     /* this.customerData = JSON.parse(localStorage.userData); */
+>>>>>>> cff5872a99da5a02b325829ee436997453d490a3
    }
-   
-    
-   
-  
 
-    
+
+
+
+
+
 }

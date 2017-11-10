@@ -12,11 +12,8 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 "use strict";
 var CustomerHeader = (function () {
-    /* id:number = JSON.parse(localStorage.userData).memberId ; */
     function CustomerHeader(router) {
         this.router = router;
-        /* Either Local storage or session storage application is throughing error while
-          restarting the app --> "User Data doesn't exist on storage" */
         this.id = JSON.parse(sessionStorage.userData).memberId; // Fetching the memberId for URL
     }
     /* To make Log Out tab have a pointer cursor */
@@ -42,4 +39,4 @@ CustomerHeader = __decorate([
     __metadata("design:paramtypes", [router_1.Router])
 ], CustomerHeader);
 exports.CustomerHeader = CustomerHeader;
-//# sourceMappingURL=Customer_Header.component.js.map
+//# sourceMappingURL=Customer_Header.component_BASE_17168.js.map
