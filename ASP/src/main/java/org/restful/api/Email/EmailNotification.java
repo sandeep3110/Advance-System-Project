@@ -11,10 +11,18 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.restful.api.model.Profile;
+
 @XmlRootElement
 public class EmailNotification {
 	
-public static String email(){
+	
+	
+	
+@SuppressWarnings("finally")
+public static boolean email(Profile profile){
+	
+	  
 	
 	  /*For detail explanation visit this site
 	   "https://www.tutorialspoint.com/javamail_api/javamail_api_gmail_smtp_server.htm"
@@ -26,12 +34,12 @@ public static String email(){
                          <version>1.4.7</version>*/
 		
 		// Recipient's email ID needs to be mentioned.
-	      String to = "prashanth.avc@gmail.com";//change accordingly
+	      String to = profile.getEmail();//change accordingly
 
 	      // Sender's email ID needs to be mentioned
-	      String from = "prashanth6353@gmail.com";//change accordingly
-	      final String username = "prashanth6353";//change accordingly
-	      final String password = "Chaithu@786";//change accordingly
+	      String from = "notifications.firsthealth@gmail.com";//change accordingly
+	      final String username = "notifications.firsthealth";//change accordingly
+	      final String password = "FirstHealthInsurance@786";//change accordingly
 
 	      // Assuming you are sending email through relay.jangosmtp.net
 	      String host = "smtp.gmail.com";
@@ -59,25 +67,34 @@ public static String email(){
 	         message.setFrom(new InternetAddress(from));
 
 	         // Set To: header field of the header.
-	         message.setRecipients(Message.RecipientType.TO,
-	         InternetAddress.parse(to));
+	         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
 
 	         // Set Subject: header field
-	         message.setSubject("Testing Subject");
+	         message.setSubject("first-Health Insurance NewsLetter subscription succcesful!");
 
 	         // Now set the actual message
-	         message.setText("Hello, this is sample for to check send "
-	            + "email using JavaMailAPI ");
+	         message.setContent("<h1>Hello, this is sample for to check send email using JavaMailAPI</h1> " , "text/html");
 
 	         // Send message
 	         Transport.send(message);
 
 	         System.out.println("Sent message successfully....");
-	         return "Sent message successfully....";
+	         profile.setErrorMsg(" Email with News letter has been Sent,Please check your Inbox !....");
+	         
+	         
 
 	      } catch (MessagingException e) {
+	    	 
 	            throw new RuntimeException(e);
-	      }
+	            
+	      } finally{
+	    	           if(profile.getErrorMsg()!=null){
+	    		              return true;
+	    	              }else{
+	    		               profile.setErrorMsg("Looks like this Email address doesn't Exist ,Please enter Correct email address !!");
+	    		               return false;
+	    	                  } 
+	                } 
 
 	}
 

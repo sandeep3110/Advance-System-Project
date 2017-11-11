@@ -1,4 +1,6 @@
 package org.restful.api.database;
+import org.restful.api.model.Profile;
+import org.restful.api.model.Specialty;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,14 +13,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.bind.annotation.XmlElement;
 
-import org.restful.api.model.Profile;
-import org.restful.api.model.Specialty;
+
+
 
 public class DatabaseConnection {
 
-	private static Connection con;
+	private static Connection con = null;
 	
 	
 	public static Connection getCon()throws Exception {
@@ -88,6 +89,8 @@ public class DatabaseConnection {
 			
 			int result = pst.executeUpdate();
 			/*System.out.println("hi from db class result is " + result);*/
+			pst.close();
+			con.close();
 			return (result > 0)? true : false;
 	        }catch (SQLException e) {				
 				System.err.println("Got an exception!! in customer_table ");
@@ -118,6 +121,8 @@ public class DatabaseConnection {
 			pst.setString(9,profile.getPassword());
 			
 			int result = pst.executeUpdate();
+			pst.close();
+			con.close();
 			return (result > 0)? true : false; 
 			}catch (SQLException e) {				
 				System.err.println("Got an exception!! in doctor_table ");
@@ -151,7 +156,9 @@ public class DatabaseConnection {
 			    if(specialtyList.size() == 0){
 			    	return null;
 			    }else{
-			    	
+			    	rs.close();
+			    	pst.close();
+					con.close();
 			    	return specialtyList;
 			    }
 			    
@@ -217,10 +224,16 @@ public class DatabaseConnection {
 				    
 				      if(rst.first()){
 				    	 // return matched doctor_profile for the member_id  and password
+				    	  rst.close();
+				    	  st.close();
+				    	  con.close();
 				    	  return profile ;
 				    	  
 				      }else{
 				    	  /* rst.first() return boolean  false if no rows are returned or row is not found in doctor_table */	
+				    	  rst.close();
+				    	  st.close();
+				    	  con.close();
 				    	  profile.setErrorMsg("Profile Does not Exist , Please Register yourself and Try Again!!");
 				    	  return profile;	
 				    	  
@@ -235,6 +248,9 @@ public class DatabaseConnection {
 			    	
 			  }else{ // return matched customer_profile for the member_id  and password
 				  
+				        pst.close();
+		    	        rs.close();
+		    	        con.close();
 			    		return profile;
 			    		
 			    		}			    

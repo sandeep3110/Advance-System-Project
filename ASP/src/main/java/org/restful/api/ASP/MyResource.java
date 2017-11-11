@@ -20,6 +20,12 @@ import org.restful.api.model.Specialty;
 @SuppressWarnings("unused") // Exception for warnings
 @Path("myresource")
 
+/*
+ *  These are the paths we are using in this MyResource Class
+ * @Path("specialty")
+ * @Path("single_user")
+ * @Path("authentication")*/
+
 
 public class MyResource {
 
@@ -94,7 +100,7 @@ public class MyResource {
 		
 	}
 	
-	// API for Authentication Customer/Doctor
+	// API for Authentication of Customer/Doctor
 	
 	@SuppressWarnings("static-access")
 	@Path("authentication")
