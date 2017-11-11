@@ -1,9 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15,18 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-var Customer_Home_View_1 = require("./Customer_Home_View");
 var Customer_Home_service_1 = require("./../RESTFul_API_Service/Customer.Home.service");
 "use strict";
-var Appointment = (function (_super) {
-    __extends(Appointment, _super);
+var Appointment = (function () {
     function Appointment(fb, CustmService) {
-        var _this = _super.call(this) || this;
-        _this.fb = fb;
-        _this.CustmService = CustmService;
-        _this.showForm();
-        _this.getListOfReasonsAndDoctors();
-        return _this;
+        this.fb = fb;
+        this.CustmService = CustmService;
+        /* Reason to hard code the values but not fetching from database is Career names will be know to everyone */
+        this.listOfCareers = ["First Choice Health - PPO",
+            "Cigna - HMO",
+            "UnitedHealthcare - UnitedHealthcare Compass Plus",
+            "Independence Blue Cross - National BlueCard PPO",
+            "EmblemHealth - 9/11 Program",
+            "Clover Health - Prestige",
+            "Companion Life - Worker's Comp",
+            "WEA Trust - Fox River Network: Tier 1 Providers",
+            "Caterpillar - Caterpillar Network Plan",
+            "Corvel - Group Health", "irst Health Insurance"];
+        this.showForm();
+        this.getListOfReasonsAndDoctors();
     }
     Appointment.prototype.showForm = function () {
         this.searchForm = this.fb.group({
@@ -46,7 +48,7 @@ var Appointment = (function (_super) {
     Appointment.prototype.nearByDoctors = function () {
     };
     return Appointment;
-}(Customer_Home_View_1.CustomerHomeView));
+}());
 Appointment = __decorate([
     core_1.Component({
         selector: 'Customer-Appointment',

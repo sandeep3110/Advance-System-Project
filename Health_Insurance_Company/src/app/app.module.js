@@ -29,6 +29,7 @@ var Customer_appointment_1 = require("./Customer/Customer_appointment");
 var Authentication_Service_1 = require("./RESTFul_API_Service/Authentication.Service");
 var Customer_AuthGuard_1 = require("./Customer/Customer_AuthGuard");
 var Customer_Home_service_1 = require("./RESTFul_API_Service/Customer.Home.service");
+var Email_Notifications_Service_1 = require("./RESTFul_API_Service/Email.Notifications.Service");
 "Use strict";
 var appRoutes = [
     { path: '', component: app_component_1.AppComponent,
@@ -77,7 +78,8 @@ AppModule = __decorate([
             Customer_appointment_1.Appointment,],
         providers: [Customer_AuthGuard_1.CustomerAuthGuard,
             Authentication_Service_1.AuthenticationService,
-            Customer_Home_service_1.CustomerService,],
+            Customer_Home_service_1.CustomerService,
+            Email_Notifications_Service_1.EmailNotification,],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

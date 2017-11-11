@@ -19,28 +19,30 @@
 
                         <input id ="txt"  type="text"  list="reason"  formControlName="reason" placeholder="Consulting reason / doctor name">
                         <datalist id="reason">
-                            <option *ngFor="let consultingReason of reasonList" value="{{consultingReason}}" >
+                            <option *ngFor="let consultingReason of reasonList" value="{{consultingReason}}" ></option>
                         </datalist>
 
                         <p *ngIf="(searchForm.get('reason').hasError('required') && searchForm.get('reason').touched)"> Please select or enter the Consulting reason or Doctor's Name </p>
                        
                          <!--  Zipcode Field ,id = 'txt' for CSS purpose -->
 
-                        <input id ="txt"  type="text"  formControlName="zipcode" placeholder="Zip code">
+                        <input id ="txt"  type="text" list = "zipcode"  formControlName="zipcode" placeholder="Zip code">
                         <datalist id="zipcode">
-                            <option  value="19341">
-                                    <option  value="78954">
-                                            <option  value="64093">
+                            <option  value= "19341"></option>
+                            <option  value= "78954"></option>
+                            <option  value= "64093"></option>
                         </datalist>
 
-                        <!-- <p *ngIf="(searchForm.get('zipcode').hasError('required') && searchForm.get('zipcode').touched )"> Please select or enter the ZipCode </p> -->
+                        <p *ngIf="(searchForm.get('zipcode').hasError('required') && searchForm.get('zipcode').touched )"> Please select or enter the ZipCode </p>
 
                          <!--  Career Field ,id = 'txt' for CSS purpose -->
+                         <!-- Reason to hard code the values but not fetching from database is Zipcode will be know to everyone  -->
 
-                        <input id = "txt"  type="text"  placeholder="Please select your career"  name="career" >
-                        <!-- <datalist id="zipcode">
-                            <option *ngFor="let specialty of listOfSpecialties" value="{{specialty}}" list="zipcode">
-                        </datalist> -->
+                        <input id = "txt"  type="text" list = "career" placeholder="Please select your career"  name="career">
+                        <datalist id="career">
+                            <option>I'll pay by Myself</option>
+                            <option *ngFor="let career of listOfCareers" value="{{career}}"></option>
+                        </datalist>
 
                         <!-- Search button will be enabled after touching both the Doctor and zip fields -->
 

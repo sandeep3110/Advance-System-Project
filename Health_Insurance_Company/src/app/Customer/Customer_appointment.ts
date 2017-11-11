@@ -18,6 +18,17 @@ export class Appointment {
 
     searchForm: FormGroup;
     reasonList :String[];
+    /* Reason to hard code the values but not fetching from database is Career names will be know to everyone */
+    listOfCareers : string[] = [ "First Choice Health - PPO",
+                                 "Cigna - HMO",
+                                 "UnitedHealthcare - UnitedHealthcare Compass Plus" ,
+                                 "Independence Blue Cross - National BlueCard PPO",
+                                 "EmblemHealth - 9/11 Program",
+                                 "Clover Health - Prestige",
+                                 "Companion Life - Worker's Comp",
+                                 "WEA Trust - Fox River Network: Tier 1 Providers",
+                                 "Caterpillar - Caterpillar Network Plan",
+                                 "Corvel - Group Health","irst Health Insurance"]
 
     constructor(private fb: FormBuilder , private CustmService : CustomerService){
         this.showForm();

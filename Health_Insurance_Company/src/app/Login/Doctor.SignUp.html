@@ -16,7 +16,7 @@
     
                 <!-- Doctor Sign UP  form starts from here  -->
     
-                <form id="signupform" class="form-horizontal" role="form" [formGroup]="entryForm" (ngSubmit)="register()" novalidate>
+                <form id="signupform" class="form-horizontal" role="form" [formGroup]="entryForm" (ngSubmit)="register()" style="text-align : center ; font-weight : bold;"  novalidate>
     
                     <!-- First Name Form field -->
     
@@ -68,7 +68,7 @@
                              <div class="col-md-9">
                                  <input type="text" class="form-control" list = "specialty" formControlName="specialty" placeholder="specialty">
                                  <datalist id="specialty">                                        
-                                            <option *ngFor="let specialty of listOfSpecialties" value= "{{specialty}}">                                        
+                                            <option *ngFor="let specialty of listOfSpecialties" value= "{{specialty}}"></option>                                       
                                       </datalist>
                              </div>
                             
