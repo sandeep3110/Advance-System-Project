@@ -13,6 +13,8 @@ export class DBConnection {
 
     }
 
+    /* All Https in Angular 2 protocols are asynchronous operations, Requesting server and 
+     * getting thne response from server and handling the response
     /* To Insert data of Customer or Doctor */
 
     insertRegistartionValues(entries : any) : any{

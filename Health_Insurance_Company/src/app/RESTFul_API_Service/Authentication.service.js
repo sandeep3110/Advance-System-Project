@@ -19,6 +19,8 @@ var AuthenticationService = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
     }
+    /* All Https in Angular 2 protocols are asynchronous operations, Requesting server and
+     * getting thne response from server and handling the response
     /* to authenticate user and get his details */
     AuthenticationService.prototype.loginAuthentication = function (userData) {
         return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/authentication", userData) /* Specifying Headers is optional */

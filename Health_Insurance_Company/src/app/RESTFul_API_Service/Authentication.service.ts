@@ -14,7 +14,9 @@ export class AuthenticationService {
         headers.append('Content-Type','application/json');
 
     }
-
+  
+    /* All Https in Angular 2 protocols are asynchronous operations, Requesting server and      
+     * getting thne response from server and handling the response
     /* to authenticate user and get his details */
 
     loginAuthentication(userData: any):any{

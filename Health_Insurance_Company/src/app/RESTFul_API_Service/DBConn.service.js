@@ -17,6 +17,8 @@ var DBConnection = (function () {
     function DBConnection(http) {
         this.http = http;
     }
+    /* All Https in Angular 2 protocols are asynchronous operations, Requesting server and
+     * getting thne response from server and handling the response
     /* To Insert data of Customer or Doctor */
     DBConnection.prototype.insertRegistartionValues = function (entries) {
         /* let headers = new Headers();

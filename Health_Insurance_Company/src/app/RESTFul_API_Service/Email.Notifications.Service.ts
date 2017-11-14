@@ -14,6 +14,8 @@ export class EmailNotification {
 
     }
 
+    /* All Https in Angular 2 protocols are asynchronous operations, Requesting server and 
+     * getting thne response from server and handling the response
     /* API calling for Email subscription for User entered email in home page */
     newsLetterSubscription(emailEntry : any): any{
                      return this.http.post("http://localhost:8082/ASP/HealthDB/email/newsLetter",emailEntry)

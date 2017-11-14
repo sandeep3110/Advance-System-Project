@@ -18,6 +18,8 @@ var CustomerService = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
     }
+    /* All Https in Angular 2 protocols are asynchronous operations, Requesting server and
+   * getting thne response from server and handling the response
     /* to get the reason/speacilty/doctor_name */
     CustomerService.prototype.getReasonList = function () {
         return this.http.get("http://localhost:8082/ASP/HealthDB/customer/reason") /* Specifying Headers is optional */

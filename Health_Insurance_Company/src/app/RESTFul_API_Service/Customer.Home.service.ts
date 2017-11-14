@@ -15,6 +15,8 @@ export class CustomerService {
 
     }
 
+      /* All Https in Angular 2 protocols are asynchronous operations, Requesting server and 
+     * getting thne response from server and handling the response
       /* to get the reason/speacilty/doctor_name */
     getReasonList():any{  
         

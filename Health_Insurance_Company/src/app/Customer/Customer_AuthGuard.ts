@@ -12,9 +12,17 @@ To avoid the above error [Provider] should be specified in app.module.ts (or) Lo
 export class CustomerAuthGuard implements CanActivate {
 
     customerData:any; 
+    storage = <any> {};
 
     constructor(private router: Router) {
-        this.customerData = JSON.parse(sessionStorage.userData); 
+        /* var userData:any = sessionStorage.userData;
+        this.customerData = JSON.parse(userData); */
+        this.storage = sessionStorage; 
+        this.customerData = this.storage.userData ? JSON.parse(this.storage.userData) : false;
+        // this.customerData = storage.userData==null ? false: JSON.parse(storage.userData);
+        // let sessionStorage = <any> {};
+        // this.customerData = sessionStorage.userData==null ? false: JSON.parse(sessionStorage.userData);
+        /* this.customerData = JSON.parse(sessionStorage.userData);  */
      }
 
     /* Either Local storage or session storage application is throughing error while 
@@ -24,6 +32,7 @@ export class CustomerAuthGuard implements CanActivate {
 
         
        if(this.customerData){ 
+           console.log(this.customerData);
            return true;
           }
           /* if(localStorage.userData){ 
