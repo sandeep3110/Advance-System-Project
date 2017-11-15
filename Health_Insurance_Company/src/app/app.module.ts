@@ -22,6 +22,7 @@ import { CustomerHeader } from './Customer/Customer_Header.component';
 import {CustomerDefaultView} from './Customer/Customer_Default_View';
 import {CustomerHomeView} from './Customer/Customer_Home_View';
 import {Appointment} from './Customer/Customer_appointment';
+import { DoctorNearBy } from './Customer/Doctor_NearBy';
 
 /* Dependency Injection : Providers */
 
@@ -29,6 +30,7 @@ import {AuthenticationService} from './RESTFul_API_Service/Authentication.Servic
 import { CustomerAuthGuard } from './Customer/Customer_AuthGuard';
 import {CustomerService} from './RESTFul_API_Service/Customer.Home.service';
 import{ EmailNotification } from './RESTFul_API_Service/Email.Notifications.Service'
+
 
 
 
@@ -84,7 +86,8 @@ const appRoutes: Routes = [
                   CustomerHeader,
                   CustomerDefaultView,
                   CustomerHomeView,
-                  Appointment,],
+                  Appointment,
+                  DoctorNearBy,],
 
   providers : [ CustomerAuthGuard,
                 AuthenticationService,

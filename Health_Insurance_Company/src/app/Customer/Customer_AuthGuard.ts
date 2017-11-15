@@ -12,7 +12,9 @@ To avoid the above error [Provider] should be specified in app.module.ts (or) Lo
 export class CustomerAuthGuard implements CanActivate {
 
     customerData:any; 
-    storage = <any> {};
+    storage = <any>{}; 
+    /* When TypeScript thinks that property "x" does not exist on "y", then you can always cast "y" into "any", 
+    which will allow you to call anything (like "x") on "y". */
 
     constructor(private router: Router) {
         /* var userData:any = sessionStorage.userData;
@@ -21,7 +23,7 @@ export class CustomerAuthGuard implements CanActivate {
         this.customerData = this.storage.userData ? JSON.parse(this.storage.userData) : false;
         // this.customerData = storage.userData==null ? false: JSON.parse(storage.userData);
         // let sessionStorage = <any> {};
-        // this.customerData = sessionStorage.userData==null ? false: JSON.parse(sessionStorage.userData);
+        // this.customerData = (sessionStorage).userData==null ? false: JSON.parse((sessionStorage).userData);
         /* this.customerData = JSON.parse(sessionStorage.userData);  */
      }
 

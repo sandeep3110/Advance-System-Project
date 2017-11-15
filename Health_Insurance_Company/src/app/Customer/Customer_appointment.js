@@ -16,6 +16,8 @@ var Appointment = (function () {
     function Appointment(fb, CustmService) {
         this.fb = fb;
         this.CustmService = CustmService;
+        this.pinState = [{ pin: 19341, state: "PA" }, { pin: 78954, state: "PA" }, { pin: 78960, state: "PA" }, { pin: 19300, state: "PA" },
+            { pin: 64052, state: "MO" }, { pin: 64785, state: "MO" }, { pin: 64097, state: "MO" }, { pin: 64093, state: "MO" },];
         /* Reason to hard code the values but not fetching from database is Career names will be know to everyone */
         this.listOfCareers = ["First Choice Health - PPO",
             "Cigna - HMO",
@@ -46,6 +48,7 @@ var Appointment = (function () {
         });
     };
     Appointment.prototype.nearByDoctors = function () {
+        this.pincode = this.searchForm.get('zipcode').value;
     };
     return Appointment;
 }());

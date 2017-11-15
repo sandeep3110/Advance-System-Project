@@ -25,6 +25,7 @@ var Customer_Header_component_1 = require("./Customer/Customer_Header.component"
 var Customer_Default_View_1 = require("./Customer/Customer_Default_View");
 var Customer_Home_View_1 = require("./Customer/Customer_Home_View");
 var Customer_appointment_1 = require("./Customer/Customer_appointment");
+var Doctor_NearBy_1 = require("./Customer/Doctor_NearBy");
 /* Dependency Injection : Providers */
 var Authentication_Service_1 = require("./RESTFul_API_Service/Authentication.Service");
 var Customer_AuthGuard_1 = require("./Customer/Customer_AuthGuard");
@@ -75,7 +76,8 @@ AppModule = __decorate([
             Customer_Header_component_1.CustomerHeader,
             Customer_Default_View_1.CustomerDefaultView,
             Customer_Home_View_1.CustomerHomeView,
-            Customer_appointment_1.Appointment,],
+            Customer_appointment_1.Appointment,
+            Doctor_NearBy_1.DoctorNearBy,],
         providers: [Customer_AuthGuard_1.CustomerAuthGuard,
             Authentication_Service_1.AuthenticationService,
             Customer_Home_service_1.CustomerService,

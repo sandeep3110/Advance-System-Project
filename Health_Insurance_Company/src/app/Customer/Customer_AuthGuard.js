@@ -16,6 +16,8 @@ To avoid the above error [Provider] should be specified in app.module.ts (or) Lo
 */
 "use strict";
 var CustomerAuthGuard = (function () {
+    /* When TypeScript thinks that property "x" does not exist on "y", then you can always cast "y" into "any",
+    which will allow you to call anything (like "x") on "y". */
     function CustomerAuthGuard(router) {
         this.router = router;
         this.storage = {};
@@ -25,7 +27,7 @@ var CustomerAuthGuard = (function () {
         this.customerData = this.storage.userData ? JSON.parse(this.storage.userData) : false;
         // this.customerData = storage.userData==null ? false: JSON.parse(storage.userData);
         // let sessionStorage = <any> {};
-        // this.customerData = sessionStorage.userData==null ? false: JSON.parse(sessionStorage.userData);
+        // this.customerData = (sessionStorage).userData==null ? false: JSON.parse((sessionStorage).userData);
         /* this.customerData = JSON.parse(sessionStorage.userData);  */
     }
     /* Either Local storage or session storage application is throughing error while
