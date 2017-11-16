@@ -36,10 +36,10 @@
                          <!--  Career Field ,id = 'txt' for CSS purpose -->
                          <!-- Reason to hard code the values but not fetching from database is Zipcode will be know to everyone  -->
 
-                        <input id = "txt"  type="text" list = "career" placeholder="Please select your career"  name="career">
-                        <datalist id="career">
-                            <option>I'll pay by Myself</option>
-                            <option *ngFor="let career of listOfCareers" value="{{career}}"></option>
+                        <input id = "txt"  type="text" list = "carrier" formControlName="carrier" placeholder="Please select your carrier" >
+                        <datalist id="carrier">
+                            <option selected>I'll pay by Myself</option>
+                            <option *ngFor="let carrier of listOfcarriers" value="{{carrier}}"></option>
                         </datalist>
 
                         <!-- Search button will be enabled after touching both the Doctor and zip fields -->
@@ -61,7 +61,7 @@
 
 </section>
 <!-- Combine divison ends here -->
-<p style="background-color : yellow;">Hello</p>
+
 <doctor-nearBy></doctor-nearBy>
 
 <Footer-home></Footer-home>

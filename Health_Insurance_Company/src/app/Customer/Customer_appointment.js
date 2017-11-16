@@ -11,15 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var Customer_Home_service_1 = require("./../RESTFul_API_Service/Customer.Home.service");
+var Appointment_service_1 = require("../RESTFul_API_Service/Appointment.service");
 "use strict";
 var Appointment = (function () {
-    function Appointment(fb, CustmService) {
+    function Appointment(fb, CustmService, appointservice) {
         this.fb = fb;
         this.CustmService = CustmService;
+        this.appointservice = appointservice;
         this.pinState = [{ pin: 19341, state: "PA" }, { pin: 78954, state: "PA" }, { pin: 78960, state: "PA" }, { pin: 19300, state: "PA" },
             { pin: 64052, state: "MO" }, { pin: 64785, state: "MO" }, { pin: 64097, state: "MO" }, { pin: 64093, state: "MO" },];
         /* Reason to hard code the values but not fetching from database is Career names will be know to everyone */
-        this.listOfCareers = ["First Choice Health - PPO",
+        this.listOfcarriers = ["First Choice Health - PPO",
             "Cigna - HMO",
             "UnitedHealthcare - UnitedHealthcare Compass Plus",
             "Independence Blue Cross - National BlueCard PPO",
@@ -28,7 +30,8 @@ var Appointment = (function () {
             "Companion Life - Worker's Comp",
             "WEA Trust - Fox River Network: Tier 1 Providers",
             "Caterpillar - Caterpillar Network Plan",
-            "Corvel - Group Health", "irst Health Insurance"];
+            "Corvel - Group Health",
+            "irst Health Insurance"];
         this.showForm();
         this.getListOfReasonsAndDoctors();
     }
@@ -36,6 +39,7 @@ var Appointment = (function () {
         this.searchForm = this.fb.group({
             reason: ['', forms_1.Validators.required],
             zipcode: ['', forms_1.Validators.required],
+            carrier: ['', forms_1.Validators.required],
         });
     };
     Appointment.prototype.getListOfReasonsAndDoctors = function () {
@@ -48,7 +52,26 @@ var Appointment = (function () {
         });
     };
     Appointment.prototype.nearByDoctors = function () {
-        this.pincode = this.searchForm.get('zipcode').value;
+        var _this = this;
+        var entries = {
+            /* Same value but assigned to three difference keys is because we are searching database with either of
+            disease,specialty,doctorName and zipcode to get member_Id from appointment_doctors_list table
+            and then with  that member_Id we are seraching for data in doctor_availability_list */
+            disease: this.searchForm.get('reason').value,
+            specialty: this.searchForm.get('reason').value,
+            doctorName: this.searchForm.get('reason').value,
+            zipcode: this.searchForm.get('zipcode').value,
+        };
+        this.appointservice.getDoctorsList(entries)
+            .subscribe(function (result) {
+            console.log(result);
+            _this.doctorsList = result;
+            console.log(_this.doctorsList[0]);
+            _this.searchForm.reset();
+        }, function (err) {
+            window.alert(err);
+            _this.searchForm.reset(); // Error rises for member Id and password because they doesn't exist in database or while subscribing from Authentication service
+        });
     };
     return Appointment;
 }());
@@ -58,7 +81,7 @@ Appointment = __decorate([
         templateUrl: './Customer_appointment.html',
         styleUrls: ['./Customer_appointment.css'],
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder, Customer_Home_service_1.CustomerService])
+    __metadata("design:paramtypes", [forms_1.FormBuilder, Customer_Home_service_1.CustomerService, Appointment_service_1.AppointmentService])
 ], Appointment);
 exports.Appointment = Appointment;
 //# sourceMappingURL=Customer_appointment.js.map

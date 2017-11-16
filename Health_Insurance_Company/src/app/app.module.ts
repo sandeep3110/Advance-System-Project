@@ -30,6 +30,7 @@ import {AuthenticationService} from './RESTFul_API_Service/Authentication.Servic
 import { CustomerAuthGuard } from './Customer/Customer_AuthGuard';
 import {CustomerService} from './RESTFul_API_Service/Customer.Home.service';
 import{ EmailNotification } from './RESTFul_API_Service/Email.Notifications.Service'
+import { AppointmentService } from './RESTFul_API_Service/Appointment.service';
 
 
 
@@ -92,7 +93,8 @@ const appRoutes: Routes = [
   providers : [ CustomerAuthGuard,
                 AuthenticationService,
                 CustomerService,
-                EmailNotification,],
+                EmailNotification,
+                AppointmentService],
 
   bootstrap:    [ AppComponent ]
 })
