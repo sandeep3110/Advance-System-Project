@@ -5,19 +5,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require("@angular/core");
 "use strict";
 var DoctorNearBy = (function () {
     function DoctorNearBy() {
+        this.message = null;
+        this.docList = [];
     }
     return DoctorNearBy;
 }());
+__decorate([
+    core_1.Input('errMsg'),
+    __metadata("design:type", String)
+], DoctorNearBy.prototype, "message", void 0);
+__decorate([
+    core_1.Input('elementList'),
+    __metadata("design:type", Object)
+], DoctorNearBy.prototype, "docList", void 0);
 DoctorNearBy = __decorate([
     core_1.Component({
         selector: 'doctor-nearBy',
         templateUrl: './doctor_nearBy.html',
         styleUrls: ['./doctor_nearBy.css'],
-    })
+    }),
+    __metadata("design:paramtypes", [])
 ], DoctorNearBy);
 exports.DoctorNearBy = DoctorNearBy;
 //# sourceMappingURL=Doctor_NearBy.js.map

@@ -111,7 +111,7 @@ public class AppointmentsDb {
 			
 
 			if (doctorsAvailablityList.size() == 0) {
-				profile.setErrMsg("Sorry No matches found for your selection! First Health Insurance regrets for not having doctors in your locations");
+				profile.setErrMsg("Sorry no matches found for your selection!!  First Health Insurance regrets for not having doctors in your locations");
 				doctorsAvailablityList.add(profile);
 				return doctorsAvailablityList;
 			} else {

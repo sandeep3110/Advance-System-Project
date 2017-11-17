@@ -1,22 +1,55 @@
-<!-- <div class="jumbotron">
-  <h1 class="display-3">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for
-                  calling extra attention to featured content or information.</p>
-  <hr class="my-2">
-  <p>It uses utility classes for typography and
-     spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Some action</a>
-  </p>
-</div> -->
 
-<div class="jumbotron" style="height: 30%">
+<!-- Divison for error Message -->
+
+<div class="jumbotron" style="height: 30%" *ngIf="message != null">
   <div class="container">
-    <h1>Welcome to the Jumbotron World!</h1>
-    <p>Bootstrap 4 presents - The Jumbotron</p>
+    <table style="padding : 20px 0 0 40px;">
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td style ="padding-left : 40px;">
+          <i class="fa fa-heartbeat" style="font-size:100px;color:#F50A0A"></i>
+        </td>
+        <td style ="padding-left : 40px;">
+          <p style=" font-family: 'Comic Sans MS', cursive, sans-serif ;"> {{message}} </p>
+        </td>
+      </tr>
+    </table>
+   </div>
+</div>
+
+<!-- Divison for Doctor List -->
+
+<div class="jumbotron" style="height: 30%" *ngIf="message === null">
+  <div class="container">
+    <table style="padding-left : 60px;">
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <tr>
+        <td style ="padding-left : 40px;">
+          <i class="fa fa-user-md" style="font-size:150px;color:#B1B1A5" title="Doctor Image coming soon"></i>
+        </td>
+        <td style="padding : 20px 0 0 40px;">
+          <h2 style=" font-family: 'Trebuchet MS', Helvetica, sans-serif ;"> {{docList.doctorName | uppercase}} </h2>
+          <p title="Doctors rating"> {{docList.rating}} </p>
+          <p style="font-family : 'Trebuchet MS', Helvetica, sans-serif ;" title="Hospital Address">
+            <i class="fa fa-hospital-o custom" style = "color:rgba(64, 47, 247, 0.66)"></i> {{docList.address | uppercase}}
+          </p>
+          <p style="font-style: italic " title="Availability">
+            <i class="fa fa-calendar-check-o" style = "color:#46A4F1"></i> Available From : {{docList.availbleDate | date : fullDate }}
+          </p>
+        </td>
+      </tr>
+    </table>
+
     <p>
-    <a class="btn btn-success btn-lg" role="button">Click here!</a>
-    <a class="btn btn-danger btn-lg" role="button">Enter at your own risk!</a>
+      <a class="btn btn-success btn-lg" role="button">Click here!</a>
+      <a class="btn btn-danger btn-lg" role="button">Enter at your own risk!</a>
     </p>
   </div>
 </div>

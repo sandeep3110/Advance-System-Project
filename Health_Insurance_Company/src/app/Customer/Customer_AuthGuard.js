@@ -34,7 +34,7 @@ var CustomerAuthGuard = (function () {
     restarting the app --> "User Data doesn't exist on storage" */
     CustomerAuthGuard.prototype.canActivate = function () {
         if (this.customerData) {
-            console.log(this.customerData);
+            /* console.log(this.customerData); */
             return true;
         }
         /* if(localStorage.userData){

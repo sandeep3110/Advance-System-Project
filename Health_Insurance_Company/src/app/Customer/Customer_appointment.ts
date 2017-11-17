@@ -23,6 +23,7 @@ export class Appointment {
     searchForm: FormGroup;
     reasonList :String[];
     doctorsList : any[];
+    errorMessage : string;
 
     /* Reason to hard code the values but not fetching from database is Career names will be know to everyone */
     listOfcarriers : string[] = [ "First Choice Health - PPO",
@@ -88,11 +89,13 @@ export class Appointment {
             (result:any)=>{
                 console.log(result);
                 this.doctorsList = result;
-                console.log(this.doctorsList[0]);
+                this.errorMessage = null;
                 this.searchForm.reset();                             
             },
             (err: any) => {
-                window.alert(err);
+                
+                this.errorMessage = err;
+                this.doctorsList = null;
                 this.searchForm.reset(); // Error rises for member Id and password because they doesn't exist in database or while subscribing from Authentication service
               } 
           )

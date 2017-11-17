@@ -66,10 +66,11 @@ var Appointment = (function () {
             .subscribe(function (result) {
             console.log(result);
             _this.doctorsList = result;
-            console.log(_this.doctorsList[0]);
+            _this.errorMessage = null;
             _this.searchForm.reset();
         }, function (err) {
-            window.alert(err);
+            _this.errorMessage = err;
+            _this.doctorsList = null;
             _this.searchForm.reset(); // Error rises for member Id and password because they doesn't exist in database or while subscribing from Authentication service
         });
     };

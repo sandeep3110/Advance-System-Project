@@ -61,7 +61,9 @@
 
 </section>
 <!-- Combine divison ends here -->
+<doctor-nearBy *ngIf = "errorMessage != null" [errMsg] = "errorMessage"> </doctor-nearBy>
+<doctor-nearBy *ngFor = "let list of doctorsList" [elementList] = "list"> </doctor-nearBy>
 
-<doctor-nearBy></doctor-nearBy>
+
 
 <Footer-home></Footer-home>
