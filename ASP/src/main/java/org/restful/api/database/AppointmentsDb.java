@@ -101,7 +101,7 @@ public class AppointmentsDb {
 			while (rs.next()) {
 				DoctorsProfile dp = new DoctorsProfile();
 				dp.setDoctorName(rs.getString("first_name"));
-				dp.setRating(rs.getInt("rating"));
+				dp.setRating(rs.getFloat("rating"));
 				dp.setAddress(rs.getString("address"));
 				dp.setAvailbleDate(rs.getDate("available_date"));
 				doctorsAvailablityList.add(dp);
@@ -111,7 +111,7 @@ public class AppointmentsDb {
 			
 
 			if (doctorsAvailablityList.size() == 0) {
-				profile.setErrMsg("Sorry no matches found for your selection!!  First Health Insurance regrets for not having doctors in your locations");
+				profile.setErrMsg("Sorry no matches found for your selection !!  First Health Insurance regrets for not having doctors in your locations.");
 				doctorsAvailablityList.add(profile);
 				return doctorsAvailablityList;
 			} else {

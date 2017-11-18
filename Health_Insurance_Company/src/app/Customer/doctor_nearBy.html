@@ -1,8 +1,8 @@
 
 <!-- Divison for error Message -->
 
-<div class="jumbotron" style="height: 30%" *ngIf="message != null">
-  <div class="container">
+<div class="jumbotron" id = "errJumbotron"  *ngIf="message != null">
+  <div class="container" style="margin-top : -15px;">
     <table style="padding : 20px 0 0 40px;">
       <tr>
         <th></th>
@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <td style ="padding-left : 40px;">
-          <i class="fa fa-heartbeat" style="font-size:100px;color:#F50A0A"></i>
+          <i class="fa fa-heartbeat" style ="font-size:100px; color:#F50A0A;"></i>
         </td>
         <td style ="padding-left : 40px;">
           <p style=" font-family: 'Comic Sans MS', cursive, sans-serif ;"> {{message}} </p>
@@ -22,8 +22,8 @@
 
 <!-- Divison for Doctor List -->
 
-<div class="jumbotron" style="height: 30%" *ngIf="message === null">
-  <div class="container">
+<div class="jumbotron"  *ngIf="message === null">
+  <div class="container" style="margin-top : -20px;">
     <table style="padding-left : 60px;">
       <tr>
         <th></th>
@@ -36,20 +36,16 @@
         </td>
         <td style="padding : 20px 0 0 40px;">
           <h2 style=" font-family: 'Trebuchet MS', Helvetica, sans-serif ;"> {{docList.doctorName | uppercase}} </h2>
-          <p title="Doctors rating"> {{docList.rating}} </p>
+          <!-- rating readonly -->
+          <rating [(ngModel)]="docList.rating"  [readonly]="true" [max]="5"  style="font-size:22px;" > </rating>
           <p style="font-family : 'Trebuchet MS', Helvetica, sans-serif ;" title="Hospital Address">
-            <i class="fa fa-hospital-o custom" style = "color:rgba(64, 47, 247, 0.66)"></i> {{docList.address | uppercase}}
+            <i class="fa fa-hospital-o custom" style = "color:rgba(17, 249, 155, 0.99)"></i> {{docList.address | uppercase}}
           </p>
           <p style="font-style: italic " title="Availability">
-            <i class="fa fa-calendar-check-o" style = "color:#46A4F1"></i> Available From : {{docList.availbleDate | date : fullDate }}
+            <i class="fa fa-calendar-check-o" style = "color:#93f300"></i> Available From : {{docList.availbleDate | date : fullDate }}
           </p>
         </td>
       </tr>
-    </table>
-
-    <p>
-      <a class="btn btn-success btn-lg" role="button">Click here!</a>
-      <a class="btn btn-danger btn-lg" role="button">Enter at your own risk!</a>
-    </p>
+    </table>    
   </div>
 </div>

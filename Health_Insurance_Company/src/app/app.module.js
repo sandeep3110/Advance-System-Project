@@ -10,6 +10,8 @@ var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+var ng2_rating_1 = require("ng2-rating");
+/* Compenents declaration */
 var app_component_1 = require("./app.component");
 var PageNotFound_component_1 = require("./PageNotFound/PageNotFound.component");
 var Header_component_1 = require("./DefaultHome/Header.component");
@@ -62,7 +64,8 @@ AppModule = __decorate([
             router_1.RouterModule.forRoot(appRoutes),
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
-            http_1.HttpModule],
+            http_1.HttpModule,
+            ng2_rating_1.RatingModule,],
         declarations: [app_component_1.AppComponent,
             PageNotFound_component_1.PageNotFoundComponent,
             Header_component_1.HeaderComponent,

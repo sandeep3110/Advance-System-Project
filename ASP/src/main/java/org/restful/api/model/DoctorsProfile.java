@@ -13,7 +13,7 @@ public class DoctorsProfile {
 	private String specialty;
 	private String doctorName;
 	private int zipcode;
-	private int rating;
+	private float rating;
 	private String address;
 	private Date availbleDate;
 	private String errMsg ;
@@ -29,10 +29,10 @@ public class DoctorsProfile {
 	public void setErrMsg(String errMsg) {
 		this.errMsg = errMsg;
 	}
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 	public String getAddress() {

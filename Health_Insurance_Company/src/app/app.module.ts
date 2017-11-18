@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule, Routes , CanActivate} from '@angular/router';
 import {FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {RatingModule} from "ng2-rating";
 
-
+/* Compenents declaration */
 import { AppComponent}  from './app.component';
 import {PageNotFoundComponent} from './PageNotFound/PageNotFound.component';
 import {HeaderComponent} from './DefaultHome/Header.component';
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
                   RouterModule.forRoot(appRoutes),
                   FormsModule,
                   ReactiveFormsModule,
-                  HttpModule ],
+                  HttpModule,
+                  RatingModule, ],
 
   declarations: [ AppComponent,
                   PageNotFoundComponent,
