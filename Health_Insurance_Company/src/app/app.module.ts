@@ -1,37 +1,46 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouterModule, Routes , CanActivate} from '@angular/router';
-import {FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RatingModule} from "ng2-rating";
+import { RatingModule } from "ng2-rating";
 
 /* Compenents declaration */
-import { AppComponent}  from './app.component';
-import {PageNotFoundComponent} from './PageNotFound/PageNotFound.component';
-import {HeaderComponent} from './DefaultHome/Header.component';
-import {FooterComponent} from './DefaultHome/Footer.component';
-import {HomePageComponent }  from './Home/Home.component';
-import {LoginComponent }  from './Login/Login.component';
-import {PopUpBoxComponent} from './Login/PopUp.component';
-import {CustomerSignUpComponent }  from './Login/Customer.SignUp.component'; 
-import {DoctorSignUpComponent} from './Login/Doctor.SignUp.component';
-import {ContactusComponent} from './Home/ContactUs/contactus.component';
+import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './PageNotFound/PageNotFound.component';
+import { HeaderComponent } from './DefaultHome/Header.component';
+import { FooterComponent } from './DefaultHome/Footer.component';
+import { HomePageComponent } from './Home/Home.component';
+import { LoginComponent } from './Login/Login.component';
+import { PopUpBoxComponent } from './Login/PopUp.component';
+import { CustomerSignUpComponent } from './Login/Customer.SignUp.component';
+import { DoctorSignUpComponent } from './Login/Doctor.SignUp.component';
+import { ContactusComponent } from './Home/ContactUs/contactus.component';
 
 /* Customer-View*/
 
 import { CustomerHeader } from './Customer/Customer_Header.component';
-import {CustomerDefaultView} from './Customer/Customer_Default_View';
-import {CustomerHomeView} from './Customer/Customer_Home_View';
-import {Appointment} from './Customer/Customer_appointment';
+import { CustomerDefaultView } from './Customer/Customer_Default_View';
+import { CustomerHomeView } from './Customer/Customer_Home_View';
+import { Appointment } from './Customer/Customer_appointment';
 import { DoctorNearBy } from './Customer/Doctor_NearBy';
+
+/* Doctor-View*/
+
+import { DoctorHeader } from './Doctor/Doctor_Header.component';
+import { DoctorFooter } from './Doctor/Doctor_Footer.component';
+import { DoctorDefaultView } from './Doctor/Doctor_Defualt_View';
+import { DoctorHomeView } from './Doctor/Doctor_Home_View.component';
+
 
 /* Dependency Injection : Providers */
 
-import {AuthenticationService} from './RESTFul_API_Service/Authentication.Service';
+import { AuthenticationService } from './RESTFul_API_Service/Authentication.Service';
 import { CustomerAuthGuard } from './Customer/Customer_AuthGuard';
-import {CustomerService} from './RESTFul_API_Service/Customer.Home.service';
-import{ EmailNotification } from './RESTFul_API_Service/Email.Notifications.Service'
+import { CustomerService } from './RESTFul_API_Service/Customer.Home.service';
+import { EmailNotification } from './RESTFul_API_Service/Email.Notifications.Service'
 import { AppointmentService } from './RESTFul_API_Service/Appointment.service';
+import { DoctorHomeService } from './RESTFul_API_Service/Doctor.Home.service';
 
 
 
@@ -39,65 +48,86 @@ import { AppointmentService } from './RESTFul_API_Service/Appointment.service';
 "Use strict";
 
 const appRoutes: Routes = [
-  { path : '' , component : AppComponent, 
-                children : [ 
-                             {path: '', component: HomePageComponent},
-                             {path: 'login', component: LoginComponent},
-                             {path: 'contactUs', component: ContactusComponent},
-                             
-                           ]
-   },
+  {
+    path: '', component: AppComponent,
+    children: [
+      { path: '', component: HomePageComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'contactUs', component: ContactusComponent },
 
-   /* Customer-View*/
+    ]
+  },
 
-   { path : '' , canActivate: [CustomerAuthGuard], component : CustomerDefaultView,
-                 children : [   
-                                // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
-                                {path: 'home/:', component: CustomerHomeView},  
-                                {path: 'home/:id/appointment', component: Appointment },
-                                
-                                
-                             ]
-   },
-   
-   { path : '**' , component : PageNotFoundComponent},
+  /* Customer-View*/
 
-  ];
+  {
+    path: '', canActivate: [CustomerAuthGuard], component: CustomerDefaultView,
+    children: [
+      // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
+      { path: 'home/:', component: CustomerHomeView },
+      { path: 'home/:id/appointment', component: Appointment },
+    ]
+  },
+
+ 
+
+  /* Doctor-View*/
+
+  {
+    path: '', canActivate: [CustomerAuthGuard], component: DoctorDefaultView,
+    children: [
+      // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
+      { path: 'doctorHome/:', component: DoctorHomeView }
+    ]
+  },
+
+  { path: '**', component: PageNotFoundComponent },
+
+
+];
 
 
 @NgModule({
-  imports:      [ BrowserModule,
-                  RouterModule.forRoot(appRoutes),
-                  FormsModule,
-                  ReactiveFormsModule,
-                  HttpModule,
-                  RatingModule, ],
+  imports: [BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
+    RatingModule,],
 
-  declarations: [ AppComponent,
-                  PageNotFoundComponent,
-                  HeaderComponent,
-                  FooterComponent,
-                  HomePageComponent,
-                  LoginComponent,
-                  PopUpBoxComponent,
-                  CustomerSignUpComponent,
-                  DoctorSignUpComponent,
-                  ContactusComponent,
+  declarations: [AppComponent,
+    PageNotFoundComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomePageComponent,
+    LoginComponent,
+    PopUpBoxComponent,
+    CustomerSignUpComponent,
+    DoctorSignUpComponent,
+    ContactusComponent,
 
-                  /*Customer-View*/
-                  
-                  CustomerHeader,
-                  CustomerDefaultView,
-                  CustomerHomeView,
-                  Appointment,
-                  DoctorNearBy,],
+    /*Customer-View*/
 
-  providers : [ CustomerAuthGuard,
-                AuthenticationService,
-                CustomerService,
-                EmailNotification,
-                AppointmentService],
+    CustomerHeader,
+    CustomerDefaultView,
+    CustomerHomeView,
+    Appointment,
+    DoctorNearBy,
 
-  bootstrap:    [ AppComponent ]
+    /*Doctor-View*/
+
+    DoctorHeader,
+    DoctorFooter,
+    DoctorDefaultView,
+    DoctorHomeView],
+
+  providers: [CustomerAuthGuard,
+    AuthenticationService,
+    CustomerService,
+    EmailNotification,
+    AppointmentService,
+    DoctorHomeService],
+
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

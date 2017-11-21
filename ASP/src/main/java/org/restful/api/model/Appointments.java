@@ -1,5 +1,6 @@
 package org.restful.api.model;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,8 +14,17 @@ public  class Appointments {
 	
 	private  Set<String> reasonSet = new LinkedHashSet<String>();
 	private  List<DoctorsProfile> doctorsAvailablityList;
+	private List<PatientAppointment> appointmentsList = new ArrayList<PatientAppointment>();
 	
 	
+
+	public List<PatientAppointment> getAppointmentsList() {
+		return appointmentsList;
+	}
+
+	public void setAppointmentsList(List<PatientAppointment> appointmentsList) {
+		this.appointmentsList = appointmentsList;
+	}
 
 	public  List<DoctorsProfile> getDoctorsAvailablityList() {
 		return doctorsAvailablityList;

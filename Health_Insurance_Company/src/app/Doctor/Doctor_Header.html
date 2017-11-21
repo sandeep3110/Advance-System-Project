@@ -1,0 +1,157 @@
+<div class="container-fluid">
+  <div class="row">
+    <ul class="nav nav-pills nav-fill">
+      <div class="col-md-3">
+
+        <li class="nav-item">
+          <a class="nav-link active" [routerLink]="['/doctorHome' , id]">
+            <img src="app/Images/Company-Logo.png" alt="Company-Logo" height="80" width="100" style="padding : 5px 5px;">
+          </a>
+        </li>
+
+      </div>
+
+      <div class="col-md-2">
+
+        <div class="container">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Appointments
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a [ngStyle]="pointer()" data-toggle="modal" data-target="#pastAppointments" (click)="showPastAppointmentsClicked($event)"> Past Appointments </a>
+              </li>
+              <li>
+                <a [ngStyle]="pointer()" data-toggle="modal" data-target="#pastAppointments" (click)="ShowAppointmentsForTodayClicked($event)"> Appointments For Today </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+
+        <li class="nav-item">
+          <button class="btn btn-primary dropdown-toggle" type="button" style="width: 123.5px;"> Reviews </button>
+          <!-- <a class="nav-link" href="#">Reviews</a> -->
+        </li>
+
+      </div>
+
+      <div class="col-md-2">
+
+          <div class="container">
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" style="width: 123.5px;" data-toggle="dropdown">Settings
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a [ngStyle]="pointer()" (click)="logOut()"> Log Out </a>
+                  </li>
+                  <li>
+                    <a href="#" data-toggle="modal" data-target="#pastAppointments" (click)="ShowAppointmentsForTodayClicked($event)"> Profile </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+<!--
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Settings</a>
+          <div class="dropdown-menu">
+            <div class="row" style="padding-bottom: 5px;margin-left: 15px">
+              <a class="dropdown-item" href="#">Log Out</a>
+            </div>
+            <div class="row" style="margin-left: 15px">
+              <a class="dropdown-item" href="#">Edit Profile</a>
+            </div>
+          </div>
+        </li> -->
+
+      </div>
+
+    </ul>
+  </div>
+</div>
+
+<div></div>
+
+<router-outlet></router-outlet>
+
+
+<!-- Modal View for More Appointments -->
+<div id="pastAppointments" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" style="overflow-y: initial">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header" style="background-color: #f7f7f7; padding-bottom: 0px;">
+        <h2 class="modal-title"> {{modalTitle}} </h2>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- <div class="modal-body" style="overflow-y:auto; height:35em;">
+        <ng-container *ngIf="patientAppointments && patientAppointments.length; else emptyAppointments">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="col-md-3"> Patient Name </th>
+                <th class="col-md-3"> Date </th>
+                <th class="col-md-6"> Reason </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let appointment of patientAppointments">
+                <td class="col-md-3"> {{appointment.patientName}} </td>
+                <td class="col-md-3"> {{appointment.date | date:'medium'}} </td>
+                <td class="col-md-6"> {{appointment.reason}} </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </ng-container> -->
+
+        <!-- <ng-template #emptyAppointments>
+          <h2> No Appointments to display </h2>
+        </ng-template> -->
+
+        <div class="modal-body" style="overflow-y:auto; height:35em;">
+          <div *ngIf="patientAppointments && patientAppointments.length; else emptyAppointments">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="col-md-3"> Patient Name </th>
+                  <th class="col-md-3"> Date </th>
+                  <th class="col-md-6"> Reason </th>
+                </tr>
+              </thead>
+  
+              <tbody>
+                <tr *ngFor="let appointment of patientAppointments">
+                  <td class="col-md-3"> {{appointment.patientName}} </td>
+                  <td class="col-md-3"> {{appointment.date | date:'medium'}} </td>
+                  <td class="col-md-6"> {{appointment.reason}} </td>
+                </tr>
+              </tbody>
+  
+            </table>
+          </div>
+
+        <ng-template #emptyAppointments>
+          <h2> No Appointments to display </h2>
+        </ng-template>
+
+        <!-- </div> -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>

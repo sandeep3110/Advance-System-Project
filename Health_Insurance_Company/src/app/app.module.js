@@ -28,15 +28,22 @@ var Customer_Default_View_1 = require("./Customer/Customer_Default_View");
 var Customer_Home_View_1 = require("./Customer/Customer_Home_View");
 var Customer_appointment_1 = require("./Customer/Customer_appointment");
 var Doctor_NearBy_1 = require("./Customer/Doctor_NearBy");
+/* Doctor-View*/
+var Doctor_Header_component_1 = require("./Doctor/Doctor_Header.component");
+var Doctor_Footer_component_1 = require("./Doctor/Doctor_Footer.component");
+var Doctor_Defualt_View_1 = require("./Doctor/Doctor_Defualt_View");
+var Doctor_Home_View_component_1 = require("./Doctor/Doctor_Home_View.component");
 /* Dependency Injection : Providers */
 var Authentication_Service_1 = require("./RESTFul_API_Service/Authentication.Service");
 var Customer_AuthGuard_1 = require("./Customer/Customer_AuthGuard");
 var Customer_Home_service_1 = require("./RESTFul_API_Service/Customer.Home.service");
 var Email_Notifications_Service_1 = require("./RESTFul_API_Service/Email.Notifications.Service");
 var Appointment_service_1 = require("./RESTFul_API_Service/Appointment.service");
+var Doctor_Home_service_1 = require("./RESTFul_API_Service/Doctor.Home.service");
 "Use strict";
 var appRoutes = [
-    { path: '', component: app_component_1.AppComponent,
+    {
+        path: '', component: app_component_1.AppComponent,
         children: [
             { path: '', component: Home_component_1.HomePageComponent },
             { path: 'login', component: Login_component_1.LoginComponent },
@@ -44,11 +51,20 @@ var appRoutes = [
         ]
     },
     /* Customer-View*/
-    { path: '', canActivate: [Customer_AuthGuard_1.CustomerAuthGuard], component: Customer_Default_View_1.CustomerDefaultView,
+    {
+        path: '', canActivate: [Customer_AuthGuard_1.CustomerAuthGuard], component: Customer_Default_View_1.CustomerDefaultView,
         children: [
             // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
             { path: 'home/:', component: Customer_Home_View_1.CustomerHomeView },
             { path: 'home/:id/appointment', component: Customer_appointment_1.Appointment },
+        ]
+    },
+    /* Doctor-View*/
+    {
+        path: '', canActivate: [Customer_AuthGuard_1.CustomerAuthGuard], component: Doctor_Defualt_View_1.DoctorDefaultView,
+        children: [
+            // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
+            { path: 'doctorHome/:', component: Doctor_Home_View_component_1.DoctorHomeView }
         ]
     },
     { path: '**', component: PageNotFound_component_1.PageNotFoundComponent },
@@ -81,12 +97,18 @@ AppModule = __decorate([
             Customer_Default_View_1.CustomerDefaultView,
             Customer_Home_View_1.CustomerHomeView,
             Customer_appointment_1.Appointment,
-            Doctor_NearBy_1.DoctorNearBy,],
+            Doctor_NearBy_1.DoctorNearBy,
+            /*Doctor-View*/
+            Doctor_Header_component_1.DoctorHeader,
+            Doctor_Footer_component_1.DoctorFooter,
+            Doctor_Defualt_View_1.DoctorDefaultView,
+            Doctor_Home_View_component_1.DoctorHomeView],
         providers: [Customer_AuthGuard_1.CustomerAuthGuard,
             Authentication_Service_1.AuthenticationService,
             Customer_Home_service_1.CustomerService,
             Email_Notifications_Service_1.EmailNotification,
-            Appointment_service_1.AppointmentService],
+            Appointment_service_1.AppointmentService,
+            Doctor_Home_service_1.DoctorHomeService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
