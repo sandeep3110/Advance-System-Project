@@ -3,7 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RatingModule } from "ng2-rating";
+/* External Libraries */
+import { RatingModule } from 'ng2-rating';
+import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 
 /* Compenents declaration */
 import { AppComponent } from './app.component';
@@ -20,10 +22,12 @@ import { ContactusComponent } from './Home/ContactUs/contactus.component';
 /* Customer-View*/
 
 import { CustomerHeader } from './Customer/Customer_Header.component';
+import { CustomerFooter}  from './Customer/Customer_Footer';
 import { CustomerDefaultView } from './Customer/Customer_Default_View';
 import { CustomerHomeView } from './Customer/Customer_Home_View';
 import { Appointment } from './Customer/Customer_appointment';
 import { DoctorNearBy } from './Customer/Doctor_NearBy';
+import { AppointmentModal } from './Customer/Customer_MakeAppointment';
 
 /* Doctor-View*/
 
@@ -93,7 +97,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RatingModule,],
+    /* External Libraries */
+    RatingModule,
+    NKDatetimeModule,],
 
   declarations: [AppComponent,
     PageNotFoundComponent,
@@ -109,10 +115,12 @@ const appRoutes: Routes = [
     /*Customer-View*/
 
     CustomerHeader,
+    CustomerFooter,
     CustomerDefaultView,
     CustomerHomeView,
     Appointment,
     DoctorNearBy,
+    AppointmentModal,
 
     /*Doctor-View*/
 

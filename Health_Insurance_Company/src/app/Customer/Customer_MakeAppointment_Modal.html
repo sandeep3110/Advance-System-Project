@@ -1,0 +1,38 @@
+
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel"> Fix your appointment with <em>{{profileName}}</em> </h4>
+            </div>
+            <div class="modal-body">
+
+              <!-- book appointment  starts from here -->
+               
+                  <label>Choose Date and Time :
+                  <datetime   [(ngModel)]="date"  [timepicker]="timepickerOpts"
+                              [datepicker]= "datepickerOpts" [hasClearButton]="true">
+                  </datetime>
+                </label> 
+              
+                    <h5><strong>ngModel:</strong> {{getDate(date) | date: "medium"}}</h5>
+                                        
+                                    
+                    
+                                  
+                                 
+                     
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" (onclick) = "clearName()">Close</button>
+              <button id="btn-signup" type="submit" class="btn btn-primary"  ><i class="icon-hand-right"></i> Save changes </button>
+            
+            </div>
+
+          
+            <!-- Appointment Form ends  here -->
+
+          </div>
+        </div>
+      </div>

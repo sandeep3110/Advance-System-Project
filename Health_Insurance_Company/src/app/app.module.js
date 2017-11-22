@@ -10,7 +10,9 @@ var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+/* External Libraries */
 var ng2_rating_1 = require("ng2-rating");
+var ng2_datetime_1 = require("ng2-datetime/ng2-datetime");
 /* Compenents declaration */
 var app_component_1 = require("./app.component");
 var PageNotFound_component_1 = require("./PageNotFound/PageNotFound.component");
@@ -24,10 +26,12 @@ var Doctor_SignUp_component_1 = require("./Login/Doctor.SignUp.component");
 var contactus_component_1 = require("./Home/ContactUs/contactus.component");
 /* Customer-View*/
 var Customer_Header_component_1 = require("./Customer/Customer_Header.component");
+var Customer_Footer_1 = require("./Customer/Customer_Footer");
 var Customer_Default_View_1 = require("./Customer/Customer_Default_View");
 var Customer_Home_View_1 = require("./Customer/Customer_Home_View");
 var Customer_appointment_1 = require("./Customer/Customer_appointment");
 var Doctor_NearBy_1 = require("./Customer/Doctor_NearBy");
+var Customer_MakeAppointment_1 = require("./Customer/Customer_MakeAppointment");
 /* Doctor-View*/
 var Doctor_Header_component_1 = require("./Doctor/Doctor_Header.component");
 var Doctor_Footer_component_1 = require("./Doctor/Doctor_Footer.component");
@@ -81,7 +85,9 @@ AppModule = __decorate([
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
             http_1.HttpModule,
-            ng2_rating_1.RatingModule,],
+            /* External Libraries */
+            ng2_rating_1.RatingModule,
+            ng2_datetime_1.NKDatetimeModule,],
         declarations: [app_component_1.AppComponent,
             PageNotFound_component_1.PageNotFoundComponent,
             Header_component_1.HeaderComponent,
@@ -94,10 +100,12 @@ AppModule = __decorate([
             contactus_component_1.ContactusComponent,
             /*Customer-View*/
             Customer_Header_component_1.CustomerHeader,
+            Customer_Footer_1.CustomerFooter,
             Customer_Default_View_1.CustomerDefaultView,
             Customer_Home_View_1.CustomerHomeView,
             Customer_appointment_1.Appointment,
             Doctor_NearBy_1.DoctorNearBy,
+            Customer_MakeAppointment_1.AppointmentModal,
             /*Doctor-View*/
             Doctor_Header_component_1.DoctorHeader,
             Doctor_Footer_component_1.DoctorFooter,

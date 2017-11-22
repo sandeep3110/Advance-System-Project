@@ -31,10 +31,10 @@
       </tr>
 
       <tr>
-        <td style ="padding-left : 40px;">
+        <td style ="padding-left : 50px;">
           <i class="fa fa-user-md" style="font-size:150px;color:#B1B1A5" title="Doctor Image coming soon"></i>
         </td>
-        <td style="padding : 20px 0 0 40px;">
+        <td style="padding : 20px 0 0 60px;">
           <h2 style=" font-family: 'Trebuchet MS', Helvetica, sans-serif ;"> {{docList.doctorName | uppercase}} </h2>
           <!-- rating readonly -->
           <rating [(ngModel)]="docList.rating"  [readonly]="true" [max]="5"  style="font-size:22px;" > </rating>
@@ -45,7 +45,15 @@
             <i class="fa fa-calendar-check-o" style = "color:#93f300"></i> Next Availability : {{docList.availbleDate | date : fullDate }}
           </p>
         </td>
+        <td style="padding : 0 0 0 100px;">
+            
+            <p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#largeModal"> Make Appointment</a></p>
+            <p><button type="button" class="btn btn-info" data-toggle="modal" data-target="#largeModal"> Add Review </button></p>
+            
+        </td>
       </tr>
     </table>    
   </div>
 </div>
+
+<Appointment-Modal [docProfileList] = "docList.doctorName | uppercase"></Appointment-Modal>

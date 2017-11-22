@@ -25,7 +25,7 @@ var CustomerAuthGuard = (function () {
         this.customerData = JSON.parse(userData); */
         this.storage = sessionStorage;
         this.customerData = this.storage.userData ? JSON.parse(this.storage.userData) : false;
-        console.log(" customer data san", this.customerData);
+        /* console.log(" customer data ", this.customerData);    */
         // this.customerData = storage.userData==null ? false: JSON.parse(storage.userData);
         // let sessionStorage = <any> {};
         // this.customerData = (sessionStorage).userData==null ? false: JSON.parse((sessionStorage).userData);
@@ -35,7 +35,7 @@ var CustomerAuthGuard = (function () {
     restarting the app --> "User Data doesn't exist on storage" */
     CustomerAuthGuard.prototype.canActivate = function () {
         if (this.customerData) {
-            console.log(" customer data san", this.customerData);
+            /*  console.log(" customer data ", this.customerData); */
             return true;
         }
         /* if(localStorage.userData){

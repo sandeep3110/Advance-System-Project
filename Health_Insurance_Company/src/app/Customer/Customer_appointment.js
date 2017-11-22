@@ -21,7 +21,8 @@ var Appointment = (function () {
         this.pinState = [{ pin: 19341, state: "PA" }, { pin: 78954, state: "PA" }, { pin: 78960, state: "PA" }, { pin: 19300, state: "PA" },
             { pin: 64052, state: "MO" }, { pin: 64785, state: "MO" }, { pin: 64097, state: "MO" }, { pin: 64093, state: "MO" },];
         /* Reason to hard code the values but not fetching from database is Career names will be know to everyone */
-        this.listOfcarriers = ["First Choice Health - PPO",
+        this.listOfcarriers = ["First Health Insurance",
+            "First Choice Health - PPO",
             "Cigna - HMO",
             "UnitedHealthcare - UnitedHealthcare Compass Plus",
             "Independence Blue Cross - National BlueCard PPO",
