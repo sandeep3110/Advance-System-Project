@@ -77,6 +77,7 @@ export class DoctorSignUpComponent {
 
     }
 
+    console.log(entries);
     this.dbConn.insertRegistartionValues(entries)
       .subscribe(
       (result: any) => {

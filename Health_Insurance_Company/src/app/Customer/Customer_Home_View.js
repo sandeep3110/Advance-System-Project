@@ -19,12 +19,6 @@ var Customer_AuthGuard_1 = require("./Customer_AuthGuard");
 "use strict";
 var CustomerHomeView = (function (_super) {
     __extends(CustomerHomeView, _super);
-    /* Either Local storage or session storage application is throughing error while
-    restarting the app --> "User Data doesn't exist on storage" */
-    /* constructor(private rout: Router) {
-      super(rout);
-    this.customerData = JSON.parse(localStorage.userData);
-   } */
     /* Taking the sessionstorage into Customer values from Customer_AuthGuard.ts rather declaring another variable */
     function CustomerHomeView(rout) {
         var _this = _super.call(this, rout) || this;

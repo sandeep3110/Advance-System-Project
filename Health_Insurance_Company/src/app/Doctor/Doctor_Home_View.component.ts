@@ -27,7 +27,9 @@ export class DoctorHomeView extends CustomerAuthGuard {
 
     this.doctorHomeService.getAppointmentsForToday(entries)
       .subscribe(appointments => {
+        
         this.patientAppointments = appointments;
+        console.log(this.patientAppointments);
        // this.patientAppointments = [];
       },
       error => {

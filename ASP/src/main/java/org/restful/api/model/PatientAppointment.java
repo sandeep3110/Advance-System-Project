@@ -2,9 +2,11 @@ package org.restful.api.model;
 
 
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -17,12 +19,33 @@ public class PatientAppointment {
 	private String carrierName;
 	private String contactNum;
 	private Date date;
+	private Date dateFromDb;
 	private int doctorMemberId;
 	private String reason;
 	private String errMessage;
 	private String patientName;
+	/*While inserting into database I'm not initializing the Date date so it taking as null value always
+	1) Take input date as string store in appointDate.
+    2) Using appointDate value convert in to Date Date by setter and getters*/
+	private String appointDate;
 	
 	
+	public Date getDateFromDb() {
+		return dateFromDb;
+	}
+	public void setDateFromDb(Date dateFromDb) throws ParseException {
+		String dateString = dateFromDb.toString();
+		SimpleDateFormat formatters = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		                 
+		this.dateFromDb = formatters.parse(dateString);
+	}
+	
+	public String getAppointDate() {
+		return appointDate;
+	}
+	public void setAppointDate(String appointDate) {
+		this.appointDate = appointDate;
+	}
 	public String getPatientFirstName() {
 		return patientFirstName;
 	}
@@ -41,18 +64,21 @@ public class PatientAppointment {
 	public void setCarrierName(String carrierName) {
 		this.carrierName = carrierName;
 	}
-	public Date getDate() {
+	
+	public Date getDate() throws ParseException {
+		
 		return date;
 	}
-	public void setDate(Date date) {
-		String dateString = date.toString();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		try {
-			this.date = formatter.parse(dateString);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void setDate(String date) throws ParseException {
+		
+		//SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		/*As the appointDate = "2017-11-27T11:30:18.992Z" is like this 
+		four hours ahead of time we submitted in form , we need to convert to UTC*/		 
+		
+		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		this.date = formatter.parse(date);
+		System.out.println("I'm in model class" + this.date);
 	}
 	public String getReason() {
 		return reason;

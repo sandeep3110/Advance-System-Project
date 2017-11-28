@@ -1,9 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -14,53 +9,73 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var Customer_AuthGuard_1 = require("./Customer_AuthGuard");
+var Appointment_service_1 = require("../RESTFul_API_Service/Appointment.service");
 "use strict";
-var AppointmentModal = (function (_super) {
-    __extends(AppointmentModal, _super);
-    /* Taking the sessionstorage into Customer values from Customer_AuthGuard.ts rather declaring another variable */
-    function AppointmentModal(rout) {
-        var _this = _super.call(this, rout) || this;
-        _this.rout = rout;
-        _this.datepickerOpts = {
-            /* startDate: new Date(2016, 5, 10), */
-            autoclose: true,
-            todayBtn: 'linked',
-            todayHighlight: true,
-            assumeNearbyYear: true,
-            format: 'D, d MM yyyy',
-            icon: 'fa fa-calendar'
+var AppointmentModal = (function () {
+    function AppointmentModal(appoint) {
+        var _this = this;
+        this.appoint = appoint;
+        this.datepickerOpts = {
+            autoclose: true, todayBtn: 'linked',
+            todayHighlight: true, assumeNearbyYear: true,
+            format: 'D, d MM yyyy', icon: 'fa fa-calendar'
         };
-        _this.timepickerOpts = {
+        //If we remove type casting <any> it will throw error
+        this.timepickerOpts = {
             icon: 'fa fa-clock-o',
             showMeridian: false,
             minuteStep: 1
         };
-        _this.profileName = [];
-        console.log("modal" + _this.profileName);
-        _this.profileName = '';
-        return _this;
+        this.patientData = {};
+        this.consultingReason = '';
+        this.appoint.getDoctorAndPaitentMemberId()
+            .subscribe(function (result) {
+            /* console.log(result);
+            console.log(result[0]);
+            console.log(result[1]);
+            console.log(result[2]);
+            console.log(result[3]); */
+            _this.doctorMemberId = result[0];
+            _this.doctorName = result[1];
+            _this.patientCarrier = result[2];
+            _this.patientData = result[3];
+        });
     }
-    AppointmentModal.prototype.clearName = function () {
-        console.log("cleared");
-        this.profileName = '';
+    AppointmentModal.prototype.bookAppoint = function () {
+        if (this.date && this.consultingReason) {
+            var entries = {};
+            entries = {
+                memberId: this.patientData.memberId,
+                patientFirstName: this.patientData.firstName,
+                patientLastName: this.patientData.lastName,
+                contactNum: this.patientData.phone,
+                carrierName: this.patientCarrier,
+                appointDate: this.date.toISOString(),
+                reason: this.consultingReason,
+                doctorMemberId: this.doctorMemberId
+            };
+            console.log(entries);
+            this.appoint.bookAppointmentForDoctor(entries)
+                .subscribe(function (result) {
+                window.alert("hi");
+            });
+        }
+        else {
+            window.alert("You have missed some fields please check and enter properly");
+        }
     };
     AppointmentModal.prototype.getDate = function (dt) {
         return dt && dt.getTime();
     };
     return AppointmentModal;
-}(Customer_AuthGuard_1.CustomerAuthGuard));
-__decorate([
-    core_1.Input('docProfileList'),
-    __metadata("design:type", Object)
-], AppointmentModal.prototype, "profileName", void 0);
+}());
 AppointmentModal = __decorate([
     core_1.Component({
         selector: 'Appointment-Modal',
         templateUrl: './Customer_MakeAppointment_Modal.html',
+        styleUrls: ['./Customer_MakeAppointment_Modal.css'],
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [Appointment_service_1.AppointmentService])
 ], AppointmentModal);
 exports.AppointmentModal = AppointmentModal;
 //# sourceMappingURL=Customer_MakeAppointment.js.map

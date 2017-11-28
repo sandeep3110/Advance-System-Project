@@ -26,6 +26,7 @@ export class DBConnection {
         headers.append('Access-Control-Allow-Origin', '*'); */
         let headers = new Headers();
         headers.append('Content-Type','application/json');
+        console.log("hello",entries);
         return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user" , entries , {headers : headers} ) /* Specifying Headers is optional */
                        .map(
                               

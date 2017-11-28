@@ -1,52 +1,116 @@
 
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup , Validators } from '@angular/forms';
+import { Component, Input, } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {CustomerAuthGuard} from './Customer_AuthGuard';
+import { CustomerAuthGuard } from './Customer_AuthGuard';
+import { AppointmentService } from '../RESTFul_API_Service/Appointment.service';
+
+
 
 
 
 "use strict";
 
 @Component({
-    selector : 'Appointment-Modal',
-    templateUrl: './Customer_MakeAppointment_Modal.html',    
-    
-  })
+  selector: 'Appointment-Modal',
+  templateUrl: './Customer_MakeAppointment_Modal.html',
+  styleUrls : ['./Customer_MakeAppointment_Modal.css'],
 
-export class AppointmentModal extends CustomerAuthGuard{
+})
 
-    date : Date;
-    datepickerOpts: any = {
-      /* startDate: new Date(2016, 5, 10), */
-      autoclose: true,
-      todayBtn: 'linked',
-      todayHighlight: true,
-      assumeNearbyYear: true,
-      format: 'D, d MM yyyy',
-      icon: 'fa fa-calendar'
-  };
-  timepickerOpts : any = {
+
+export class AppointmentModal  {
+
+  date: Date;  
+  datepickerOpts: any = {     /* startDate: new Date(2016, 5, 10), */
+                              autoclose: true, todayBtn: 'linked',
+                              todayHighlight: true, assumeNearbyYear: true,
+                              format: 'D, d MM yyyy', icon: 'fa fa-calendar'
+                        };
+
+  //If we remove type casting <any> it will throw error
+  timepickerOpts: any[] = <any>{
     icon: 'fa fa-clock-o',
     showMeridian: false,
     minuteStep: 1
   }
-  @Input('docProfileList') profileName = <any>[] ;
-   
-   
-   /* Taking the sessionstorage into Customer values from Customer_AuthGuard.ts rather declaring another variable */
-   constructor(private rout: Router) {
-    super(rout);  
-    console.log("modal" +this.profileName);
-    this.profileName = '';
-   }  
+  /* @Input('docProfileEvent') profileList = <any>[] ; */
+  /* @Output() docProfileEvent = <any>[];
+  name:any; */
   
-   clearName(){
-     console.log("cleared");
-    this.profileName = '';
-   }
-   getDate(dt: Date): number {
-    return dt && dt.getTime();
+  doctorMemberId: any;
+  doctorName:any;
+  patientCarrier:any;
+  patientData = <any>{};
+  consultingReason :any = '';
+
+  valuesEntered:boolean;
+  
+
+
+    constructor(private appoint : AppointmentService) { 
+
+      this.appoint.getDoctorAndPaitentMemberId()
+          .subscribe(
+              (result : any) =>{
+              /* console.log(result);  
+              console.log(result[0]);             
+              console.log(result[1]);  
+              console.log(result[2]); 
+              console.log(result[3]); */
+              this.doctorMemberId = result[0];
+              this.doctorName = result[1];
+              this.patientCarrier = result[2];
+              this.patientData = result[3];
+            })
+           
+            
+
+     }
+        
+     bookAppoint(){
+           
+      if(this.date && this.consultingReason){
+        var entries = <any> {}
+            entries = {
+            memberId : this.patientData.memberId,
+            patientFirstName : this.patientData.firstName,
+            patientLastName :  this.patientData.lastName,
+            contactNum : this.patientData.phone,
+            carrierName : this.patientCarrier,
+            appointDate : this.date.toISOString(), // Converting date to java script string noatation and result will be  "2017-11-27T11:30:18.992Z"
+            reason : this.consultingReason,
+            doctorMemberId: this.doctorMemberId
+          }
+
+          
+          console.log(entries);
+          this.appoint.bookAppointmentForDoctor(entries)
+          .subscribe(
+            (result: any) => {
+              window.alert("hi");
+              
+            }
+          )
+
+      }
+
+      else{
+        window.alert("You have missed some fields please check and enter properly")
+      }
+     
     }
+     
     
+
+
+    
+
+    getDate(dt: Date): number {
+       return dt && dt.getTime();
+     }
+
+
+
+
 }

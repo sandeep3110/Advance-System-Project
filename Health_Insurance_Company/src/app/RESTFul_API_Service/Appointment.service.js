@@ -16,6 +16,12 @@ var Rx_1 = require("rxjs/Rx");
 var AppointmentService = (function () {
     function AppointmentService(http) {
         this.http = http;
+        /* Intializing these values with type casting as we don't know the types in first shot  */
+        this.doctorId = null;
+        this.doctorName = null;
+        this.carrier = null;
+        this.patientData = {};
+        this.appointTable = []; // [doctorId , patientData]
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
     }
@@ -40,6 +46,35 @@ var AppointmentService = (function () {
                 Object.keys(obj).forEach((key) => {console.log(key)}); */
                 return (error.status === 404) ? Rx_1.Observable.throw(obj.doctorsAvailablityList["0"].errMsg) : null;
             }
+        });
+    };
+    AppointmentService.prototype.setDoctorAndPaitentDetails = function (docId, docName, patientCarrier, data1) {
+        this.doctorId = docId;
+        this.appointTable.push(this.doctorId);
+        this.doctorName = docName;
+        this.appointTable.push(this.doctorName);
+        this.carrier = patientCarrier;
+        this.appointTable.push(this.carrier);
+        this.patientData = data1;
+        this.appointTable.push(this.patientData);
+    };
+    /* We should return as an "observable" rather "any[]"
+       If we are not emptying the this.appointTable = []; in the method
+       Array size gets increases and every time we get the first two values only.
+       reference "https://stackoverflow.com/questions/45698036/angular-4-subscribe-is-not-a-function-error"
+       for using observable
+    */
+    AppointmentService.prototype.getDoctorAndPaitentMemberId = function () {
+        var data = this.appointTable;
+        this.appointTable = [];
+        return Rx_1.Observable.of(data);
+    };
+    AppointmentService.prototype.bookAppointmentForDoctor = function (userData2) {
+        console.log("hi" + userData2);
+        return this.http.post("http://localhost:8082/ASP/HealthDB/customer/bookAppoint", userData2)
+            .map(function (response) {
+            console.log("Inserted Successfully");
+            return response.json();
         });
     };
     return AppointmentService;

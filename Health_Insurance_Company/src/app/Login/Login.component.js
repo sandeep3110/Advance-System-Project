@@ -36,7 +36,7 @@ var LoginComponent = (function () {
         };
         this.AuthService.loginAuthentication(loginData)
             .subscribe(function (result) {
-            console.log(result);
+            /* console.log(result); */
             (result.user === "doctor") ? _this.router.navigate(['doctorHome', result.memberId]) : _this.router.navigate(['home', result.memberId]);
             /* this.router.navigate(['home', result.memberId])      -->    It will look like this -->  http://localhost:3004/home/63236
             this.router.navigate(['home'],{ queryParams: { id: result.memberId } } ); -->   It will look like this -->  http://localhost:3004/home/?id=63236   */

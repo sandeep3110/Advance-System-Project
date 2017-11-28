@@ -25,6 +25,8 @@ public class PatientAppointmentsInfo {
 		try {
 			query = conn.prepareStatement(
 					"SELECT * FROM health_db.patient_appointments where appointment_date >= ? AND appointment_date <= ? AND doctor_member_id=?");
+			/*System.out.println(today);
+			System.out.println(dayEnd);*/
 			query.setObject(1, today);
 			query.setObject(2, dayEnd);
 			query.setInt(3, doctorMemberId);
@@ -38,7 +40,10 @@ public class PatientAppointmentsInfo {
 				appointment.setPatientLastName(result.getString("last_name"));
 				appointment.setContactNum(result.getString("contact_num"));
 				appointment.setCarrierName(result.getString("carrier"));
-				appointment.setDate(result.getTimestamp("appointment_date"));
+				/*System.out.println(result.getTimestamp("appointment_date"));
+				System.out.println(result.getTimestamp("appointment_date").toString());*/
+				appointment.setDateFromDb(result.getTimestamp("appointment_date"));
+				//System.out.println(appointment.getDate());
 				appointment.setReason(result.getString("reason"));
 				appointment.setDoctorMemberId(result.getInt("doctor_member_id"));
                 appointment.setPatientName(appointment.getPatientFirstName() + " " + appointment.getPatientLastName());
@@ -88,7 +93,7 @@ public class PatientAppointmentsInfo {
 				appointment.setPatientLastName(result.getString("last_name"));
 				appointment.setContactNum(result.getString("contact_num"));
 				appointment.setCarrierName(result.getString("carrier"));
-				appointment.setDate(result.getTimestamp("appointment_date"));
+				appointment.setDateFromDb(result.getTimestamp("appointment_date"));
 				appointment.setReason(result.getString("reason"));
 				appointment.setDoctorMemberId(result.getInt("doctor_member_id"));
                 appointment.setPatientName(appointment.getPatientFirstName() + " " + appointment.getPatientLastName());
@@ -121,7 +126,7 @@ public class PatientAppointmentsInfo {
 		boolean result = false;
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String today = formatter.format(patientAppointment.getDate());
+//		String today = formatter.format(patientAppointment.getDate());
 
 		try {
 			query = conn.prepareStatement("Insert into health_db.patient_appointments values (?, ?, ?, ?, ?, ?)");
@@ -131,7 +136,7 @@ public class PatientAppointmentsInfo {
 			query.setString(3, patientAppointment.getPatientLastName());
 			query.setString(4, patientAppointment.getContactNum());
 			query.setString(5, patientAppointment.getCarrierName());
-			query.setObject(6, today);
+			//query.setObject(6, today);
 			query.setString(7, patientAppointment.getReason());
 			query.setInt(8, patientAppointment.getDoctorMemberId());
 

@@ -13,7 +13,7 @@
       // our app is within the app folder
       'app': 'app',
 
-      // angular bundles
+      // Angular2 bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -23,15 +23,17 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
-      // other libraries
+      // other Angular2 libraries
       'rxjs':                        'npm:rxjs',
       'angular-in-memory-web-api':   'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      // ngx-boostrap module
+      // ngx-boostrap Angular2  module
       'moment':                      'node_modules/moment/moment.js',
       'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
-      /* For star rating */
+      //jquery Angular2 module
+      '@types/jquery' : 'npm:@types/jquery',
+      /* For star rating Angular2 module*/
       'ng2-rating': 'npm:ng2-rating',
-      /*Angular2 dateTimePicker*/
+      /*Angular2 module dateTimePicker*/
       'ng2-datetime':'npm:ng2-datetime',
 
     },
@@ -54,6 +56,11 @@
         'main': 'index.js',
         'defaultExtension' : 'js' 
        },
+       /* For jquery package */
+      /* '@types/jquery': {
+        'main': 'index.js',
+        'defaultExtension': 'js'
+        }, */
 
       /* For ng2-star rating package */
       'ng2-rating': {
@@ -62,7 +69,7 @@
       },
       /* For ng2-dateTime picker package */
       'ng2-datetime': {
-        'main': '',
+        'main': 'ng2-datetime',
         'defaultExtension': 'js'
         },
     }

@@ -23,7 +23,7 @@ var CustomerHeader = (function (_super) {
     function CustomerHeader(rout) {
         var _this = _super.call(this, rout) || this;
         _this.rout = rout;
-        console.log(_this.customerData.memberId);
+        /* console.log(this.customerData.memberId); */
         _this.id = _this.customerData.memberId;
         return _this;
     }

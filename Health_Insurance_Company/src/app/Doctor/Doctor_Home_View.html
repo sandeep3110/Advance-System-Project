@@ -14,7 +14,7 @@
               <h4 class="card-title">{{appointment.patientName}}</h4>
               <p class="card-text">{{appointment.reason}} {{appointment.carrierName==='First Health Insurance' ? 'Existing patient and In-Network.':
                 'Existing patient and Out-Network.'}}</p>
-              <p class="card-text">Time {{appointment.date | date:'shortTime'}}.</p>
+              <p class="card-text">Time {{appointment.dateFromDb | date:'shortTime'}}.</p>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@
           <tbody>
             <tr *ngFor="let appointment of patientAppointments">
               <td class="col-md-3"> {{appointment.patientName}} </td>
-              <td class="col-md-3"> {{appointment.date | date:'medium'}} </td>
+              <td class="col-md-3"> {{appointment.dateFromDb | date:'medium'}} </td>
               <td class="col-md-6"> {{appointment.reason}} </td>
             </tr>
 

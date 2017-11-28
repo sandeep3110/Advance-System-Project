@@ -4,6 +4,7 @@ import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 /* External Libraries */
+
 import { RatingModule } from 'ng2-rating';
 import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
       // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
       { path: 'home/:', component: CustomerHomeView },
       { path: 'home/:id/appointment', component: Appointment },
+      { path: 'home/:id/appointment/docAppoint' , component : AppointmentModal}
     ]
   },
 

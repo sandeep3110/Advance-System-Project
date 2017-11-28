@@ -50,6 +50,7 @@ var DoctorHomeView = (function (_super) {
         this.doctorHomeService.getAppointmentsForToday(entries)
             .subscribe(function (appointments) {
             _this.patientAppointments = appointments;
+            console.log(_this.patientAppointments);
             // this.patientAppointments = [];
         }, function (error) {
             _this.errorMessage = error;

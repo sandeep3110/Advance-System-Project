@@ -62,7 +62,7 @@
 </section>
 <!-- Combine divison ends here -->
 <doctor-nearBy *ngIf = "errorMessage != null" [errMsg] = "errorMessage"> </doctor-nearBy>
-<doctor-nearBy *ngFor = "let list of doctorsList" [elementList] = "list"> </doctor-nearBy>
+<doctor-nearBy *ngFor = "let list of doctorsList" [elementList] = "list" [carrier] = "searchForm.get('carrier').value"> </doctor-nearBy>
 
 
 

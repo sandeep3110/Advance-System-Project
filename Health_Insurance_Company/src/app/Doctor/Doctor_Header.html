@@ -133,7 +133,7 @@
               <tbody>
                 <tr *ngFor="let appointment of patientAppointments">
                   <td class="col-md-3"> {{appointment.patientName}} </td>
-                  <td class="col-md-3"> {{appointment.date | date:'medium'}} </td>
+                  <td class="col-md-3"> {{appointment.dateFromDb | date:'medium'}} </td>
                   <td class="col-md-6"> {{appointment.reason}} </td>
                 </tr>
               </tbody>

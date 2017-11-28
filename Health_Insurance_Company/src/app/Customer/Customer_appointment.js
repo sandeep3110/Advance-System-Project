@@ -65,10 +65,9 @@ var Appointment = (function () {
         };
         this.appointservice.getDoctorsList(entries)
             .subscribe(function (result) {
-            console.log(result);
+            console.log("I'm in Appointment class ", result);
             _this.doctorsList = result;
             _this.errorMessage = null;
-            _this.searchForm.reset();
         }, function (err) {
             _this.errorMessage = err;
             _this.doctorsList = null;

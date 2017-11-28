@@ -10,6 +10,15 @@ import {Observable} from 'rxjs/Rx';
 
 export class AppointmentService {
 
+    /* Intializing these values with type casting as we don't know the types in first shot  */
+
+   doctorId :any = null;
+   doctorName:any = null;
+   carrier:any = null;
+   patientData = <any>{};
+   appointTable = <any>[]; // [doctorId , patientData]
+
+
     constructor(private http : Http ){
         let headers = new Headers();
         headers.append('Content-Type','application/json');
@@ -50,8 +59,44 @@ export class AppointmentService {
     
     }
 
+      setDoctorAndPaitentDetails(docId:any ,docName:any, patientCarrier:any ,data1 : any ){
+                this.doctorId= docId;
+                this.appointTable.push(this.doctorId);
+                this.doctorName= docName;
+                this.appointTable.push(this.doctorName);
+                this.carrier= patientCarrier;
+                this.appointTable.push(this.carrier);
+                this.patientData = data1;
+                this.appointTable.push(this.patientData);
+      }
+
+       /* We should return as an "observable" rather "any[]"
+          If we are not emptying the this.appointTable = []; in the method
+          Array size gets increases and every time we get the first two values only.
+          reference "https://stackoverflow.com/questions/45698036/angular-4-subscribe-is-not-a-function-error"
+          for using observable
+       */
 
 
+      getDoctorAndPaitentMemberId(): Observable<any[]>{
+        const data = this.appointTable;
+          this.appointTable = [];
+        return Observable.of(data);
+      }
 
+      bookAppointmentForDoctor(userData2 : any):any{
+
+        console.log("hi" + userData2 )
+        return this.http.post("http://localhost:8082/ASP/HealthDB/customer/bookAppoint",userData2) 
+        .map(
+           (response:Response) => {
+                 console.log("Inserted Successfully")
+                    return response.json();              
+            }                   
+         )
+       
+
+
+      }
         
 }

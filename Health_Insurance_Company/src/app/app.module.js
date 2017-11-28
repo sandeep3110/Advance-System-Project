@@ -61,6 +61,7 @@ var appRoutes = [
             // From Login.component.ts it will come to  router.navigate(['home'])--> CustomerHomeView --> CustomerAuthGuard = true
             { path: 'home/:', component: Customer_Home_View_1.CustomerHomeView },
             { path: 'home/:id/appointment', component: Customer_appointment_1.Appointment },
+            { path: 'home/:id/appointment/docAppoint', component: Customer_MakeAppointment_1.AppointmentModal }
         ]
     },
     /* Doctor-View*/

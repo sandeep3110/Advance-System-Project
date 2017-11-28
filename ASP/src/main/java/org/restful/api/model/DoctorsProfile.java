@@ -17,12 +17,19 @@ public class DoctorsProfile {
 	private String address;
 	private Date availbleDate;
 	private String errMsg ;
+	private int memberId;
 	
 	
 	
 	
 	
 	
+	public int getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
 	public String getErrMsg() {
 		return errMsg;
 	}

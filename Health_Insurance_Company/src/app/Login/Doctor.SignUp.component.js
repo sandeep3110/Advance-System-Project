@@ -60,6 +60,7 @@ var DoctorSignUpComponent = (function () {
             email: this.entryForm.get('email').value,
             password: this.entryForm.get('password').value,
         };
+        console.log(entries);
         this.dbConn.insertRegistartionValues(entries)
             .subscribe(function (result) {
             window.alert(result._body);

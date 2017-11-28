@@ -47,8 +47,12 @@
         </td>
         <td style="padding : 0 0 0 100px;">
             
-            <p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#largeModal"> Make Appointment</a></p>
-            <p><button type="button" class="btn btn-info" data-toggle="modal" data-target="#largeModal"> Add Review </button></p>
+            <p>
+                <button type="button"  class="btn btn-success"  (click) = "setSelectedDoctorMemberId(docList.memberId , docList.doctorName )"> Make Appointment</button>
+            </p>
+            <p>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#largeModal"> Add Review </button>
+            </p>
             
         </td>
       </tr>
@@ -56,4 +60,5 @@
   </div>
 </div>
 
-<Appointment-Modal [docProfileList] = "docList.doctorName | uppercase"></Appointment-Modal>
+
+

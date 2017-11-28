@@ -25,7 +25,7 @@ export class CustomerHeader extends CustomerAuthGuard {
   /* Taking the sessionstorage into Customer values from Customer_AuthGuard_ts rather declaring another variable */
   constructor(private rout: Router) {
     super(rout);
-    console.log(this.customerData.memberId);
+    /* console.log(this.customerData.memberId); */
     this.id = this.customerData.memberId;
   }
 

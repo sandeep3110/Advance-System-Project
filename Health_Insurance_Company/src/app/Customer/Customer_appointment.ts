@@ -88,10 +88,10 @@ export class Appointment {
         this.appointservice.getDoctorsList(entries)
           .subscribe(
             (result:any)=>{
-                console.log(result);
+                console.log("I'm in Appointment class ",result);
                 this.doctorsList = result;
                 this.errorMessage = null;
-                this.searchForm.reset();                             
+                                            
             },
             (err: any) => {
                 
