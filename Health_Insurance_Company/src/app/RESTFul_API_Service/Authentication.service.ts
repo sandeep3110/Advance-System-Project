@@ -21,7 +21,7 @@ export class AuthenticationService {
 
     loginAuthentication(userData: any):any{
           
-        return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/authentication" , userData) /* Specifying Headers is optional */
+        return this.http.post("http://localhost:8080/ASP/HealthDB/myresource/authentication" , userData) /* Specifying Headers is optional */
         .map(
            (response:Response) => {
                

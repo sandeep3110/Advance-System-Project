@@ -24,22 +24,19 @@ var DoctorHomeView = (function (_super) {
         var _this = _super.call(this, rout) || this;
         _this.doctorHomeService = doctorHomeService;
         _this.rout = rout;
-        // getAppointmentsForCards(appointmentsArray: Array<any>) {
-        //   console.log('Appointments array is ', appointmentsArray);
-        //   this.appointmentsForCards = appointmentsArray ? appointmentsArray.sort((a: any, b: any) => {
-        //     if (new Date(a.date) < new Date(b.date))
-        //       return -1;
-        //     if (new Date(a.date) > new Date(b.date))
-        //       return 1;
-        //     return 0;
-        //   }) : null;
-        // };
-        _this.appointmentsCardTitle = "Todays's Appointments";
+        _this.appointmentsCardTitle = "Upcoming Appointments";
         _this.labResultsCardTitle = "Patient Lab Results";
         _this.noAppointments = "No Appointments for Today";
+        _this.noReviews = "No Reviews to Display";
         _this.patientAppointments = [];
+        _this.patientReviews = [];
+        _this.patientLabReports = [];
+        _this.spaceDash = ' - ';
+        _this.patientReviewsLoaded = false;
         _this.reviewsCardTitle = "Checkout what your patients wrote about you - Reviews";
         _this.getAppointmentsForToday();
+        _this.getAllReviews();
+        _this.getPatientLabReports();
         return _this;
     }
     DoctorHomeView.prototype.getAppointmentsForToday = function () {
@@ -50,14 +47,50 @@ var DoctorHomeView = (function (_super) {
         this.doctorHomeService.getAppointmentsForToday(entries)
             .subscribe(function (appointments) {
             _this.patientAppointments = appointments;
-            console.log(_this.patientAppointments);
             // this.patientAppointments = [];
         }, function (error) {
             _this.errorMessage = error;
-            window.alert(_this.errorMessage);
+            //    window.alert(this.errorMessage);
         });
     };
     ;
+    // getAppointmentsForCards(appointmentsArray: Array<any>) {
+    //   console.log('Appointments array is ', appointmentsArray);
+    //   this.appointmentsForCards = appointmentsArray ? appointmentsArray.sort((a: any, b: any) => {
+    //     if (new Date(a.date) < new Date(b.date))
+    //       return -1;
+    //     if (new Date(a.date) > new Date(b.date))
+    //       return 1;
+    //     return 0;
+    //   }) : null;
+    // };
+    DoctorHomeView.prototype.getAllReviews = function () {
+        var _this = this;
+        var entries = {
+            doctorMemberId: this.customerData.memberId
+        };
+        this.doctorHomeService.getPatientReviews(entries)
+            .subscribe(function (reviews) {
+            _this.patientReviews = reviews;
+        }, function (error) {
+            _this.errorMessage = error;
+        });
+    };
+    DoctorHomeView.prototype.getPatientLabReports = function () {
+        var _this = this;
+        var entries = {
+            doctorMemberId: this.customerData.memberId
+        };
+        this.doctorHomeService.getPatientLabReports(entries)
+            .subscribe(function (labReports) {
+            console.log("This is resports", labReports);
+            _this.patientLabReports = labReports;
+        }, function (error) {
+            _this.patientLabReports = [];
+            _this.noLabReports = error;
+            console.log("error message for lab ", _this.noLabReports);
+        });
+    };
     return DoctorHomeView;
 }(Customer_AuthGuard_1.CustomerAuthGuard));
 DoctorHomeView = __decorate([

@@ -38,12 +38,24 @@
         <div class="card-header">
           <h4> {{reviewsCardTitle}} </h4>
         </div>
-        <div class="card-body">
-          <h4 class="card-title">Sandeep Avasarala Venkata</h4>
-          <p class="card-text">Cosultation/General Follow up about Leg Sprain. Existing patient and In-Network.</p>
-          <p class="card-text">Time 2:00 pm CST.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card-body" *ngIf="patientReviews && patientReviews.length; else emptyPatientReviews">
+          <div class="row">
+            <div class="col-md-3" style="padding-right: 0px">
+              <h4 class="card-title">{{ patientReviews[0].patientName }}</h4>
+            </div>
+            <div class="col-md-4" style="padding-left: 0px">
+              <rating [(ngModel)]="patientReviews[0].rating" [max]="5" [readonly]="true" [float]="true" style="margin-top: 10px; margin-bottom: 7.5px"></rating>
+            </div>
+          </div>
+          <p class="card-text">{{ patientReviews[0].review }}</p>
+          <p class="card-text">{{ patientReviews[0].reviewDate | date:'mediumDate' }}.</p>
+          <button type="button" class="btn btn-primary" [disabled]="!patientReviews.length" data-toggle="modal" data-target="#reviewsModal">More Reviews</button>
         </div>
+        <ng-template #emptyPatientReviews>
+          <div class="card-body" style="min-height: 8.8em">
+            <h4 class="card-title">{{noReviews}}</h4>
+          </div>
+        </ng-template>
       </div>
     </div>
 
@@ -53,10 +65,20 @@
           <h4> {{labResultsCardTitle}} </h4>
         </div>
         <div class="card-body">
-          <h4 class="card-title">Sandeep Avasarala Venkata</h4>
-          <p class="card-text">Cosultation/General Follow up about Leg Sprain. Existing patient and In-Network.</p>
-          <p class="card-text">Time 2:00 pm CST.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div *ngIf="patientLabReports && patientLabReports.length; else emptyLabResults">
+            <div *ngFor="let labReport of (patientLabReports ? patientLabReports.slice(0,2): [])">
+              <h4 class="card-title"> {{labReport.patientName}} {{spaceDash}} {{labReport.memberId}}</h4>
+              <p class="card-text"> {{labReport.reportType }} {{labReport.pickupDate | date:'medium'}} </p>
+            </div>
+          </div>
+          <ng-template #emptyLabResults>
+            <div class="card-body" style="min-height: 8.8em">
+              <h4 class="card-title">{{noLabReports}}</h4>
+            </div>
+          </ng-template>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" [disabled]="!patientLabReports.length" data-toggle="modal" data-target="#labReportsModal">More Lab Reports</button>
         </div>
       </div>
     </div>
@@ -71,13 +93,13 @@
 
 <!-- Modal View for More Appointments -->
 <div id="appointmentsModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg" style=" overflow-y: initial;">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
 
       <div class="modal-header" style="background-color: #f7f7f7; padding-bottom: 0px;">
-        <h2 class="modal-title">All Appointments for Today</h2>
+        <h2 class="modal-title">All Appointments</h2>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -112,4 +134,98 @@
 
   </div>
 
+</div>
+
+
+
+<!-- Modal View for More Reviews -->
+<div id="reviewsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header" style="background-color: #f7f7f7; padding-bottom: 0px;">
+        <h2 class="modal-title">All Reviews about You</h2>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body" style=" overflow-y: auto; max-height:35em;">
+
+        <table class="table" *ngIf="patientReviews && patientReviews.length">
+          <thead>
+            <tr>
+              <th class="col-md-2"> Patient Name </th>
+              <th class="col-md-2"> Date </th>
+              <th class="col-md-6"> Review </th>
+              <th class="col-md-2"> Rating </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let review of patientReviews">
+              <td class="col-md-2"> {{review.patientName}} </td>
+              <td class="col-md-2"> {{review.reviewDate | date:'medium'}} </td>
+              <td class="col-md-6"> {{review.review}} </td>
+              <td class="col-md-2">
+                <rating [(ngModel)]="patientReviews[0].rating" [max]="5" [readonly]="true" [float]="true"></rating>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal View for More Lab Reports -->
+<div id="labReportsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header" style="background-color: #f7f7f7; padding-bottom: 0px;">
+        <h2 class="modal-title">Patient Lab Reports</h2>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body" style=" overflow-y: auto; max-height:35em;">
+
+        <table class="table" *ngIf="patientLabReports && patientLabReports.length">
+          <thead>
+            <tr>
+              <th class="col-md-2"> Patient ID </th>
+              <th class="col-md-3"> Patient Name </th>
+              <th class="col-md-3"> PickUp Date </th>
+              <th class="col-md-4"> Report Type </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let labReport of patientLabReports">
+              <td class="col-md-2"> {{labReport.memberId}} </td>
+              <td class="col-md-3"> {{labReport.patientName}} </td>
+              <td class="col-md-3"> {{labReport.pickupDate | date:'medium'}} </td>
+              <td class="col-md-4"> {{labReport.reportType}} </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <!-- </div> -->
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
 </div>

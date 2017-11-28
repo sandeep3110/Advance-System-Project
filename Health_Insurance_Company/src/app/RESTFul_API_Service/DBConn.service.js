@@ -29,7 +29,7 @@ var DBConnection = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         console.log("hello", entries);
-        return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user", entries, { headers: headers }) /* Specifying Headers is optional */
+        return this.http.post("http://localhost:8080/ASP/HealthDB/myresource/single_user", entries, { headers: headers }) /* Specifying Headers is optional */
             .map(
         /* console.log(response);
            if(response.status === 404) we are getting error for status code 404 not found on console that is the reason for catch block
@@ -49,7 +49,7 @@ var DBConnection = (function () {
     DBConnection.prototype.getSpecialtyList = function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get("http://localhost:8082/ASP/HealthDB/myresource/specialty")
+        return this.http.get("http://localhost:8080/ASP/HealthDB/myresource/specialty")
             .map(function (response) {
             /* The json() method, when invoked, must return the result of running consume body with JSON. */
             return response.json();

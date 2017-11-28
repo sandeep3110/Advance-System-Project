@@ -30,7 +30,7 @@ export class AppointmentService {
       /* to get the reason/speacilty/doctor_name */
     getDoctorsList(userData : any):any{  
         
-      return this.http.post("http://localhost:8082/ASP/HealthDB/customer/doctorsList" , userData) /* Specifying Headers is optional */
+      return this.http.post("http://localhost:8080/ASP/HealthDB/customer/doctorsList" , userData) /* Specifying Headers is optional */
       .map(
          (response:Response) => {
              
@@ -87,7 +87,7 @@ export class AppointmentService {
       bookAppointmentForDoctor(userData2 : any):any{
 
         console.log("hi" + userData2 )
-        return this.http.post("http://localhost:8082/ASP/HealthDB/customer/bookAppoint",userData2) 
+        return this.http.post("http://localhost:8080/ASP/HealthDB/customer/bookAppoint",userData2) 
         .map(
            (response:Response) => {
                  console.log("Inserted Successfully")

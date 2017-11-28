@@ -29,7 +29,7 @@ var AppointmentService = (function () {
    * getting thne response from server and handling the response
     /* to get the reason/speacilty/doctor_name */
     AppointmentService.prototype.getDoctorsList = function (userData) {
-        return this.http.post("http://localhost:8082/ASP/HealthDB/customer/doctorsList", userData) /* Specifying Headers is optional */
+        return this.http.post("http://localhost:8080/ASP/HealthDB/customer/doctorsList", userData) /* Specifying Headers is optional */
             .map(function (response) {
             return response.json().doctorsAvailablityList;
         })
@@ -71,7 +71,7 @@ var AppointmentService = (function () {
     };
     AppointmentService.prototype.bookAppointmentForDoctor = function (userData2) {
         console.log("hi" + userData2);
-        return this.http.post("http://localhost:8082/ASP/HealthDB/customer/bookAppoint", userData2)
+        return this.http.post("http://localhost:8080/ASP/HealthDB/customer/bookAppoint", userData2)
             .map(function (response) {
             console.log("Inserted Successfully");
             return response.json();

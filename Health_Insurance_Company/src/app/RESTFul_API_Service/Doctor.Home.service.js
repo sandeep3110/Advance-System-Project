@@ -16,8 +16,12 @@ var Observable_1 = require("rxjs/Observable");
 var DoctorHomeService = (function () {
     function DoctorHomeService(http) {
         this.http = http;
-        this._todayAppointmentsUrl = 'http://localhost:8082/ASP/HealthDB/doctor/todayAppointments';
-        this._pastAppointmentsUrl = 'http://localhost:8082/ASP/HealthDB/doctor/pastAppointments';
+        this._pastAppointmentsUrl = 'http://localhost:8080/ASP/HealthDB/doctor/pastAppointments';
+        this._todayAppointmentsUrl = 'http://localhost:8080/ASP/HealthDB/doctor/todayAppointments';
+        this._patientReviewsUrl = 'http://localhost:8080/ASP/HealthDB/doctor/reviews';
+        this._patientLabReportsUrl = 'http://localhost:8080/ASP/HealthDB/doctor/labReports';
+        this._getDoctorProfileUrl = 'http://localhost:8080/ASP/HealthDB/doctor/doctorProfile';
+        this._updateDocProfileUrl = 'http://localhost:8080/ASP/HealthDB/doctor/updateProfile';
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
     }
@@ -38,9 +42,49 @@ var DoctorHomeService = (function () {
         })
             .catch(this.handleError);
     };
+    DoctorHomeService.prototype.getPatientReviews = function (entries) {
+        return this.http.post(this._patientReviewsUrl, entries) /* Specifying Headers is optional */
+            .map(function (response) {
+            console.log("response is ", response.json());
+            return response.json().patientReviewsList;
+        })
+            .catch(this.handleError);
+    };
+    DoctorHomeService.prototype.getPatientLabReports = function (entries) {
+        return this.http.post(this._patientLabReportsUrl, entries) /* Specifying Headers is optional */
+            .map(function (response) {
+            console.log("patientlab reports", response.json());
+            return response.json().patientLabReports;
+        })
+            .catch(this.labReportsError);
+    };
+    DoctorHomeService.prototype.getDoctorProfile = function (entries) {
+        return this.http.post(this._getDoctorProfileUrl, entries)
+            .map(function (response) {
+            console.log("response is ", response.json());
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    DoctorHomeService.prototype.updateDoctorProfile = function (doctorProfile) {
+        return this.http.put(this._updateDocProfileUrl, doctorProfile)
+            .map(function (response) {
+            console.log("updated response is ", response.json());
+            return response.json();
+        })
+            .catch(this.updateDoctorProfileError);
+    };
     DoctorHomeService.prototype.handleError = function (err) {
         console.log('this is error', err);
         return Observable_1.Observable.throw(JSON.parse(err._body).appointmentsList[0].errMessage);
+    };
+    DoctorHomeService.prototype.labReportsError = function (err) {
+        console.log('this is labreports error', JSON.parse(err._body).patientLabReports[0].errMessage);
+        return Observable_1.Observable.throw(JSON.parse(err._body).patientLabReports[0].errMessage);
+    };
+    DoctorHomeService.prototype.updateDoctorProfileError = function (err) {
+        console.log('this is update error', JSON.parse(err._body).errMessage);
+        return Observable_1.Observable.throw(JSON.parse(err._body).errMessage);
     };
     return DoctorHomeService;
 }());

@@ -17,7 +17,7 @@
   margin-bottom: 0;
   height: 3.5em;
   background-color: rgb(247, 247, 247);
-  border-bottom: 1px  rgba(0, 0, 0, 0.432);
+  border-bottom: 1px rgba(0, 0, 0, 0.432);
 }
 
 .card-footer {
@@ -46,4 +46,18 @@
 
 .modal {
   overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.star-icon[_ngcontent-c2]::after {
+  color: #ddd;
+  font-size: 1.25em !important;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+    max-width: 1200px;
+  }
 }

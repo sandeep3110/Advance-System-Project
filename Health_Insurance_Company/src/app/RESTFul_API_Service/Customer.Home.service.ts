@@ -20,7 +20,7 @@ export class CustomerService {
       /* to get the reason/speacilty/doctor_name */
     getReasonList():any{  
         
-      return this.http.get("http://localhost:8082/ASP/HealthDB/customer/reason") /* Specifying Headers is optional */
+      return this.http.get("http://localhost:8080/ASP/HealthDB/customer/reason") /* Specifying Headers is optional */
       .map(
          (response:Response) => {
              

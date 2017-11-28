@@ -18,8 +18,15 @@ export class DoctorHeader extends CustomerAuthGuard {
 
   id: number;
   modalTitle: string;
+  profileModalTitle: string;
   patientAppointments = <any>[];
+  patientReviews = <any>[];
+  patientLabReports = <any>[];
   errorMessage: string;
+  doctorProfile = <any>[];
+  updateResponse = <any>[];
+  editDocProfileMessage: string;
+  hasMessage: boolean = false;
 
   /* Taking the sessionstorage into Customer values from Customer_AuthGuard_ts rather declaring another variable */
   constructor(private doctorHomeService: DoctorHomeService, private rout: Router) {
@@ -31,8 +38,6 @@ export class DoctorHeader extends CustomerAuthGuard {
     var entries: any = {
       doctorMemberId: this.customerData.memberId
     };
-
-    this.patientAppointments = [];    
 
     this.doctorHomeService.getPastAppointments(entries)
       .subscribe(appointments => {
@@ -46,12 +51,44 @@ export class DoctorHeader extends CustomerAuthGuard {
       });
   };
 
+  ShowReviewsClicked(event: any) {
+    var entries: any = {
+      doctorMemberId: this.customerData.memberId
+    };
+
+    this.doctorHomeService.getPatientReviews(entries)
+      .subscribe(reviews => {
+        this.patientReviews = reviews;
+      },
+      error => {
+        this.errorMessage = <any>error;
+      },
+      () => {
+        this.modalTitle = "Past Appointments";
+      });
+  };
+
+  ShowLabReportsClicked(event: any) {
+    var entries: any = {
+      doctorMemberId: this.customerData.memberId
+    };
+
+    this.doctorHomeService.getPatientLabReports(entries)
+      .subscribe(labReports => {
+        this.patientLabReports = labReports;
+      },
+      error => {
+        this.errorMessage = <any>error;
+      },
+      () => {
+        this.modalTitle = "Past Appointments";
+      });
+  }
+
   ShowAppointmentsForTodayClicked(event: any) {
     var entries: any = {
       doctorMemberId: this.customerData.memberId
     };
-    
-    this.patientAppointments = [];
 
     this.doctorHomeService.getAppointmentsForToday(entries)
       .subscribe(appointments => {
@@ -64,6 +101,42 @@ export class DoctorHeader extends CustomerAuthGuard {
         this.modalTitle = "All Appointments For Today";
       });
   }
+
+  DoctorProfileClicked(event: any) {
+    var entries: any = {
+      doctorMemberId: this.customerData.memberId
+    };
+
+    this.doctorHomeService.getDoctorProfile(entries)
+      .subscribe(doctorProfile => {
+        this.doctorProfile = doctorProfile;
+      },
+      error => {
+        this.errorMessage = <any>error;
+      },
+      () => this.profileModalTitle = "Edit Profile");
+  }
+
+  editDoctorProfile(event: any) {
+    console.log("Its here", this.doctorProfile)
+
+    this.doctorHomeService.updateDoctorProfile(this.doctorProfile)
+      .subscribe(response => {
+        this.updateResponse = response;
+        this.hasMessage = true;
+        this.editDocProfileMessage = this.updateResponse.successMessage;
+      },
+      error => {
+        this.editDocProfileMessage = <any>error;
+        this.hasMessage = true;
+      });
+  }
+
+  clearError() {
+    this.editDocProfileMessage = "";
+    this.hasMessage = false;
+  }
+
 
   /* To make Log Out tab have a pointer cursor */
   pointer(): any {

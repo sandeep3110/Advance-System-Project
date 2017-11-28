@@ -25,6 +25,11 @@ var DoctorHeader = (function (_super) {
         _this.doctorHomeService = doctorHomeService;
         _this.rout = rout;
         _this.patientAppointments = [];
+        _this.patientReviews = [];
+        _this.patientLabReports = [];
+        _this.doctorProfile = [];
+        _this.updateResponse = [];
+        _this.hasMessage = false;
         _this.id = _this.customerData.memberId;
         return _this;
     }
@@ -33,7 +38,6 @@ var DoctorHeader = (function (_super) {
         var entries = {
             doctorMemberId: this.customerData.memberId
         };
-        this.patientAppointments = [];
         this.doctorHomeService.getPastAppointments(entries)
             .subscribe(function (appointments) {
             _this.patientAppointments = appointments;
@@ -44,12 +48,40 @@ var DoctorHeader = (function (_super) {
         });
     };
     ;
+    DoctorHeader.prototype.ShowReviewsClicked = function (event) {
+        var _this = this;
+        var entries = {
+            doctorMemberId: this.customerData.memberId
+        };
+        this.doctorHomeService.getPatientReviews(entries)
+            .subscribe(function (reviews) {
+            _this.patientReviews = reviews;
+        }, function (error) {
+            _this.errorMessage = error;
+        }, function () {
+            _this.modalTitle = "Past Appointments";
+        });
+    };
+    ;
+    DoctorHeader.prototype.ShowLabReportsClicked = function (event) {
+        var _this = this;
+        var entries = {
+            doctorMemberId: this.customerData.memberId
+        };
+        this.doctorHomeService.getPatientLabReports(entries)
+            .subscribe(function (labReports) {
+            _this.patientLabReports = labReports;
+        }, function (error) {
+            _this.errorMessage = error;
+        }, function () {
+            _this.modalTitle = "Past Appointments";
+        });
+    };
     DoctorHeader.prototype.ShowAppointmentsForTodayClicked = function (event) {
         var _this = this;
         var entries = {
             doctorMemberId: this.customerData.memberId
         };
-        this.patientAppointments = [];
         this.doctorHomeService.getAppointmentsForToday(entries)
             .subscribe(function (appointments) {
             _this.patientAppointments = appointments;
@@ -58,6 +90,35 @@ var DoctorHeader = (function (_super) {
         }, function () {
             _this.modalTitle = "All Appointments For Today";
         });
+    };
+    DoctorHeader.prototype.DoctorProfileClicked = function (event) {
+        var _this = this;
+        var entries = {
+            doctorMemberId: this.customerData.memberId
+        };
+        this.doctorHomeService.getDoctorProfile(entries)
+            .subscribe(function (doctorProfile) {
+            _this.doctorProfile = doctorProfile;
+        }, function (error) {
+            _this.errorMessage = error;
+        }, function () { return _this.profileModalTitle = "Edit Profile"; });
+    };
+    DoctorHeader.prototype.editDoctorProfile = function (event) {
+        var _this = this;
+        console.log("Its here", this.doctorProfile);
+        this.doctorHomeService.updateDoctorProfile(this.doctorProfile)
+            .subscribe(function (response) {
+            _this.updateResponse = response;
+            _this.hasMessage = true;
+            _this.editDocProfileMessage = _this.updateResponse.successMessage;
+        }, function (error) {
+            _this.editDocProfileMessage = error;
+            _this.hasMessage = true;
+        });
+    };
+    DoctorHeader.prototype.clearError = function () {
+        this.editDocProfileMessage = "";
+        this.hasMessage = false;
     };
     /* To make Log Out tab have a pointer cursor */
     DoctorHeader.prototype.pointer = function () {

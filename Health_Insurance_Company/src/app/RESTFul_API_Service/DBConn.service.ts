@@ -27,7 +27,7 @@ export class DBConnection {
         let headers = new Headers();
         headers.append('Content-Type','application/json');
         console.log("hello",entries);
-        return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/single_user" , entries , {headers : headers} ) /* Specifying Headers is optional */
+        return this.http.post("http://localhost:8080/ASP/HealthDB/myresource/single_user" , entries , {headers : headers} ) /* Specifying Headers is optional */
                        .map(
                               
                              /* console.log(response);
@@ -58,7 +58,7 @@ export class DBConnection {
 
         let headers = new Headers();
         headers.append('Content-Type','application/json');
-        return this.http.get("http://localhost:8082/ASP/HealthDB/myresource/specialty")
+        return this.http.get("http://localhost:8080/ASP/HealthDB/myresource/specialty")
                         .map(
                                (response:Response) => {
                                    /* The json() method, when invoked, must return the result of running consume body with JSON. */

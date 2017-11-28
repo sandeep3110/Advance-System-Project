@@ -22,7 +22,7 @@ var CustomerService = (function () {
    * getting thne response from server and handling the response
     /* to get the reason/speacilty/doctor_name */
     CustomerService.prototype.getReasonList = function () {
-        return this.http.get("http://localhost:8082/ASP/HealthDB/customer/reason") /* Specifying Headers is optional */
+        return this.http.get("http://localhost:8080/ASP/HealthDB/customer/reason") /* Specifying Headers is optional */
             .map(function (response) {
             return response.json();
         });

@@ -23,7 +23,7 @@ var EmailNotification = (function () {
      * getting thne response from server and handling the response
     /* API calling for Email subscription for User entered email in home page */
     EmailNotification.prototype.newsLetterSubscription = function (emailEntry) {
-        return this.http.post("http://localhost:8082/ASP/HealthDB/email/newsLetter", emailEntry)
+        return this.http.post("http://localhost:8080/ASP/HealthDB/email/newsLetter", emailEntry)
             .map(function (response) {
             /* console.log(response); --> Response {_body: "{"age":0,"email":"prashanth6353@gmail.com","errorM…check your Inbox !....","memberId":0,"zipCode":0}"
               Response itself is in String format*/

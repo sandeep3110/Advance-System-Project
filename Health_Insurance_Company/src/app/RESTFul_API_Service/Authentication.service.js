@@ -23,7 +23,7 @@ var AuthenticationService = (function () {
      * getting thne response from server and handling the response
     /* to authenticate user and get his details */
     AuthenticationService.prototype.loginAuthentication = function (userData) {
-        return this.http.post("http://localhost:8082/ASP/HealthDB/myresource/authentication", userData) /* Specifying Headers is optional */
+        return this.http.post("http://localhost:8080/ASP/HealthDB/myresource/authentication", userData) /* Specifying Headers is optional */
             .map(function (response) {
             /* console.log(response);
             if(response.status === 404) we are getting error for status code 404 not found on console that is the reason we are using catch block

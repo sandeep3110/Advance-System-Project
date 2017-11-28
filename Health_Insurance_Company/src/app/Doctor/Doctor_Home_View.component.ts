@@ -18,6 +18,8 @@ export class DoctorHomeView extends CustomerAuthGuard {
   constructor(private doctorHomeService: DoctorHomeService, private rout: Router) {
     super(rout);
     this.getAppointmentsForToday();
+    this.getAllReviews();
+    this.getPatientLabReports();
   }
 
   getAppointmentsForToday() {
@@ -27,14 +29,12 @@ export class DoctorHomeView extends CustomerAuthGuard {
 
     this.doctorHomeService.getAppointmentsForToday(entries)
       .subscribe(appointments => {
-        
         this.patientAppointments = appointments;
-        console.log(this.patientAppointments);
-       // this.patientAppointments = [];
+        // this.patientAppointments = [];
       },
       error => {
         this.errorMessage = <any>error;
-        window.alert(this.errorMessage);
+    //    window.alert(this.errorMessage);
       });
   };
 
@@ -49,12 +49,48 @@ export class DoctorHomeView extends CustomerAuthGuard {
   //   }) : null;
   // };
 
+  getAllReviews() {
+    var entries: any = {
+      doctorMemberId: this.customerData.memberId
+    };
 
-  appointmentsCardTitle: string = "Todays's Appointments";
+    this.doctorHomeService.getPatientReviews(entries)
+      .subscribe(reviews => {
+        this.patientReviews = reviews;
+      },
+      error => {
+        this.errorMessage = <any>error;
+      });
+  }
+
+  getPatientLabReports(): any {
+    var entries: any = {
+      doctorMemberId: this.customerData.memberId
+    };
+
+    this.doctorHomeService.getPatientLabReports(entries)
+      .subscribe(labReports => {
+        console.log("This is resports", labReports);
+        this.patientLabReports = labReports;
+      },
+      error => {
+        this.patientLabReports = [];
+        this.noLabReports = <any>error;
+        console.log("error message for lab ", this.noLabReports);
+      });
+  }
+
+  appointmentsCardTitle: string = "Upcoming Appointments";
   errorMessage: string;
   labResultsCardTitle: string = "Patient Lab Results";
   noAppointments: string = "No Appointments for Today";
+  noReviews: string = "No Reviews to Display";
+  noLabReports: string;
   patientAppointments = <any>[];
+  patientReviews = <any>[];
+  patientLabReports = <any>[];
+  spaceDash: string = ' - '
+  patientReviewsLoaded: boolean = false;
   reviewsCardTitle: string = "Checkout what your patients wrote about you - Reviews";
 
 }
