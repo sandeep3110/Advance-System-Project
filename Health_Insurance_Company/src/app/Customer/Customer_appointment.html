@@ -44,7 +44,7 @@
 
                         <!-- Search button will be enabled after touching both the Doctor and zip fields -->
 
-                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!((searchForm.get('reason').touched && searchForm.get('zipcode').touched))">
+                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!((searchForm.get('reason').value && searchForm.get('zipcode').value && searchForm.get('carrier').value))">
                                      Search &nbsp;<span class="glyphicon glyphicon-search"></span></button>
                     </form>
 

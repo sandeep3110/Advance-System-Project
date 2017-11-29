@@ -81,7 +81,7 @@ export class DoctorSignUpComponent {
     this.dbConn.insertRegistartionValues(entries)
       .subscribe(
       (result: any) => {
-        window.alert(result._body);
+        window.alert(result);
         this.entryForm.reset();
       },
        

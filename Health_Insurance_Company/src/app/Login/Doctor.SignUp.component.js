@@ -63,7 +63,7 @@ var DoctorSignUpComponent = (function () {
         console.log(entries);
         this.dbConn.insertRegistartionValues(entries)
             .subscribe(function (result) {
-            window.alert(result._body);
+            window.alert(result);
             _this.entryForm.reset();
         }, 
         /* Error Handling from DBConn.service.ts */

@@ -59,12 +59,13 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#doctorProfile" (click)="DoctorProfileClicked($event)"> Profile </a>
+                  </li>
               <li>
                 <a [ngStyle]="pointer()" (click)="logOut()"> Log Out </a>
               </li>
-              <li>
-                <a href="#" data-toggle="modal" data-target="#doctorProfile" (click)="DoctorProfileClicked($event)"> Profile </a>
-              </li>
+              
             </ul>
           </div>
         </div>
@@ -172,7 +173,7 @@
               <td class="col-md-2"> {{review.reviewDate | date:'medium'}} </td>
               <td class="col-md-6"> {{review.review}} </td>
               <td class="col-md-2">
-                <rating [(ngModel)]="patientReviews[0].rating" [max]="5" [readonly]="true" [float]="true"></rating>
+                <rating [(ngModel)]="review.rating" [max]="5" [readonly]="true" [float]="true"></rating>
               </td>
             </tr>
           </tbody>
@@ -267,52 +268,56 @@
           <form (ngSubmit)="editDoctorProfile()" #docProfile="ngForm">
             <div class="form-group">
               <label for="firstname">First Name</label>
-              <input type="text" class="form-control" id="firstname" required pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" [(ngModel)]="doctorProfile.doctorFirstName"
-                name="firstname">
+              <input type="text" class="form-control" id="firstname" [(ngModel)]="doctorProfile.doctorFirstName"
+                    name="firstname"  pattern="^[a-zA-Z]+(\s[a-zA-Z]+)*$" required>
             </div>
 
             <div class="form-group">
               <label for="lastname">Last Name</label>
-              <input type="text" class="form-control" id="lastname" required pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" [(ngModel)]="doctorProfile.doctorLastName"
-                name="lastname">
+              <input type="text" class="form-control" id="lastname" [(ngModel)]="doctorProfile.doctorLastName"
+                     name="lastname" pattern="^[a-zA-Z]+(\s[a-zA-Z]+)*$" required>
             </div>
 
             <div class="form-group">
               <label for="education">Education</label>
-              <input type="text" class="form-control" id="education" required pattern="^[a-zA-Z.]+(, [a-zA-Z]+)*$" [(ngModel)]="doctorProfile.education"
-                name="education">
+              <input type="text" class="form-control" id="education"  [(ngModel)]="doctorProfile.education"
+                     name="education" pattern="^[a-zA-Z.]+(,\s[a-zA-Z.]+)*$" required>
             </div>
 
             <div class="form-group">
               <label for="affiliatedHospital">Hospital Affiliations</label>
-              <input type="text" class="form-control" id="affiliatedHospitals" required [(ngModel)]="doctorProfile.hospitalAffliation"
-                name="affiliatedHospital">
+              <input type="text" class="form-control" id="affiliatedHospitals"  [(ngModel)]="doctorProfile.hospitalAffliation"
+                     name="affiliatedHospital" pattern="^[a-zA-Z]+(\s[a-zA-Z]+)*$" required>
             </div>
 
             <div class="form-group">
               <label for="languages">Languages Spoken</label>
-              <input type="text" class="form-control" id="languages" required [(ngModel)]="doctorProfile.languagesSpoken" name="languages">
+              <input type="text" class="form-control" id="languages"  [(ngModel)]="doctorProfile.languagesSpoken"
+                     name="languages" pattern="^[a-zA-Z,].*$" required>
             </div>
 
             <div class="form-group">
               <label for="certifications">Board Certifications</label>
-              <input type="text" class="form-control" id="certifications" required [(ngModel)]="doctorProfile.boardCertification" name="certifications">
+              <input type="text" class="form-control" id="certifications"  [(ngModel)]="doctorProfile.boardCertification"
+                     name="certifications" pattern="([a-zA-Z]+(\s[a-zA-Z])).*" required>
             </div>
 
             <div class="form-group">
               <label for="memberships">Professional Memberships</label>
-              <input type="text" class="form-control" id="memberships" required [(ngModel)]="doctorProfile.professionalMemberships" name="memberships">
+              <input type="text" class="form-control" id="memberships" [(ngModel)]="doctorProfile.professionalMemberships"
+                     name="memberships" pattern="([a-zA-Z]+(\s[a-zA-Z])).*" required>
             </div>
 
             <div class="form-group">
               <label for="affiliatedInsurance">In-Network Insurances</label>
-              <input type="text" class="form-control" id="affiliatedInsurance" required [(ngModel)]="doctorProfile.affiliatedInsurance"
-                name="affiliatedInsurance">
+              <input type="text" class="form-control" id="affiliatedInsurance"  [(ngModel)]="doctorProfile.affiliatedInsurance"
+                name="affiliatedInsurance" pattern="([a-zA-Z]+(\s[a-zA-Z])).*" required>
             </div>
 
             <div class="form-group">
               <label for="specialties">Specialties</label>
-              <input type="text" class="form-control" id="specialties" required [(ngModel)]="doctorProfile.specialities" name="specialities">
+              <input type="text" class="form-control" id="specialties"  [(ngModel)]="doctorProfile.specialities"
+                     name="specialities" pattern="([a-zA-Z]+(\s[a-zA-Z])).*" required>
             </div>
 
             <button type="submit" class="btn btn-success" [disabled]="!docProfile.form.valid || hasError">Submit</button>

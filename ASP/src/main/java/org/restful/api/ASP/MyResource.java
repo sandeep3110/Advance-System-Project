@@ -13,6 +13,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.restful.api.Email.EmailMemberId;
 import org.restful.api.database.DatabaseConnection;
 import org.restful.api.model.Profile;
 import org.restful.api.model.Specialty;
@@ -29,7 +30,7 @@ import org.restful.api.model.Specialty;
 
 public class MyResource {
 
-	DatabaseConnection dbConn = new DatabaseConnection();
+	//DatabaseConnection dbConn = new DatabaseConnection();
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -57,8 +58,8 @@ public class MyResource {
 		specialty.specialtyListMap = dbConn.getSpecialty();*/
 				
 		Specialty specialty = new Specialty();
-		specialty.setSpecialtyList(dbConn.getSpecialty());
-		return  (dbConn.getSpecialty() == null) ?  Response.status(404).entity(specialty).build() :   Response.status(200).entity(specialty).build();
+		specialty.setSpecialtyList(DatabaseConnection.getSpecialty());
+		return  (DatabaseConnection.getSpecialty() == null) ?  Response.status(404).entity(specialty).build() :   Response.status(200).entity(specialty).build();
 		/* we will get this error - "MessageBodyWriter not found for media type=application/json, , type=class java.util.ArrayList, genericType=class java.util.ArrayList."
         Because @XMLRootElement is present on the "Specialty" class level .So, while returning the Json-response in "MyResource" class in the return "Specialty" class name should be present		    
 		404 status code for Not Found , always 200 status code is good rather than other status codes because for other status codes in response on UI we will not get Json output */
@@ -88,13 +89,23 @@ public class MyResource {
                  200 OK The request has succeeded. The meaning of a success varies depending on the HTTP method GET , POST
                  409 Conflict - This response is sent when a request conflicts with the current state of the server. */
 			 
-			  boolean status = dbConn.insertData(profile);
-		      return (status) ? Response.status(200).entity("Profile has been registered").build() : Response.status(409).entity(profile.getErrorMsg()).build(); 
+			  boolean status = DatabaseConnection.insertData(profile);
+		      if(status){
+		    	  EmailMemberId.sendEmailWithMemberId(profile);
+		    	  return  Response.status(200).entity("Profile has been registered !! please check your Email account for Member Id").build() ;
+		    	   }
+		      else{
+		    	  return Response.status(409).entity(profile.getErrorMsg()).build();
+		      }
 		      
 		  }else{ // If it is Doctor
 			  
-			  boolean status = dbConn.insertDoctorData(profile);
-		      return (status) ? Response.status(200).entity("Profile has been registered").build() :  Response.status(409).entity(profile.getErrorMsg()).build();
+			  boolean status = DatabaseConnection.insertDoctorData(profile);
+			  if(status){
+				  return  Response.status(200).entity("Profile has been registered !! please check your Email account for Member Id").build() ;
+			  }else{
+				  return Response.status(409).entity(profile.getErrorMsg()).build();
+			  }
 		      
 		  }	
 		
@@ -114,7 +125,7 @@ public class MyResource {
 		    404 Not found,
 		   200 OK The request has succeeded. The meaning of a success varies depending on the HTTP method GET , POST*/	   
 		 
-		   Profile userData = dbConn.getUserProfile(profile);			   
+		   Profile userData = DatabaseConnection.getUserProfile(profile);			   
 		   
 		    /* System.err.println(userData.getErrorMsg());
 		     * System.out.println(userData.getErrorMsg() !=null);

@@ -70,11 +70,16 @@ var AppointmentService = (function () {
         return Rx_1.Observable.of(data);
     };
     AppointmentService.prototype.bookAppointmentForDoctor = function (userData2) {
-        console.log("hi" + userData2);
+        //console.log("hi" + userData2 )
         return this.http.post("http://localhost:8080/ASP/HealthDB/customer/bookAppoint", userData2)
             .map(function (response) {
-            console.log("Inserted Successfully");
-            return response.json();
+            //console.log("Inserted Successfully" ,response )
+            return response._body;
+        })
+            .catch(function (error) {
+            //console.log(error);
+            //console.log(error._body)            
+            return (error.status === 404) ? Rx_1.Observable.throw(error._body) : null;
         });
     };
     return AppointmentService;
