@@ -84,16 +84,24 @@ export class AppointmentService {
         return Observable.of(data);
       }
 
-      bookAppointmentForDoctor(userData2 : any):any{
+      bookAppointmentForDoctor(userData2 : any):Observable<any[]>{
 
-        console.log("hi" + userData2 )
+        //console.log("hi" + userData2 )
         return this.http.post("http://localhost:8080/ASP/HealthDB/customer/bookAppoint",userData2) 
         .map(
            (response:Response) => {
-                 console.log("Inserted Successfully")
-                    return response.json();              
+                 //console.log("Inserted Successfully" ,response )
+                    return response._body;              
             }                   
          )
+         .catch (
+          (error: any ) => {
+             //console.log(error);
+             //console.log(error._body)            
+             return (error.status === 404)? Observable.throw(error._body) : null ;
+
+              }            
+          );
        
 
 

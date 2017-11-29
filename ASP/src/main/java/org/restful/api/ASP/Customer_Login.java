@@ -10,8 +10,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.restful.api.Email.EmailAppointment;
 import org.restful.api.database.AppointmentsDb;
-import org.restful.api.model.Appointments;
+import org.restful.api.model.AllPatientDetails;
 import org.restful.api.model.DoctorsProfile;
 import org.restful.api.model.PatientAppointment;
 
@@ -26,7 +27,7 @@ public class Customer_Login {
 	// API to get the List of Specialties, Reasons , doctors_names
 	public Response getConsultingReason() throws Exception {
 
-		Appointments appointment = new Appointments();
+		AllPatientDetails appointment = new AllPatientDetails();
 		appointment.setReasonSet(AppointmentsDb.getReasonList());
 
 		return (appointment.getReasonSet() != null) ? Response.status(200).entity(appointment).build()
@@ -40,7 +41,7 @@ public class Customer_Login {
 	// API to get the List of Specialties, Reasons , doctors_names
 	public Response getDoctorsList(DoctorsProfile profile) throws Exception {
 
-		Appointments appointment = new Appointments();
+		AllPatientDetails appointment = new AllPatientDetails();
 		appointment.setDoctorsAvailablityList(AppointmentsDb.getListOfDoctors(profile));
 		return (appointment.getDoctorsAvailablityList().get(0).getErrMsg() == null)
 				? Response.status(200).entity(appointment).build() : Response.status(404).entity(appointment).build();
@@ -56,9 +57,15 @@ public class Customer_Login {
 		
 		boolean confirm = AppointmentsDb.fixPatientAppointment(profile);
 
-		return (confirm)? Response.status(200).entity(profile).build() : Response.status(404).entity(profile).build(); 
+		 if(confirm){
+			 EmailAppointment.sendEmailAppointDateAndTime(profile);
+			 return Response.status(200).entity("Appointment has been booked").build();
+		}else{ 
+			return Response.status(404).entity("Appointment has been not booked , due to some other reasons").build();
+			 }
+		 }
 	}
 	
 	
 
-}
+

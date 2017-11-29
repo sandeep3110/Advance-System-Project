@@ -9,11 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var Appointment_service_1 = require("../RESTFul_API_Service/Appointment.service");
 "use strict";
 var AppointmentModal = (function () {
-    function AppointmentModal(appoint) {
+    function AppointmentModal(route, appoint) {
         var _this = this;
+        this.route = route;
         this.appoint = appoint;
         this.datepickerOpts = {
             autoclose: true, todayBtn: 'linked',
@@ -42,6 +44,7 @@ var AppointmentModal = (function () {
         });
     }
     AppointmentModal.prototype.bookAppoint = function () {
+        var _this = this;
         if (this.date && this.consultingReason) {
             var entries = {};
             entries = {
@@ -57,7 +60,14 @@ var AppointmentModal = (function () {
             console.log(entries);
             this.appoint.bookAppointmentForDoctor(entries)
                 .subscribe(function (result) {
-                window.alert("hi");
+                window.alert(result);
+                (result) ? _this.route.navigate(['home/' + _this.doctorMemberId]) : null;
+            }, function (err) {
+                window.alert(err);
+                if (err) {
+                    _this.consultingReason.clear();
+                    _this.route.navigate(['home/' + _this.doctorMemberId]);
+                }
             });
         }
         else {
@@ -75,7 +85,7 @@ AppointmentModal = __decorate([
         templateUrl: './Customer_MakeAppointment_Modal.html',
         styleUrls: ['./Customer_MakeAppointment_Modal.css'],
     }),
-    __metadata("design:paramtypes", [Appointment_service_1.AppointmentService])
+    __metadata("design:paramtypes", [router_1.Router, Appointment_service_1.AppointmentService])
 ], AppointmentModal);
 exports.AppointmentModal = AppointmentModal;
 //# sourceMappingURL=Customer_MakeAppointment.js.map

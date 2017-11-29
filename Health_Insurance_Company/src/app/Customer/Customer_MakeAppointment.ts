@@ -48,7 +48,7 @@ export class AppointmentModal  {
   
 
 
-    constructor(private appoint : AppointmentService) { 
+    constructor(private route : Router ,private appoint : AppointmentService) { 
 
       this.appoint.getDoctorAndPaitentMemberId()
           .subscribe(
@@ -88,11 +88,19 @@ export class AppointmentModal  {
           this.appoint.bookAppointmentForDoctor(entries)
           .subscribe(
             (result: any) => {
-              window.alert("hi");
+              window.alert(result);
+               (result)? this.route.navigate(['home/'+this.doctorMemberId]) : null;
+                         
+            },
+            (err: any) => {
+              window.alert(err);
+              if(err){
+                this.consultingReason.clear();
+                this.route.navigate(['home/'+this.doctorMemberId]);
+              }
               
             }
-          )
-
+          );
       }
 
       else{

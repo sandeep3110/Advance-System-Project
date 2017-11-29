@@ -36,7 +36,8 @@ var DBConnection = (function () {
            return response.json(); */
         function (response) {
             console.log(response);
-            return response;
+            /* console.log(response._body); */
+            return response._body;
         })
             .catch(function (error) {
             if (error.status > 400) {

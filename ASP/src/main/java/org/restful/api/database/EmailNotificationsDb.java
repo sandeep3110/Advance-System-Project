@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.restful.api.model.Profile;
 
@@ -49,7 +51,77 @@ public  class EmailNotificationsDb {
 	    		          con.close();
                       }
 		
-		
+			
 	}
+	
+	
+		public static List<String> getDoctorNameAndAddress(int id) throws Exception{
+			
+			     con = DatabaseConnection.getCon();
+			     PreparedStatement pst = null;
+			     ResultSet rs = null;
+			     List<String> docData = new ArrayList<>();
+			     
+			try{
+	    		
+	   		 //Inserting in Email_Notofications database
+				 
+	   		      pst = con.prepareStatement("SELECT first_name , address FROM `doctor_availability_list` where member_id = ? ");
+	   		      pst.setInt(1, id);
+	   		      rs = pst.executeQuery();
+	   		     while(rs.next()){
+	   		    	docData.add(rs.getString("first_name"));
+	   		    	docData.add(rs.getString("address")); 
+	   		     }
+	   		     
+	   		       
+	   	    
+	         }catch (SQLException e) {				
+				          System.err.println("Got an exception!! in doctor_availability_list in Email_Db ");
+			              System.err.println(e.getMessage());
+			      }finally{
+	        	              pst.close();
+		    		          rs.close();
+		    		          con.close();
+	                      }
+			return docData;
+			
+				
+		}
+		
+		public static String getPatitentMailddress(int id) throws Exception{
+			
+		     con = DatabaseConnection.getCon();
+		     PreparedStatement pst = null;
+		     ResultSet rs = null;
+		     String mailAddress = null;
+		     
+		try{
+   		
+  		 //Inserting in Email_Notofications database
+			 
+  		      pst = con.prepareStatement("SELECT email FROM `customer_table` where member_id = ?  ");
+  		      pst.setInt(1, id);
+  		      rs = pst.executeQuery();
+  		     while(rs.next()){
+  		    	mailAddress = rs.getString("email");  		    	
+  		     }
+  		     
+  		       
+  	    
+        }catch (SQLException e) {				
+			          System.err.println("Got an exception!! in customer_table in Email_Db ");
+		              System.err.println(e.getMessage());
+		      }finally{
+       	              pst.close();
+	    		          rs.close();
+	    		          con.close();
+                     }
+		return mailAddress;
+		
+			
+	}
+		
+		
 
 }

@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.restful.api.model.Appointments;
+import org.restful.api.model.AllPatientDetails;
 import org.restful.api.model.DoctorsProfile;
 import org.restful.api.model.PatientAppointment;
 
@@ -152,7 +152,6 @@ public class AppointmentsDb {
 				pst.setString(3, profile.getPatientLastName());
 				pst.setString(4, profile.getContactNum());
 				pst.setString(5, profile.getCarrierName());
-				System.out.println();
 				pst.setObject(6, profile.getDate());
 				pst.setString(7, profile.getReason());
 				pst.setInt(8, profile.getDoctorMemberId());
@@ -165,11 +164,11 @@ public class AppointmentsDb {
 					pst.close();
 				    con.close();
 				    
-				    profile.setErrMessage("Appointment has been booked");
+				    
 				    status = true;
 				}else{
 					System.out.println("Not Inserted");
-					profile.setErrMessage("Appointment has been not booked , due to some other reasons");
+					
 					status = false;
 				   }
 		        }catch (SQLException e) {				

@@ -31,6 +31,7 @@ var CustomerSignUpComponent = (function () {
         this.value = Math.floor(60000 + Math.random() * 10000); // to generate five digit member id greater than 60000
     }
     /* Validation for each and every form field */
+    /*Test RegExp here - 'https://www.regexpal.com/'*/
     CustomerSignUpComponent.prototype.createForm = function () {
         this.entryForm = this.fb.group({
             firstname: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.pattern('[A-Za-z\\s]+')])],
@@ -65,7 +66,7 @@ var CustomerSignUpComponent = (function () {
         };
         this.dbConn.insertRegistartionValues(entries)
             .subscribe(function (result) {
-            window.alert(result.msg);
+            window.alert(result);
             _this.entryForm.reset();
         }, 
         /* Error Handling from DBConn.service.ts */

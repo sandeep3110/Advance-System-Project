@@ -17,7 +17,7 @@ export class DBConnection {
      * getting thne response from server and handling the response
     /* To Insert data of Customer or Doctor */
 
-    insertRegistartionValues(entries : any) : any{
+    insertRegistartionValues(entries : any) : Observable<any[]>{
 
         /* let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -36,7 +36,8 @@ export class DBConnection {
 
                           (response:Response) => {
                                 console.log(response);
-                                 return response;
+                                /* console.log(response._body); */
+                                 return response._body;
                            }                   
                         )
                         .catch(

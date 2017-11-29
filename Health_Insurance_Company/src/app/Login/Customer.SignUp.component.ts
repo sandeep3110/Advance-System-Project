@@ -32,6 +32,7 @@ import { Router } from '@angular/router';
           }
   
           /* Validation for each and every form field */
+          /*Test RegExp here - 'https://www.regexpal.com/'*/
 
           createForm(){
             this.entryForm = this.fb.group({
@@ -79,7 +80,7 @@ import { Router } from '@angular/router';
                 this.dbConn.insertRegistartionValues(entries)
                   .subscribe(
                       (result:any)=>{
-                              window.alert(result.msg);
+                              window.alert(result);
                               this.entryForm.reset();                             
                           },   
                                   
