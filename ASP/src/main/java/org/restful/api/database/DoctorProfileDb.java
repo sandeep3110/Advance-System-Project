@@ -51,29 +51,55 @@ public class DoctorProfileDb {
 		int count;
 
 		try {
-			query = conn.prepareStatement(
-					"UPDATE health_db.doctor_profile SET first_name=?, last_name=?, education=?, hospital_affliation=?, languages=?, professional_Memberships=?, board_certification=?, affliated_insurance=?, specialities=? WHERE doctor_member_id=?");
+			if (docQualifications.isProfileExists()) {
+				query = conn.prepareStatement(
+						"UPDATE health_db.doctor_profile SET first_name=?, last_name=?, education=?, hospital_affliation=?, languages=?, professional_Memberships=?, board_certification=?, affliated_insurance=?, specialities=? WHERE doctor_member_id=?");
 
-			query.setString(1, docQualifications.getDoctorFirstName());
-			query.setString(2, docQualifications.getDoctorLastName());
-			query.setString(3, docQualifications.getEducation());
-			query.setString(4, docQualifications.getHospitalAffliation());
-			query.setString(5, docQualifications.getLanguagesSpoken());
-			query.setString(6, docQualifications.getProfessionalMemberships());
-			query.setString(7, docQualifications.getBoardCertification());
-			query.setString(8, docQualifications.getAffiliatedInsurance());
-			query.setString(9, docQualifications.getSpecialities());
+				query.setString(1, docQualifications.getDoctorFirstName());
+				query.setString(2, docQualifications.getDoctorLastName());
+				query.setString(3, docQualifications.getEducation());
+				query.setString(4, docQualifications.getHospitalAffliation());
+				query.setString(5, docQualifications.getLanguagesSpoken());
+				query.setString(6, docQualifications.getProfessionalMemberships());
+				query.setString(7, docQualifications.getBoardCertification());
+				query.setString(8, docQualifications.getAffiliatedInsurance());
+				query.setString(9, docQualifications.getSpecialities());
 
-		//	query.setInt(10, 12344);
-			query.setInt(10, docQualifications.getDoctorMemberId());
-			count = query.executeUpdate();
+				// query.setInt(10, 12344);
+				query.setInt(10, docQualifications.getDoctorMemberId());
+				count = query.executeUpdate();
 
-			if (count > 0) {
-				docQualifications.setSuccessMessage("Succesfully updated");
+				if (count > 0) {
+					docQualifications.setSuccessMessage("Succesfully updated");
+				} else {
+					docQualifications
+							.setErrMessage("There was some error while updating your profile, please try again later");
+				}
+
 			} else {
-				docQualifications.setErrMessage("There was some error while updating your profile, please try again later");
+				query = conn.prepareStatement(
+						"INSERT into health_db.doctor_profile values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+
+				query.setInt(1, docQualifications.getDoctorMemberId());
+				query.setString(2, docQualifications.getDoctorFirstName());
+				query.setString(3, docQualifications.getDoctorLastName());
+				query.setString(4, docQualifications.getEducation());
+				query.setString(5, docQualifications.getHospitalAffliation());
+				query.setString(6, docQualifications.getLanguagesSpoken());
+				query.setString(7, docQualifications.getProfessionalMemberships());
+				query.setString(8, docQualifications.getBoardCertification());
+				query.setString(9, docQualifications.getAffiliatedInsurance());
+				query.setString(10, docQualifications.getSpecialities());
+
+				count = query.executeUpdate();
+
+				if (count > 0) {
+					docQualifications.setSuccessMessage("Succesfully updated");
+				} else {
+					docQualifications
+							.setErrMessage("There was some error while updating your profile, please try again later");
+				}
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

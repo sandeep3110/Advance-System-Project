@@ -205,7 +205,6 @@ public class DoctorInfo {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateDoctorProfile(DoctorQualifications doctorQualifications) throws Exception {
 		DoctorProfileDb docInfo = new DoctorProfileDb();
-
 		DoctorQualifications result = docInfo.updateDoctorProfile(doctorQualifications);
 		return (result.getSuccessMessage() != null) ? Response.status(200).entity(result).build()
 				: Response.status(500).entity(result).build();

@@ -44,6 +44,7 @@ export class DoctorHeader extends CustomerAuthGuard {
         this.patientAppointments = appointments;
       },
       error => {
+        this.modalTitle = "Past Appointments";
         this.errorMessage = <any>error;
       },
       () => {
@@ -61,10 +62,11 @@ export class DoctorHeader extends CustomerAuthGuard {
         this.patientReviews = reviews;
       },
       error => {
+        this.modalTitle = "Patient Reviews";
         this.errorMessage = <any>error;
       },
       () => {
-        this.modalTitle = "Past Appointments";
+        this.modalTitle = "Patient Reviews";
       });
   };
 
@@ -78,10 +80,11 @@ export class DoctorHeader extends CustomerAuthGuard {
         this.patientLabReports = labReports;
       },
       error => {
+        this.modalTitle = "Lab Reports For PickUp";
         this.errorMessage = <any>error;
       },
       () => {
-        this.modalTitle = "Past Appointments";
+        this.modalTitle = "Lab Reports For PickUp";
       });
   }
 
@@ -95,10 +98,11 @@ export class DoctorHeader extends CustomerAuthGuard {
         this.patientAppointments = appointments;
       },
       error => {
+        this.modalTitle = "More Appointments"
         this.errorMessage = <any>error;
       },
       () => {
-        this.modalTitle = "All Appointments For Today";
+        this.modalTitle = "More Appointments";
       });
   }
 
@@ -112,15 +116,17 @@ export class DoctorHeader extends CustomerAuthGuard {
         this.doctorProfile = doctorProfile;
       },
       error => {
+        this.profileModalTitle = "Edit Profile"
         this.errorMessage = <any>error;
       },
       () => this.profileModalTitle = "Edit Profile");
   }
 
   editDoctorProfile(event: any) {
-    console.log("Its here", this.doctorProfile)
 
-    this.doctorHomeService.updateDoctorProfile(this.doctorProfile)
+    var doctorMemberId = this.id;
+
+    this.doctorHomeService.updateDoctorProfile(this.doctorProfile, doctorMemberId)
       .subscribe(response => {
         this.updateResponse = response;
         this.hasMessage = true;

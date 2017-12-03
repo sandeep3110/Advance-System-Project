@@ -79,7 +79,14 @@ export class DoctorHomeService {
       .catch(this.handleError);
   }
 
-  updateDoctorProfile(doctorProfile: any): Observable<IDoctorProfile> {
+  updateDoctorProfile(doctorProfile: any, doctorMemberId: any): Observable<IDoctorProfile> {
+    if(!doctorProfile.doctorMemberId) {
+      doctorProfile.doctorMemberId = doctorMemberId;
+      doctorProfile.profileExists = false;
+    } else {
+      doctorProfile.profileExists = true;
+    }
+    
     return this.http.put(this._updateDocProfileUrl, doctorProfile)
     .map(
       (response: Response) => {

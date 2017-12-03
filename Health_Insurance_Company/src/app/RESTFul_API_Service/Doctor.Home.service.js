@@ -66,7 +66,14 @@ var DoctorHomeService = (function () {
         })
             .catch(this.handleError);
     };
-    DoctorHomeService.prototype.updateDoctorProfile = function (doctorProfile) {
+    DoctorHomeService.prototype.updateDoctorProfile = function (doctorProfile, doctorMemberId) {
+        if (!doctorProfile.doctorMemberId) {
+            doctorProfile.doctorMemberId = doctorMemberId;
+            doctorProfile.profileExists = false;
+        }
+        else {
+            doctorProfile.profileExists = true;
+        }
         return this.http.put(this._updateDocProfileUrl, doctorProfile)
             .map(function (response) {
             console.log("updated response is ", response.json());

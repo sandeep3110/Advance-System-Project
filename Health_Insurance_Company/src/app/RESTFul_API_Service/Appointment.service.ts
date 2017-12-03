@@ -89,7 +89,7 @@ export class AppointmentService {
         //console.log("hi" + userData2 )
         return this.http.post("http://localhost:8080/ASP/HealthDB/customer/bookAppoint",userData2) 
         .map(
-           (response:Response) => {
+           (response:any) => {
                  //console.log("Inserted Successfully" ,response )
                     return response._body;              
             }                   

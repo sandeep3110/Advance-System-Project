@@ -42,6 +42,7 @@ var DoctorHeader = (function (_super) {
             .subscribe(function (appointments) {
             _this.patientAppointments = appointments;
         }, function (error) {
+            _this.modalTitle = "Past Appointments";
             _this.errorMessage = error;
         }, function () {
             _this.modalTitle = "Past Appointments";
@@ -57,9 +58,10 @@ var DoctorHeader = (function (_super) {
             .subscribe(function (reviews) {
             _this.patientReviews = reviews;
         }, function (error) {
+            _this.modalTitle = "Patient Reviews";
             _this.errorMessage = error;
         }, function () {
-            _this.modalTitle = "Past Appointments";
+            _this.modalTitle = "Patient Reviews";
         });
     };
     ;
@@ -72,9 +74,10 @@ var DoctorHeader = (function (_super) {
             .subscribe(function (labReports) {
             _this.patientLabReports = labReports;
         }, function (error) {
+            _this.modalTitle = "Lab Reports For PickUp";
             _this.errorMessage = error;
         }, function () {
-            _this.modalTitle = "Past Appointments";
+            _this.modalTitle = "Lab Reports For PickUp";
         });
     };
     DoctorHeader.prototype.ShowAppointmentsForTodayClicked = function (event) {
@@ -86,9 +89,10 @@ var DoctorHeader = (function (_super) {
             .subscribe(function (appointments) {
             _this.patientAppointments = appointments;
         }, function (error) {
+            _this.modalTitle = "More Appointments";
             _this.errorMessage = error;
         }, function () {
-            _this.modalTitle = "All Appointments For Today";
+            _this.modalTitle = "More Appointments";
         });
     };
     DoctorHeader.prototype.DoctorProfileClicked = function (event) {
@@ -100,13 +104,14 @@ var DoctorHeader = (function (_super) {
             .subscribe(function (doctorProfile) {
             _this.doctorProfile = doctorProfile;
         }, function (error) {
+            _this.profileModalTitle = "Edit Profile";
             _this.errorMessage = error;
         }, function () { return _this.profileModalTitle = "Edit Profile"; });
     };
     DoctorHeader.prototype.editDoctorProfile = function (event) {
         var _this = this;
-        console.log("Its here", this.doctorProfile);
-        this.doctorHomeService.updateDoctorProfile(this.doctorProfile)
+        var doctorMemberId = this.id;
+        this.doctorHomeService.updateDoctorProfile(this.doctorProfile, doctorMemberId)
             .subscribe(function (response) {
             _this.updateResponse = response;
             _this.hasMessage = true;

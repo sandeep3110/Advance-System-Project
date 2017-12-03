@@ -54,16 +54,6 @@ var DoctorHomeView = (function (_super) {
         });
     };
     ;
-    // getAppointmentsForCards(appointmentsArray: Array<any>) {
-    //   console.log('Appointments array is ', appointmentsArray);
-    //   this.appointmentsForCards = appointmentsArray ? appointmentsArray.sort((a: any, b: any) => {
-    //     if (new Date(a.date) < new Date(b.date))
-    //       return -1;
-    //     if (new Date(a.date) > new Date(b.date))
-    //       return 1;
-    //     return 0;
-    //   }) : null;
-    // };
     DoctorHomeView.prototype.getAllReviews = function () {
         var _this = this;
         var entries = {
