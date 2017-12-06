@@ -116,6 +116,7 @@ export class DoctorHeader extends CustomerAuthGuard {
         this.doctorProfile = doctorProfile;
       },
       error => {
+        console.log("Get Doc Profile", this.doctorProfile);
         this.profileModalTitle = "Edit Profile"
         this.errorMessage = <any>error;
       },
@@ -124,11 +125,9 @@ export class DoctorHeader extends CustomerAuthGuard {
 
   editDoctorProfile(event: any) {
 
-    var doctorMemberId = this.id;
-
-    this.doctorHomeService.updateDoctorProfile(this.doctorProfile, doctorMemberId)
-      .subscribe(response => {
-        this.updateResponse = response;
+    this.doctorHomeService.updateDoctorProfile(this.doctorProfile, this.id)
+      .subscribe(doctorQualifications => {
+        this.updateResponse = doctorQualifications;
         this.hasMessage = true;
         this.editDocProfileMessage = this.updateResponse.successMessage;
       },

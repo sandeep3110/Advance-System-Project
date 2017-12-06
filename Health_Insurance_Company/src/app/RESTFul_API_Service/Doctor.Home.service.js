@@ -74,7 +74,20 @@ var DoctorHomeService = (function () {
         else {
             doctorProfile.profileExists = true;
         }
-        return this.http.put(this._updateDocProfileUrl, doctorProfile)
+        var entries = {
+            affiliatedInsurance: doctorProfile.affiliatedInsurance,
+            boardCertification: doctorProfile.boardCertification,
+            doctorFirstName: doctorProfile.doctorFirstName,
+            doctorLastName: doctorProfile.doctorLastName,
+            doctorMemberId: doctorProfile.doctorMemberId,
+            education: doctorProfile.education,
+            hospitalAffliation: doctorProfile.hospitalAffliation,
+            languagesSpoken: doctorProfile.languagesSpoken,
+            professionalMemberships: doctorProfile.professionalMemberships,
+            profileExists: doctorProfile.profileExists,
+            specialities: doctorProfile.specialities
+        };
+        return this.http.put(this._updateDocProfileUrl, entries)
             .map(function (response) {
             console.log("updated response is ", response.json());
             return response.json();
@@ -90,8 +103,8 @@ var DoctorHomeService = (function () {
         return Observable_1.Observable.throw(JSON.parse(err._body).patientLabReports[0].errMessage);
     };
     DoctorHomeService.prototype.updateDoctorProfileError = function (err) {
-        console.log('this is update error', JSON.parse(err._body).errMessage);
-        return Observable_1.Observable.throw(JSON.parse(err._body).errMessage);
+        console.log('this is update error', JSON.parse(err._body));
+        return Observable_1.Observable.throw(JSON.parse(err._body));
     };
     return DoctorHomeService;
 }());

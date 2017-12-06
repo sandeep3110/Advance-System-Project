@@ -19,7 +19,7 @@ public class DoctorProfileDb {
 
 			query.setInt(1, doctorMemberId);
 			resultSet = query.executeQuery();
-
+			System.out.println("Get doc Profile " + docQualifications.getDoctorMemberId());
 			while (resultSet.next()) {
 				docQualifications.setDoctorMemberId(resultSet.getInt("doctor_member_id"));
 				docQualifications.setDoctorFirstName(resultSet.getString("first_name"));
@@ -79,6 +79,8 @@ public class DoctorProfileDb {
 			} else {
 				query = conn.prepareStatement(
 						"INSERT into health_db.doctor_profile values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+
+				System.out.println("This is doctor first name" + docQualifications.getDoctorFirstName());
 
 				query.setInt(1, docQualifications.getDoctorMemberId());
 				query.setString(2, docQualifications.getDoctorFirstName());

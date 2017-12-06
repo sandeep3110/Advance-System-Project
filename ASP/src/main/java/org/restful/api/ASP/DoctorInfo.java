@@ -16,6 +16,7 @@ import org.restful.api.model.AllPatientDetails;
 import org.restful.api.model.DoctorQualifications;
 import org.restful.api.model.PatientAppointment;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import com.sun.research.ws.wadl.Doc;
 
 /**
@@ -59,15 +60,13 @@ public class DoctorInfo {
 	/**
 	 * @author Prashanth Avasarala Venkata
 	 * 
-	 *         This method returns the all the past appointments till present
-	 *         day.
+	 *         This method returns the all the past appointments till present day.
 	 * @param {Object}
-	 *            patientAppointment - PatientAppointment Object which has
-	 *            doctorId which is used in query to return appointments of a
-	 *            particular doctor.
-	 * @return {Object} Response - appointmentsList converted into response
-	 *         object with status code 200 for success or 404 if the list is
-	 *         empty.
+	 *            patientAppointment - PatientAppointment Object which has doctorId
+	 *            which is used in query to return appointments of a particular
+	 *            doctor.
+	 * @return {Object} Response - appointmentsList converted into response object
+	 *         with status code 200 for success or 404 if the list is empty.
 	 */
 	@Path("pastAppointments")
 	@POST
@@ -98,11 +97,11 @@ public class DoctorInfo {
 	 * 
 	 *         This method returns all reviews of a particular doctor.
 	 * @param {Object}
-	 *            patientAppointment - PatientAppointment Object which has
-	 *            doctorId which is used in query to return appointments of a
-	 *            particular doctor.
-	 * @return {Object} Response - reviewsList converted into response object
-	 *         with status code 200 for success or 404 if the list is empty.
+	 *            patientAppointment - PatientAppointment Object which has doctorId
+	 *            which is used in query to return appointments of a particular
+	 *            doctor.
+	 * @return {Object} Response - reviewsList converted into response object with
+	 *         status code 200 for success or 404 if the list is empty.
 	 */
 	@Path("reviews")
 	@POST
@@ -133,11 +132,11 @@ public class DoctorInfo {
 	 * 
 	 *         This method returns all reviews of a particular doctor.
 	 * @param {Object}
-	 *            patientAppointment - PatientAppointment Object which has
-	 *            doctorId which is used in query to return appointments of a
-	 *            particular doctor.
-	 * @return {Object} Response - reviewsList converted into response object
-	 *         with status code 200 for success or 404 if the list is empty.
+	 *            patientAppointment - PatientAppointment Object which has doctorId
+	 *            which is used in query to return appointments of a particular
+	 *            doctor.
+	 * @return {Object} Response - reviewsList converted into response object with
+	 *         status code 200 for success or 404 if the list is empty.
 	 */
 	@Path("labReports")
 	@POST
@@ -168,11 +167,11 @@ public class DoctorInfo {
 	 * 
 	 *         This method returns doctor profile.
 	 * @param {Object}
-	 *            patientAppointment - PatientAppointment Object which has
-	 *            doctorId which is used in query to return appointments of a
-	 *            particular doctor.
-	 * @return {Object} Response - reviewsList converted into response object
-	 *         with status code 200 for success or 404 if the list is empty.
+	 *            patientAppointment - PatientAppointment Object which has doctorId
+	 *            which is used in query to return appointments of a particular
+	 *            doctor.
+	 * @return {Object} Response - reviewsList converted into response object with
+	 *         status code 200 for success or 404 if the list is empty.
 	 */
 	@Path("doctorProfile")
 	@POST
@@ -193,11 +192,11 @@ public class DoctorInfo {
 	 * 
 	 *         This method updates doctor profile.
 	 * @param {Object}
-	 *            patientAppointment - PatientAppointment Object which has
-	 *            doctorId which is used in query to return appointments of a
-	 *            particular doctor.
-	 * @return {Object} Response - reviewsList converted into response object
-	 *         with status code 200 for success or 404 if the list is empty.
+	 *            patientAppointment - PatientAppointment Object which has doctorId
+	 *            which is used in query to return appointments of a particular
+	 *            doctor.
+	 * @return {Object} Response - reviewsList converted into response object with
+	 *         status code 200 for success or 404 if the list is empty.
 	 */
 	@Path("updateProfile")
 	@PUT
@@ -205,6 +204,7 @@ public class DoctorInfo {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateDoctorProfile(DoctorQualifications doctorQualifications) throws Exception {
 		DoctorProfileDb docInfo = new DoctorProfileDb();
+		
 		DoctorQualifications result = docInfo.updateDoctorProfile(doctorQualifications);
 		return (result.getSuccessMessage() != null) ? Response.status(200).entity(result).build()
 				: Response.status(500).entity(result).build();

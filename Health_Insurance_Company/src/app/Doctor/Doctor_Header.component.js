@@ -104,6 +104,7 @@ var DoctorHeader = (function (_super) {
             .subscribe(function (doctorProfile) {
             _this.doctorProfile = doctorProfile;
         }, function (error) {
+            console.log("Get Doc Profile", _this.doctorProfile);
             _this.profileModalTitle = "Edit Profile";
             _this.errorMessage = error;
         }, function () { return _this.profileModalTitle = "Edit Profile"; });
@@ -111,9 +112,11 @@ var DoctorHeader = (function (_super) {
     DoctorHeader.prototype.editDoctorProfile = function (event) {
         var _this = this;
         var doctorMemberId = this.id;
+        console.log("Submit form ", this.doctorProfile.doctorMemberId);
+        console.log("after submitted the form", this.doctorProfile);
         this.doctorHomeService.updateDoctorProfile(this.doctorProfile, doctorMemberId)
-            .subscribe(function (response) {
-            _this.updateResponse = response;
+            .subscribe(function (doctorQualifications) {
+            _this.updateResponse = doctorQualifications;
             _this.hasMessage = true;
             _this.editDocProfileMessage = _this.updateResponse.successMessage;
         }, function (error) {

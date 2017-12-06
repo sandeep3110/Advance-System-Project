@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { IPatientAppointments } from '../Doctor/Patient-Appointments';
 import { IDoctorProfile } from '../Doctor/Doctor-Profile';
+import { IDoctorQualifications } from '../Doctor/Doctor-Qualifications';
 
 "use strict";
 
@@ -79,16 +80,30 @@ export class DoctorHomeService {
       .catch(this.handleError);
   }
 
-  updateDoctorProfile(doctorProfile: any, doctorMemberId: any): Observable<IDoctorProfile> {
-    if(!doctorProfile.doctorMemberId) {
+  updateDoctorProfile(doctorProfile: any, doctorMemberId: any): Observable<IDoctorQualifications> {
+    if (!doctorProfile.doctorMemberId) {
       doctorProfile.doctorMemberId = doctorMemberId;
       doctorProfile.profileExists = false;
     } else {
       doctorProfile.profileExists = true;
     }
-    
-    return this.http.put(this._updateDocProfileUrl, doctorProfile)
-    .map(
+
+    var entries = {
+      affiliatedInsurance: doctorProfile.affiliatedInsurance,
+      boardCertification: doctorProfile.boardCertification,
+      doctorFirstName: doctorProfile.doctorFirstName,
+      doctorLastName: doctorProfile.doctorLastName,
+      doctorMemberId: doctorProfile.doctorMemberId,
+      education: doctorProfile.education,
+      hospitalAffliation: doctorProfile.hospitalAffliation,
+      languagesSpoken: doctorProfile.languagesSpoken,
+      professionalMemberships: doctorProfile.professionalMemberships,
+      profileExists: doctorProfile.profileExists,
+      specialities: doctorProfile.specialities
+    };
+
+    return this.http.put(this._updateDocProfileUrl, entries)
+      .map(
       (response: Response) => {
         console.log("updated response is ", response.json());
         return response.json();
@@ -107,7 +122,7 @@ export class DoctorHomeService {
   }
 
   private updateDoctorProfileError(err: any) {
-    console.log('this is update error', JSON.parse(err._body).errMessage);
-    return Observable.throw(JSON.parse(err._body).errMessage);
+    console.log('this is update error', JSON.parse(err._body));
+    return Observable.throw(JSON.parse(err._body));
   }
 }

@@ -1,5 +1,8 @@
 package org.restful.api.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class DoctorQualifications {
 
 	private String education;

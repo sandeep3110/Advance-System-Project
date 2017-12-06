@@ -166,7 +166,7 @@
                 <td class="col-md-2"> {{review.reviewDate | date:'medium'}} </td>
                 <td class="col-md-6"> {{review.review}} </td>
                 <td class="col-md-2">
-                  <rating [(ngModel)]="patientReviews[0].rating" [max]="5" [readonly]="true" [float]="true"></rating>
+                  <rating [(ngModel)]="review.rating" [max]="5" [readonly]="true" [float]="true"></rating>
                 </td>
               </tr>
             </tbody>
